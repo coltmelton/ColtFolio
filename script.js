@@ -81,67 +81,57 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // Archive hover rotation
+  // Archive: left titles, right 3x3 thumbs
   const archiveItems = document.querySelectorAll(".archive__item");
-  const archivePreview = document.querySelector(".archive__preview img");
-  let archiveTimer = null;
+  const archiveThumbs = document.querySelectorAll(".archive__thumb");
 
-  const stopArchiveTimer = () => {
-    if (archiveTimer) {
-      clearInterval(archiveTimer);
-      archiveTimer = null;
-    }
+  const highlightById = id => {
+    archiveItems.forEach(btn => {
+      btn.classList.toggle("is-active", btn.dataset.archiveId === id);
+    });
   };
 
-  const setActiveArchive = (item) => {
-    archiveItems.forEach(btn => btn.classList.remove("is-active"));
-    item.classList.add("is-active");
-  };
+  archiveThumbs.forEach(thumb => {
+    const img = thumb.querySelector("img");
+    const thumbId = thumb.dataset.archiveId;
+    let idx = 1;
+    let timer = null;
 
-  archiveItems.forEach(item => {
-    const images = (item.dataset.images || "")
-      .split(",")
-      .map(s => s.trim())
-      .filter(Boolean);
-    if (!images.length || !archivePreview) return;
+    const getImages = () =>
+      (thumb.dataset.images || "")
+        .split(",")
+        .map(s => s.trim())
+        .filter(Boolean);
 
-    let idx = 0;
+    const stop = () => {
+      if (timer) {
+        clearInterval(timer);
+        timer = null;
+      }
+      const images = getImages();
+      if (images.length && img) {
+        img.src = images[0];
+        idx = 1;
+      }
+      if (thumbId) highlightById(null);
+    };
 
-    const startCycle = () => {
-      stopArchiveTimer();
-      archivePreview.src = images[0];
-      idx = 1;
-      archiveTimer = setInterval(() => {
-        archivePreview.src = images[idx % images.length];
+    const start = () => {
+      const images = getImages();
+      if (!img || !images.length) return;
+      stop();
+      if (thumbId) highlightById(thumbId);
+      timer = setInterval(() => {
+        img.src = images[idx % images.length];
         idx += 1;
       }, 180);
     };
 
-    item.addEventListener("mouseenter", () => {
-      setActiveArchive(item);
-      startCycle();
-    });
-
-    item.addEventListener("mouseleave", () => {
-      stopArchiveTimer();
-      archivePreview.src = images[0];
-    });
-
-    item.addEventListener("focus", () => {
-      setActiveArchive(item);
-      startCycle();
-    });
-
-    item.addEventListener("blur", () => {
-      stopArchiveTimer();
-      archivePreview.src = images[0];
-    });
+    thumb.addEventListener("mouseenter", start);
+    thumb.addEventListener("mouseleave", stop);
+    thumb.addEventListener("focus", start);
+    thumb.addEventListener("blur", stop);
   });
-
-  // Default active archive
-  if (archiveItems.length) {
-    archiveItems[0].dispatchEvent(new Event("mouseenter"));
-  }
 
   const welcomeSection = document.querySelector(".welcome");
   const welcomeInner = document.querySelector(".welcome__inner");

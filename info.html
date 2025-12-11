@@ -6,15 +6,29 @@
   <title>Info | Colt Melton</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;1,400;1,600&family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600;1,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
-    :root {
-      --bg: #0b0d11;
-      --text: #e9ecf4;
-      --muted: #9aa2b5;
-      --accent: #74c9ff;
+    @font-face {
+      font-family: 'MigraDisplay';
+      src: url('/fonts/MigraDisplay-Italic.woff2') format('woff2'),
+           url('/fonts/MigraDisplay-Italic.woff') format('woff');
+      font-weight: 400;
+      font-style: italic;
     }
-    * { box-sizing: border-box; }
+    @font-face {
+      font-family: 'MontrealMono';
+      src: url('/fonts/NeueMontrealMono-Regular.woff2') format('woff2'),
+           url('/fonts/NeueMontrealMono-Regular.woff') format('woff');
+      font-weight: 400;
+      font-style: normal;
+    }
+    :root {
+      --bg: #000000;
+      --text: #ffffff;
+      --muted: #d0d0d0;
+      --accent: #0080ff;
+    }
+    * { box-sizing: border-box; cursor: none; }
     html, body {
       margin: 0;
       padding: 0;
@@ -23,7 +37,7 @@
       overflow: hidden;
       background: var(--bg);
       color: var(--text);
-      font-family: "Crimson Pro", "Times New Roman", serif;
+      font-family: "Inter", sans-serif;
       line-height: 1.6;
       font-size: 20px;
     }
@@ -38,16 +52,34 @@
     }
     h1 {
       margin: 0 0 12px;
-      font-family: "Cormorant Garamond", "Crimson Pro", serif;
+      font-family: "MigraDisplay", serif;
       font-style: italic;
-      font-weight: 700;
+      font-weight: 400;
       letter-spacing: -0.02em;
     }
-    p { margin: 0 0 14px; color: var(--muted); font-style: italic; }
+    p { margin: 0 0 14px; color: var(--muted); font-style: italic; font-family: "Inter", sans-serif; }
     a { color: var(--accent); text-decoration: none; }
+    .cursor {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 28px;
+      height: 28px;
+      border: 1px solid var(--text);
+      border-radius: 50%;
+      pointer-events: none;
+      transform: translate(-50%, -50%);
+      transition: transform 0.12s ease, opacity 0.2s ease;
+      z-index: 999;
+    }
+    @media (max-width: 900px) {
+      * { cursor: auto; }
+      .cursor { display: none; }
+    }
   </style>
 </head>
 <body>
+  <div class="cursor" id="cursor"></div>
   <div class="wrapper">
     <div class="panel">
       <h1>Colt Melton — Info</h1>
@@ -57,5 +89,14 @@
       <p><a href="index.html">Back to portfolio</a></p>
     </div>
   </div>
+  <script>
+    const cursor = document.querySelector("#cursor");
+    if (cursor) {
+      window.addEventListener("mousemove", e => {
+        cursor.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
+        cursor.style.opacity = 1;
+      }, { passive: true });
+    }
+  </script>
 </body>
 </html>

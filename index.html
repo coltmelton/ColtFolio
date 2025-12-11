@@ -22,7 +22,6 @@
     </div>
     <nav class="nav__links">
       <a href="#work">Work</a>
-      <a href="#about">About</a>
       <a href="#capabilities">Capabilities</a>
       <a href="#contact">Contact</a>
     </nav>
@@ -85,9 +84,6 @@
 
       <div class="projects">
         <article class="project reveal">
-          <div class="project__image" data-images="assets/images/project1.jpg, assets/images/project2.jpg, assets/images/project3.jpg">
-            <img src="assets/images/project1.jpg" alt="Project 1">
-          </div>
           <div class="project__body">
             <p class="project__tag">SaaS Platform</p>
             <h3>Unified analytics for modern product teams</h3>
@@ -100,16 +96,18 @@
               <a class="btn ghost" href="#">Live preview</a>
             </div>
           </div>
-          <p class="project__desc">
-            Reimagined dashboards with data storytelling, progressive disclosure, and a modular design system
-            that cut onboarding time by 32%.
-          </p>
+          <div class="project__visual">
+            <div class="project__image" data-images="assets/images/project1.jpg, assets/images/project2.jpg, assets/images/project3.jpg">
+              <img src="assets/images/project1.jpg" alt="Project 1">
+            </div>
+            <p class="project__desc">
+              Reimagined dashboards with data storytelling, progressive disclosure, and a modular design system
+              that cut onboarding time by 32%.
+            </p>
+          </div>
         </article>
 
-        <article class="project project--reverse reveal">
-          <div class="project__image" data-images="assets/images/project2.jpg, assets/images/project4.jpg, assets/images/project1.jpg">
-            <img src="assets/images/project2.jpg" alt="Project 2">
-          </div>
+        <article class="project reveal">
           <div class="project__body">
             <p class="project__tag">Ecommerce Experience</p>
             <h3>Flagship retail drop with cinematic storytelling</h3>
@@ -122,16 +120,18 @@
               <a class="btn ghost" href="#">Live preview</a>
             </div>
           </div>
-          <p class="project__desc">
-            Built an immersive launch page with motion cues, tactile micro-interactions, and a resilient checkout
-            that increased conversion by 18%.
-          </p>
+          <div class="project__visual">
+            <div class="project__image" data-images="assets/images/project2.jpg, assets/images/project4.jpg, assets/images/project1.jpg">
+              <img src="assets/images/project2.jpg" alt="Project 2">
+            </div>
+            <p class="project__desc">
+              Built an immersive launch page with motion cues, tactile micro-interactions, and a resilient checkout
+              that increased conversion by 18%.
+            </p>
+          </div>
         </article>
 
         <article class="project reveal">
-          <div class="project__image" data-images="assets/images/project3.jpg, assets/images/project1.jpg, assets/images/project4.jpg">
-            <img src="assets/images/project3.jpg" alt="Project 3">
-          </div>
           <div class="project__body">
             <p class="project__tag">Mobile</p>
             <h3>Wellness companion with adaptive guidance</h3>
@@ -144,16 +144,18 @@
               <a class="btn ghost" href="#">Live preview</a>
             </div>
           </div>
-          <p class="project__desc">
-            Defined product narrative, built interactive prototypes, and shipped an app that adapts to user cadence
-            with measurable retention gains.
-          </p>
+          <div class="project__visual">
+            <div class="project__image" data-images="assets/images/project3.jpg, assets/images/project1.jpg, assets/images/project4.jpg">
+              <img src="assets/images/project3.jpg" alt="Project 3">
+            </div>
+            <p class="project__desc">
+              Defined product narrative, built interactive prototypes, and shipped an app that adapts to user cadence
+              with measurable retention gains.
+            </p>
+          </div>
         </article>
 
-        <article class="project project--reverse reveal">
-          <div class="project__image" data-images="assets/images/project4.jpg, assets/images/project2.jpg, assets/images/project3.jpg">
-            <img src="assets/images/project4.jpg" alt="Project 4">
-          </div>
+        <article class="project reveal">
           <div class="project__body">
             <p class="project__tag">Experimental</p>
             <h3>Generative visuals for a digital gallery</h3>
@@ -166,10 +168,15 @@
               <a class="btn ghost" href="#">Live preview</a>
             </div>
           </div>
-          <p class="project__desc">
-            Designed a responsive gallery with reactive motion and typographic rhythm that showcased creative
-            technology in a quiet, editorial layout.
-          </p>
+          <div class="project__visual">
+            <div class="project__image" data-images="assets/images/project4.jpg, assets/images/project2.jpg, assets/images/project3.jpg">
+              <img src="assets/images/project4.jpg" alt="Project 4">
+            </div>
+            <p class="project__desc">
+              Designed a responsive gallery with reactive motion and typographic rhythm that showcased creative
+              technology in a quiet, editorial layout.
+            </p>
+          </div>
         </article>
       </div>
     </section>
@@ -181,58 +188,35 @@
       </div>
       <div class="archive__grid">
         <div class="archive__list">
-          <button class="archive__item" data-images="assets/images/project1.jpg,assets/images/project2.jpg,assets/images/project3.jpg">
+          <button class="archive__item" data-archive-id="analytics">
             <span class="archive__title">Analytics revamp</span>
             <span class="archive__meta">Dashboards · systems · motion</span>
           </button>
-          <button class="archive__item" data-images="assets/images/project2.jpg,assets/images/project4.jpg,assets/images/project1.jpg">
+          <button class="archive__item" data-archive-id="retail">
             <span class="archive__title">Retail drop</span>
             <span class="archive__meta">Ecommerce · storytelling · UI</span>
           </button>
-          <button class="archive__item" data-images="assets/images/project3.jpg,assets/images/project1.jpg,assets/images/project4.jpg">
+          <button class="archive__item" data-archive-id="wellness">
             <span class="archive__title">Wellness companion</span>
             <span class="archive__meta">Mobile · personalization · flows</span>
           </button>
-          <button class="archive__item" data-images="assets/images/project4.jpg,assets/images/project2.jpg,assets/images/project3.jpg">
-            <span class="archive__title">Generative gallery</span>
-            <span class="archive__meta">Creative tech · interaction · visuals</span>
-          </button>
         </div>
-        <div class="archive__preview reveal">
-          <div class="archive__frame">
-            <img src="assets/images/project1.jpg" alt="Archive preview">
+        <div class="archive__thumb-grid">
+          <div class="archive__thumb" data-archive-id="analytics" data-images="assets/images/project1.jpg,assets/images/project2.jpg,assets/images/project3.jpg">
+            <img src="assets/images/project1.jpg" alt="Archive thumb">
           </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section about" id="about">
-      <div class="section__header">
-        <p class="eyebrow">About</p>
-        <h2>Designing with intent, engineering with empathy.</h2>
-      </div>
-      <div class="about__grid">
-        <p class="lede">
-          Currently a Computer Science student at Kettering University and Bosch International Engineering co-op (Braking Systems & Chassis).
-          I bridge product thinking with implementation, from research and prototyping to front-end builds and technical handoff.
-        </p>
-        <div class="about__facts">
-          <div>
-            <span class="meta-label">Based in</span>
-            <span class="meta-value">Kimball, MI (open to global work)</span>
+          <div class="archive__thumb" data-archive-id="retail" data-images="assets/images/project2.jpg,assets/images/project4.jpg,assets/images/project1.jpg">
+            <img src="assets/images/project2.jpg" alt="Archive thumb">
           </div>
-          <div>
-            <span class="meta-label">Education</span>
-            <span class="meta-value">Kettering University CS · Ajou University exchange '25</span>
+          <div class="archive__thumb" data-archive-id="wellness" data-images="assets/images/project3.jpg,assets/images/project1.jpg,assets/images/project4.jpg">
+            <img src="assets/images/project3.jpg" alt="Archive thumb">
           </div>
-          <div>
-            <span class="meta-label">Experience</span>
-            <span class="meta-value">Bosch co-op · Product & engineering collaborations</span>
-          </div>
-          <div>
-            <span class="meta-label">Toolbox</span>
-            <span class="meta-value">Figma, Framer, React, JavaScript, C#, Java</span>
-          </div>
+          <div class="archive__thumb"><img src="assets/images/project4.jpg" alt="Archive thumb"></div>
+          <div class="archive__thumb"><img src="assets/images/project1.jpg" alt="Archive thumb"></div>
+          <div class="archive__thumb"><img src="assets/images/project2.jpg" alt="Archive thumb"></div>
+          <div class="archive__thumb"><img src="assets/images/project3.jpg" alt="Archive thumb"></div>
+          <div class="archive__thumb"><img src="assets/images/project4.jpg" alt="Archive thumb"></div>
+          <div class="archive__thumb"><img src="assets/images/project1.jpg" alt="Archive thumb"></div>
         </div>
       </div>
     </section>

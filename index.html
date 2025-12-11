@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio | Colt Melton</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;1,400;1,600&family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600;1,700&display=swap" rel="stylesheet">
+  <link rel="icon" href="favicon.ico">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="texture texture-grid"></div>
+  <div class="texture texture-noise"></div>
+  <div class="cursor" id="cursor"></div>
+
+  <header class="nav">
+    <div class="nav__brand">
+      <span class="brand-name">Colt Melton</span>
+      <span class="brand-tagline">Product designer & engineer</span>
+    </div>
+    <nav class="nav__links">
+      <a href="#work">Work</a>
+      <a href="#about">About</a>
+      <a href="#capabilities">Capabilities</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a class="nav__cta" href="info.html">Info</a>
+  </header>
+
+  <main>
+    <section class="welcome" id="welcome">
+      <div class="welcome__inner">
+        <p>Hello.</p>
+      </div>
+    </section>
+
+    <section class="intro" id="top">
+      <div class="intro__inner">
+        <h1>Colt Melton</h1>
+        <p>Computer Scientist</p>
+      </div>
+    </section>
+
+    <section class="hero" id="hero">
+      <div class="hero__content">
+        <p class="eyebrow">Product design & engineering</p>
+        <h1>Designing and shipping experiences with a systems-first mindset.</h1>
+        <p class="lede">
+          I pair visual direction with reliable engineering, moving from research to prototypes to production-ready builds.
+          Currently a CS student and Bosch co-op engineer, working across product, UI systems, and front-end delivery.
+        </p>
+        <div class="hero__actions">
+          <a class="btn primary" href="#work">View portfolio</a>
+          <a class="btn ghost" href="assets/Colt Melton Resume.pdf" target="_blank" rel="noreferrer">Download resume</a>
+        </div>
+        <div class="hero__meta">
+          <div>
+            <span class="meta-label">Experience</span>
+            <span class="meta-value">Bosch Co-op, product & engineering</span>
+          </div>
+          <div>
+            <span class="meta-label">Focus</span>
+            <span class="meta-value">Product strategy, UI systems, front-end build</span>
+          </div>
+        </div>
+      </div>
+      <div class="hero__visual reveal">
+        <div class="hero__frame">
+          <img src="assets/images/hero.jpg" alt="Design mood backdrop">
+        </div>
+        <div class="hero__badge">
+          <span class="badge-title">Currently open for projects</span>
+          <span class="badge-sub">Remote / Hybrid</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section work" id="work">
+      <div class="section__header">
+        <p class="eyebrow">Selected work</p>
+        <h2>Recent collaborations that pair aesthetics with measurable impact.</h2>
+      </div>
+
+      <div class="projects">
+        <article class="project reveal">
+          <div class="project__image" data-images="assets/images/project1.jpg, assets/images/project2.jpg, assets/images/project3.jpg">
+            <img src="assets/images/project1.jpg" alt="Project 1">
+          </div>
+          <div class="project__body">
+            <p class="project__tag">SaaS Platform</p>
+            <h3>Unified analytics for modern product teams</h3>
+            <div class="project__meta">
+              <span>Role: Product design, prototyping, front-end build</span>
+              <span>Timeline: 12 weeks</span>
+            </div>
+            <div class="project__actions">
+              <a class="btn text" href="#">View case study</a>
+              <a class="btn ghost" href="#">Live preview</a>
+            </div>
+          </div>
+          <p class="project__desc">
+            Reimagined dashboards with data storytelling, progressive disclosure, and a modular design system
+            that cut onboarding time by 32%.
+          </p>
+        </article>
+
+        <article class="project project--reverse reveal">
+          <div class="project__image" data-images="assets/images/project2.jpg, assets/images/project4.jpg, assets/images/project1.jpg">
+            <img src="assets/images/project2.jpg" alt="Project 2">
+          </div>
+          <div class="project__body">
+            <p class="project__tag">Ecommerce Experience</p>
+            <h3>Flagship retail drop with cinematic storytelling</h3>
+            <div class="project__meta">
+              <span>Role: Creative direction, UI, front-end</span>
+              <span>Timeline: 8 weeks</span>
+            </div>
+            <div class="project__actions">
+              <a class="btn text" href="#">View case study</a>
+              <a class="btn ghost" href="#">Live preview</a>
+            </div>
+          </div>
+          <p class="project__desc">
+            Built an immersive launch page with motion cues, tactile micro-interactions, and a resilient checkout
+            that increased conversion by 18%.
+          </p>
+        </article>
+
+        <article class="project reveal">
+          <div class="project__image" data-images="assets/images/project3.jpg, assets/images/project1.jpg, assets/images/project4.jpg">
+            <img src="assets/images/project3.jpg" alt="Project 3">
+          </div>
+          <div class="project__body">
+            <p class="project__tag">Mobile</p>
+            <h3>Wellness companion with adaptive guidance</h3>
+            <div class="project__meta">
+              <span>Role: Product design, motion, design system</span>
+              <span>Timeline: 10 weeks</span>
+            </div>
+            <div class="project__actions">
+              <a class="btn text" href="#">View case study</a>
+              <a class="btn ghost" href="#">Live preview</a>
+            </div>
+          </div>
+          <p class="project__desc">
+            Defined product narrative, built interactive prototypes, and shipped an app that adapts to user cadence
+            with measurable retention gains.
+          </p>
+        </article>
+
+        <article class="project project--reverse reveal">
+          <div class="project__image" data-images="assets/images/project4.jpg, assets/images/project2.jpg, assets/images/project3.jpg">
+            <img src="assets/images/project4.jpg" alt="Project 4">
+          </div>
+          <div class="project__body">
+            <p class="project__tag">Experimental</p>
+            <h3>Generative visuals for a digital gallery</h3>
+            <div class="project__meta">
+              <span>Role: Creative coding, interaction design</span>
+              <span>Timeline: 6 weeks</span>
+            </div>
+            <div class="project__actions">
+              <a class="btn text" href="#">View case study</a>
+              <a class="btn ghost" href="#">Live preview</a>
+            </div>
+          </div>
+          <p class="project__desc">
+            Designed a responsive gallery with reactive motion and typographic rhythm that showcased creative
+            technology in a quiet, editorial layout.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section archive" id="archive">
+      <div class="section__header">
+        <p class="eyebrow">Archive</p>
+        <h2>Quick snapshots from past builds.</h2>
+      </div>
+      <div class="archive__grid">
+        <div class="archive__list">
+          <button class="archive__item" data-images="assets/images/project1.jpg,assets/images/project2.jpg,assets/images/project3.jpg">
+            <span class="archive__title">Analytics revamp</span>
+            <span class="archive__meta">Dashboards · systems · motion</span>
+          </button>
+          <button class="archive__item" data-images="assets/images/project2.jpg,assets/images/project4.jpg,assets/images/project1.jpg">
+            <span class="archive__title">Retail drop</span>
+            <span class="archive__meta">Ecommerce · storytelling · UI</span>
+          </button>
+          <button class="archive__item" data-images="assets/images/project3.jpg,assets/images/project1.jpg,assets/images/project4.jpg">
+            <span class="archive__title">Wellness companion</span>
+            <span class="archive__meta">Mobile · personalization · flows</span>
+          </button>
+          <button class="archive__item" data-images="assets/images/project4.jpg,assets/images/project2.jpg,assets/images/project3.jpg">
+            <span class="archive__title">Generative gallery</span>
+            <span class="archive__meta">Creative tech · interaction · visuals</span>
+          </button>
+        </div>
+        <div class="archive__preview reveal">
+          <div class="archive__frame">
+            <img src="assets/images/project1.jpg" alt="Archive preview">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section about" id="about">
+      <div class="section__header">
+        <p class="eyebrow">About</p>
+        <h2>Designing with intent, engineering with empathy.</h2>
+      </div>
+      <div class="about__grid">
+        <p class="lede">
+          Currently a Computer Science student at Kettering University and Bosch International Engineering co-op (Braking Systems & Chassis).
+          I bridge product thinking with implementation, from research and prototyping to front-end builds and technical handoff.
+        </p>
+        <div class="about__facts">
+          <div>
+            <span class="meta-label">Based in</span>
+            <span class="meta-value">Kimball, MI (open to global work)</span>
+          </div>
+          <div>
+            <span class="meta-label">Education</span>
+            <span class="meta-value">Kettering University CS · Ajou University exchange '25</span>
+          </div>
+          <div>
+            <span class="meta-label">Experience</span>
+            <span class="meta-value">Bosch co-op · Product & engineering collaborations</span>
+          </div>
+          <div>
+            <span class="meta-label">Toolbox</span>
+            <span class="meta-value">Figma, Framer, React, JavaScript, C#, Java</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section capabilities" id="capabilities">
+      <div class="section__header">
+        <p class="eyebrow">Capabilities</p>
+        <h2>Shaping products end-to-end.</h2>
+      </div>
+      <div class="capability__cards">
+        <div class="card reveal">
+          <h3>Product strategy</h3>
+          <p>Roadmapping, user journeys, and validation sprints that anchor design decisions to business goals.</p>
+          <ul>
+            <li>Discovery workshops</li>
+            <li>Opportunity mapping</li>
+            <li>Product storytelling</li>
+          </ul>
+        </div>
+        <div class="card reveal">
+          <h3>Experience design</h3>
+          <p>Systems-driven UI with micro-interactions, responsive behavior, and accessibility baked in.</p>
+          <ul>
+            <li>Design systems</li>
+            <li>Interactive prototypes</li>
+            <li>Motion & microcopy</li>
+          </ul>
+        </div>
+        <div class="card reveal">
+          <h3>Delivery</h3>
+          <p>Partnering with engineering to ship resilient front-end builds with clean, scalable code.</p>
+          <ul>
+            <li>Front-end engineering</li>
+            <li>Handoff & documentation</li>
+            <li>Launch playbooks</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section contact" id="contact">
+      <div class="contact__inner reveal">
+        <div>
+          <p class="eyebrow">Contact</p>
+          <h2>Let’s connect.</h2>
+          <p class="lede">Reach out any time to talk projects, ideas, or collaborations.</p>
+          <div class="contact__links">
+            <a class="btn primary" href="mailto:coltmeltonwork@gmail.com">Email me</a>
+            <a class="btn ghost" href="assets/Colt Melton Resume.pdf" target="_blank" rel="noreferrer">Download resume</a>
+          </div>
+        </div>
+        <div class="contact__meta">
+          <div>
+            <span class="meta-label">Social</span>
+            <div class="meta-links">
+              <a href="https://www.linkedin.com/in/colt-melton-3812872ab" target="_blank" rel="noreferrer">LinkedIn</a>
+              <a href="https://github.com/coltmelton" target="_blank" rel="noreferrer">GitHub</a>
+            </div>
+          </div>
+          <div>
+            <span class="meta-label">Availability</span>
+            <span class="meta-value">Available for collaborations</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <span>Built with intent. Always exploring.</span>
+    <a href="#top">Back to top</a>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

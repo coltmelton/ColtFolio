@@ -193,21 +193,42 @@ document.addEventListener("DOMContentLoaded", () => {
   updateIntroFade();
   updateSplashState();
 
-  // Mobile archive: vertical stack is handled in CSS; add a gentle rotate-on-scroll for thumbs.
-  const applyMobileArchiveMotion = () => {
+  // Mobile archive: cycle images as user scrolls (no rotation).
+  const applyMobileArchiveScrollCycle = () => {
     const isMobile = window.matchMedia("(max-width: 700px)").matches;
     if (!isMobile) return;
-    const imgs = document.querySelectorAll(".archive__thumb img");
-    if (!imgs.length) return;
+    const thumbs = document.querySelectorAll(".archive__thumb");
+    if (!thumbs.length) return;
+
+    const step = 80; // pixels per frame change
+
     const handleScroll = () => {
-      imgs.forEach((img, idx) => {
-        const angle = Math.sin((window.scrollY + idx * 40) / 140) * 6;
-        img.style.transform = `rotate(${angle.toFixed(3)}deg)`;
+      const scroll = Math.max(window.scrollY, 0);
+      thumbs.forEach((thumb, idx) => {
+        const img = thumb.querySelector("img");
+        if (!img) return;
+        const images = (thumb.dataset.images || "")
+          .split(",")
+          .map(s => s.trim())
+          .filter(Boolean);
+        if (images.length <= 1) {
+          img.style.transform = "";
+          return;
+        }
+        const offset = idx * 30;
+        const frame = Math.floor((scroll + offset) / step) % images.length;
+        const current = img.dataset.activeIndex;
+        if (current !== String(frame)) {
+          img.dataset.activeIndex = String(frame);
+          img.src = images[frame];
+          img.style.transform = "";
+        }
       });
     };
+
     window.addEventListener("scroll", handleScroll, { passive: true });
     handleScroll();
   };
 
-  applyMobileArchiveMotion();
+  applyMobileArchiveScrollCycle();
 });

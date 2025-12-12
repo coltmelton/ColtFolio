@@ -192,4 +192,22 @@ document.addEventListener("DOMContentLoaded", () => {
   window.addEventListener("scroll", onScroll, { passive: true });
   updateIntroFade();
   updateSplashState();
+
+  // Mobile archive: vertical stack is handled in CSS; add a gentle rotate-on-scroll for thumbs.
+  const applyMobileArchiveMotion = () => {
+    const isMobile = window.matchMedia("(max-width: 700px)").matches;
+    if (!isMobile) return;
+    const imgs = document.querySelectorAll(".archive__thumb img");
+    if (!imgs.length) return;
+    const handleScroll = () => {
+      imgs.forEach((img, idx) => {
+        const angle = Math.sin((window.scrollY + idx * 40) / 140) * 6;
+        img.style.transform = `rotate(${angle.toFixed(3)}deg)`;
+      });
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+  };
+
+  applyMobileArchiveMotion();
 });

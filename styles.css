@@ -709,6 +709,28 @@ a {
     align-items: flex-start;
   }
 }
+
+@media (max-width: 700px) {
+  .archive__grid {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .archive__list {
+    order: 2;
+  }
+
+  .archive__thumb-grid {
+    order: 1;
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .archive__thumb {
+    height: 260px;
+  }
+}
 .project__year {
   display: block;
   font-family: "MontrealMono", monospace;

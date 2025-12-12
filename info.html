@@ -7,6 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
   <style>
     @font-face {
       font-family: 'MigraDisplay';
@@ -33,61 +34,92 @@
       margin: 0;
       padding: 0;
       width: 100%;
-      height: 100vh;
-      overflow: hidden;
-      background: var(--bg);
+      min-height: 100vh;
+      overflow-x: hidden;
       color: var(--text);
       font-family: "Inter", sans-serif;
-      line-height: 1.6;
-      font-size: 20px;
     }
-    .wrapper {
-      height: 100%;
-      width: 100%;
-      padding: 60px 8vw;
+    .info-main {
+      display: block;
+      padding: 80px 24px 120px;
     }
-    .panel {
+    .info-wrapper {
       max-width: 900px;
       width: 100%;
+      background: transparent;
+      border: none;
+      box-shadow: none;
+      padding: 8px 0;
+      text-align: left;
     }
-    h1 {
+    .info-wrapper h1 {
       margin: 0 0 12px;
       font-family: "MigraDisplay", serif;
       font-style: italic;
       font-weight: 400;
       letter-spacing: -0.02em;
+      color: var(--text);
     }
-    p { margin: 0 0 14px; color: var(--muted); font-style: italic; font-family: "Inter", sans-serif; }
-    a { color: var(--accent); text-decoration: none; }
-    .cursor {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 28px;
-      height: 28px;
-      border: 1px solid var(--text);
-      border-radius: 50%;
-      pointer-events: none;
-      transform: translate(-50%, -50%);
-      transition: transform 0.12s ease, opacity 0.2s ease;
-      z-index: 999;
+    .info-wrapper p {
+      margin: 0 0 18px;
+      color: var(--text);
+      font-size: 20px;
+      line-height: 1.85;
+      font-style: italic;
+      text-align: left;
+    }
+    .info-wrapper a {
+      color: var(--text);
+      text-decoration: underline;
+      font-style: italic;
+    }
+    .info-wrapper a:hover {
+      color: var(--text);
+    }
+    .info-page .nav {
+      justify-content: flex-end;
+      padding-right: 28px;
+      padding-left: 12px;
+    }
+    .info-page .nav__brand,
+    .info-page .nav__links {
+      display: none;
+    }
+    .info-page .nav__cta {
+      margin-right: 12px;
     }
     @media (max-width: 900px) {
       * { cursor: auto; }
-      .cursor { display: none; }
+      .info-main { padding-top: 100px; padding-bottom: 80px; }
+      .info-page .nav { padding-right: 18px; }
     }
   </style>
 </head>
-<body>
+<body class="info-page">
+  <div class="texture texture-grid"></div>
+  <div class="texture texture-noise"></div>
   <div class="cursor" id="cursor"></div>
-  <div class="wrapper">
-    <div class="panel">
+
+  <header class="nav">
+    <div class="nav__brand">
+      <span class="brand-name">Colt Melton</span>
+      <span class="brand-tagline">Product designer & engineer</span>
+    </div>
+    <nav class="nav__links">
+      <a href="index.html#work">Work</a>
+      <a href="index.html#capabilities">Capabilities</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+    <a class="nav__cta" href="index.html">Portfolio</a>
+  </header>
+
+  <main class="info-main">
+    <div class="info-wrapper">
       <h1>Colt Melton</h1>
       <p>My background spans cybersecurity, automation, and software development, with hands-on experience in automotive and mechanical engineering environments at Bosch. Alongside production systems and test infrastructure, I build personal projects that explore analytics, tooling, and interaction design. I focus on systems thinking, reliability, and making complex technical work understandable.</p>
       <p>Email: <a href="mailto:coltmeltonwork@gmial.com">coltmeltonwork@gmial.com</a></p>
-      <p><a href="index.html">Back to portfolio</a></p>
     </div>
-  </div>
+  </main>
   <script>
     const cursor = document.querySelector("#cursor");
     if (cursor) {

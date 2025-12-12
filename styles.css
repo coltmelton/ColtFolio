@@ -11,7 +11,7 @@
   --shadow: 0 25px 80px rgba(255, 255, 255, 0.05);
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600;1,700&display=swap');
 
 @font-face {
   font-family: 'MigraDisplay';
@@ -39,7 +39,14 @@
 body {
   margin: 0;
   font-family: "Inter", sans-serif;
-  background: var(--bg);
+  background-color: var(--bg);
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.40)),
+    url("assets/Background/BrownPlaid_Backdrop.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
   color: var(--text);
   min-height: 100vh;
   line-height: 1.7;
@@ -103,9 +110,12 @@ a {
 }
 
 .brand-name {
-  font-size: 15px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+  font-size: 20px;
+  letter-spacing: 0.04em;
+  text-transform: none;
+  font-family: "Cormorant Garamond", "MigraDisplay", serif;
+  font-style: italic;
+  font-weight: 700;
 }
 
 .brand-tagline {
@@ -358,11 +368,16 @@ a {
   border: none;
   position: relative;
   min-height: 420px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .project__image img {
-  width: 100%;
-  height: auto;
+  width: auto;
+  height: 100%;
+  max-width: 100%;
+  object-fit: contain;
   display: block;
 }
 
@@ -493,17 +508,18 @@ a {
 
 .archive__thumb {
   width: 100%;
-  height: auto;
+  height: 220px;
   border: none;
   overflow: hidden;
   position: relative;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
+  justify-content: center;
 }
 
 .archive__thumb img {
   width: 100%;
-  height: auto;
+  height: 100%;
   display: block;
   object-fit: contain;
 }

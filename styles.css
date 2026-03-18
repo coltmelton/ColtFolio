@@ -274,6 +274,7 @@ a {
   border: none;
   box-shadow: none;
   transform: rotate(-1deg);
+  position: relative;
 }
 
 .hero__frame img {
@@ -281,6 +282,15 @@ a {
   display: block;
   height: 100%;
   object-fit: cover;
+}
+
+.hero__frame::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 28%;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.92));
+  pointer-events: none;
 }
 
 .hero__badge {

@@ -1,0 +1,11 @@
+Thesis Effectiveness Summary
+
+Key sentence-ready values:
+- Ethane: spectrum-level extended MLR reduced absolute systematic bias by 100.00% and MAE by 91.90% relative to raw extracted isolated peak area.
+- Propane: spectrum-level extended MLR reduced absolute systematic bias by 100.00% and MAE by 97.17% relative to raw extracted isolated peak area.
+
+Interpretation:
+- Spectrum-level calibration is the strongest quantitative result.
+- Per-peak calibration remains useful as a diagnostic, but it is more sensitive to overlap and local match uncertainty.
+- Residual trend plots show remaining nonlinear behavior, supporting a future quadratic/saturating calibration experiment.
+- Center-primary matching greatly increases match coverage while keeping peak-center proximity explicit in the metrics.

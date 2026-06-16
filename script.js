@@ -45,11 +45,28 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Custom cursor
   if (cursorEl) {
-    const moveCursor = e => {
-      cursorEl.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
-      cursorEl.style.opacity = 1;
+    const resetImageCursor = () => {
+      cursorEl.classList.remove("is-image-arrow", "is-left", "is-right");
     };
+
+    const moveCursor = e => {
+      cursorEl.style.transform = `translate(${e.clientX}px, ${e.clientY}px) translate(-50%, -50%)`;
+      cursorEl.style.opacity = 1;
+      const imageTarget = e.target.closest(".project__image[data-images]");
+      if (!imageTarget) {
+        resetImageCursor();
+        return;
+      }
+
+      const rect = imageTarget.getBoundingClientRect();
+      const isLeftHalf = e.clientX - rect.left < rect.width / 2;
+      cursorEl.classList.add("is-image-arrow");
+      cursorEl.classList.toggle("is-left", isLeftHalf);
+      cursorEl.classList.toggle("is-right", !isLeftHalf);
+    };
+
     window.addEventListener("mousemove", moveCursor, { passive: true });
+    window.addEventListener("mouseleave", resetImageCursor);
   }
 
   // Click-driven image flip: left half goes backward, right half goes forward.

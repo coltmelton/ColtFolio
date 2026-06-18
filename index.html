@@ -3,7 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Portfolio | Colt Melton</title>
+  <title>Colt Melton | Software, Automation, and R&amp;D Engineer</title>
+  <meta name="description" content="Portfolio of Colt Melton, Computer Science student and engineering intern focused on spectroscopy software, automation infrastructure, telemetry systems, and cybersecurity.">
+  <meta property="og:title" content="Colt Melton | Software, Automation, and R&amp;D Engineer">
+  <meta property="og:description" content="Engineering portfolio focused on spectroscopy software, automation infrastructure, telemetry systems, ML research, and cybersecurity.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/logo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;1,400;1,600&family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600;1,700&display=swap" rel="stylesheet">
@@ -20,39 +25,48 @@
     <div class="nav__brand">
       <span class="brand-name">Colt Melton</span>
     </div>
-    <a class="nav__cta" href="info.html">Info</a>
+    <nav class="nav__links" aria-label="Primary navigation">
+      <a href="#featured">Featured Work</a>
+      <a href="#research">Research</a>
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a class="nav__cta nav__cta--resume" href="assets/Colt Melton Resume.pdf" target="_blank" rel="noreferrer" download>Download Resume</a>
   </header>
 
   <main>
-    <section class="welcome" id="welcome">
-      <div class="welcome__inner">
-        <p>Hello.</p>
-      </div>
-    </section>
-
-    <section class="intro" id="top">
-      <div class="intro__inner">
-        <h1>Colt Melton</h1>
-        <p>Computer Scientist</p>
-      </div>
-    </section>
-
     <section class="hero" id="hero">
-        <div class="hero__content">
-        <p class="eyebrow">Cybersecurity, fullstack dev, and engineering</p>
-        <h1>Building reliable software, automation, and interfaces with a focus on security and system design.</h1>
-        <p class="lede">
-          Computer science student building software, automation, and security-focused systems across full-stack and infrastructure domains.
-          Currently a CS student and Co-op at Endress+Hauser, working across product, UI systems, and front-end delivery.
-        </p>
+      <div class="hero__content">
+        <p class="eyebrow">Software / Automation / R&amp;D Engineering</p>
+        <h1>Colt Melton</h1>
+        <div class="hero__roles" aria-label="Current engineering profile">
+          <span><img src="assets/Icon/KetteringSeal.png" alt="Kettering University seal">Computer Science, Kettering University</span>
+          <span><img src="assets/Icon/endresshauser-memberlogo.png" alt="Endress+Hauser logo">Research &amp; Development Engineer @ Endress+Hauser</span>
+          <span><img src="assets/Icon/Bosch-Logo.png" alt="Bosch logo">Automation Software &amp; Calibration Engineer @ Bosch</span>
+        </div>
+        <p class="lede hero__positioning">
+Computer Science student at Kettering University with professional experience developing software, 
+automation frameworks, cloud-integrated applications, and machine learning systems in industrial 
+engineering environments. Experienced in C#, Python, AWS, Linux, REST APIs, and distributed 
+software development. Proven ability to design, deploy, and maintain production software solutions while 
+collaborating across multidisciplinary engineering teams.        </p>
+        <div class="hero__actions">
+          <a class="btn primary" href="assets/Colt Melton Resume.pdf" target="_blank" rel="noreferrer" download>Download resume</a>
+          <a class="btn ghost" href="#research">View research</a>
+          <a class="btn ghost" href="https://github.com/coltmelton" target="_blank" rel="noreferrer">GitHub</a>
+          <a class="btn ghost" href="https://www.linkedin.com/in/colt-melton-3812872ab" target="_blank" rel="noreferrer">LinkedIn</a>
+          <a class="btn ghost" href="mailto:coltmeltonwork@gmail.com">Email</a>
+        </div>
         <div class="hero__meta">
           <div>
-            <span class="meta-label">Experience</span>
-            <span class="meta-value">&gt; Endress+Hauser Research and Development Scientist<br>&gt; Bosch Co-op, product & engineering</span>
+            <span class="meta-label">Industrial Systems</span>
+            <span class="meta-value">Spectroscopy analyzers, calibration workflows, test infrastructure, telemetry dashboards</span>
           </div>
           <div>
-            <span class="meta-label">Focus</span>
-            <span class="meta-value">Cybersecurity, Software Development, and UI systems</span>
+            <span class="meta-label">Engineering Fit</span>
+            <span class="meta-value">Defense-tech, infrastructure, autonomy, industrial software, and R&amp;D teams</span>
           </div>
         </div>
       </div>
@@ -63,33 +77,70 @@
       </div>
     </section>
 
-    <section class="section thesis" id="thesis">
+    <section class="section thesis research" id="research">
       <div class="section__header">
-        <p class="eyebrow">Thesis</p>
-        <h2>Universal Baseline: Neural-Network-Guided Raman Peak Isolation</h2>
+        <p class="eyebrow">Research</p>
+        <h2>Machine Learning-Guided Raman Spectral Decomposition</h2>
       </div>
       <div class="thesis__grid">
         <div class="thesis__copy reveal">
           <p class="thesis__lede">
-            Senior thesis effectiveness analysis for Raman spectroscopy metrology: output figures from the center-primary PKL evaluation showing spectrum-level calibration, per-peak diagnostics, residual trends, overlap behavior, and physics-fitter before/after results.
+            Senior thesis research for Raman spectroscopy metrology, focused on decomposing complex measured spectra into baseline and overlapping peak components so calibration workflows can become more interpretable, automatable, and robust.
           </p>
-          <div class="thesis__stats">
-            <div>
-              <span class="meta-label">Research Focus</span>
-              <span class="meta-value">Center-primary matching, MLR calibration, residual analysis, and overlap sensitivity</span>
-            </div>
-            <div>
-              <span class="meta-label">Evaluation</span>
-              <span class="meta-value">PKL full center-primary run, thesis effectiveness analysis, output figure set</span>
-            </div>
+          <div class="metric-strip" aria-label="Research metrics">
+            <span>2.9M parameters</span>
+            <span>baseline + up to 3 peaks</span>
+            <span>512-point windows</span>
+            <span>602 spectra</span>
+            <span>19,753 pure-peak matches</span>
+            <span>0.9999 mean R2</span>
+            <span>Calibration R2 up to 0.982</span>
           </div>
-          <ul class="thesis__details">
-            <li>Spectrum-level extended MLR reduced absolute systematic bias by 100.00% for both ethane and propane.</li>
-            <li>Spectrum-level MAE dropped by 91.90% for ethane and 97.17% for propane relative to raw extracted isolated peak area.</li>
-            <li>Per-peak calibration remains a diagnostic view because overlap and local match uncertainty make it more sensitive.</li>
-          </ul>
+          <div class="research__sections">
+            <article>
+              <h3>Problem</h3>
+              <p>Raman spectra from industrial gas analyzers contain baselines, overlapping peaks, and concentration-dependent behavior that make direct peak isolation difficult to trust in calibration and diagnostics.</p>
+            </article>
+            <article>
+              <h3>Approach</h3>
+              <p>Built a machine-learning-guided decomposition pipeline that predicts a baseline plus up to 3 overlapping peak components across 512-point spectral windows, then validates extracted peaks against center-primary matching logic.</p>
+            </article>
+            <article>
+              <h3>Architecture</h3>
+              <p>Implemented a 2.9M-parameter PyTorch 1D U-Net for spectral-window decomposition, followed by physics-aware fitting, matching, residual analysis, and calibration evaluation.</p>
+            </article>
+            <article>
+              <h3>Results</h3>
+              <p>Evaluated 602 spectra, produced 19,753 pure-peak matches, achieved 0.9999 mean R2 reconstruction accuracy, and reached calibration R2 up to 0.982 for ethane/propane.</p>
+            </article>
+            <article>
+              <h3>Tech Stack</h3>
+              <p>Python, PyTorch, NumPy, pandas, spectroscopy data pipelines, Matplotlib, calibration modeling, peak matching, and residual diagnostics.</p>
+            </article>
+            <article>
+              <h3>What I Learned</h3>
+              <p>Useful ML in measurement systems is not just a model score. It needs validation hooks, interpretable failure modes, calibration context, and enough tooling discipline for engineers to challenge the result.</p>
+            </article>
+          </div>
           <div class="thesis__links">
             <a href="assets/projects/thesis/thesis_sentence_metrics.txt" target="_blank" rel="noreferrer">Metrics Summary</a>
+          </div>
+        </div>
+        <div class="thesis__visual reveal">
+          <div class="architecture architecture--research" role="img" aria-label="Raman U-Net pipeline diagram placeholder showing spectra input, 512-point windows, 1D U-Net decomposition, physics fitting, peak matching, and calibration analysis">
+            <span>Spectra input</span>
+            <span>512-point windows</span>
+            <span>1D U-Net</span>
+            <span>Peak matching</span>
+            <span>Calibration</span>
+          </div>
+          <div class="project__image thesis__image" data-images="assets/projects/thesis/spectrum_ethane_actual_vs_raw_and_mlr.png, assets/projects/thesis/spectrum_propane_actual_vs_raw_and_mlr.png, assets/projects/thesis/spectrum_ethane_mlr_residual_trend.png, assets/projects/thesis/spectrum_propane_mlr_residual_trend.png, assets/projects/thesis/per_peak_ethane_actual_vs_raw_and_mlr.png, assets/projects/thesis/per_peak_propane_actual_vs_raw_and_mlr.png, assets/projects/thesis/per_peak_ethane_mlr_residual_trend.png, assets/projects/thesis/per_peak_propane_mlr_residual_trend.png, assets/projects/thesis/per_peak_ethane_error_by_overlap.png, assets/projects/thesis/per_peak_propane_error_by_overlap.png, assets/projects/thesis/match_center_distance_vs_overlap.png, assets/projects/thesis/match_center_distance_histograms.png, assets/projects/thesis/physics_fitter_before_after.png, assets/projects/thesis/physics_fitter_before_after_synthetic.png">
+            <img src="assets/projects/thesis/spectrum_ethane_actual_vs_raw_and_mlr.png" alt="Spectrum-level ethane actual versus raw and MLR calibration figure">
+          </div>
+          <div class="thesis__caption">
+            <span>Spectral plots</span>
+            <span>Residual trends</span>
+            <span>Calibration results</span>
           </div>
           <div class="thesis__locked-wall" aria-label="Restricted thesis documents">
             <div class="thesis__lock-card">
@@ -104,165 +155,274 @@
             </div>
           </div>
         </div>
-        <div class="thesis__visual reveal">
-          <div class="project__image thesis__image" data-images="assets/projects/thesis/spectrum_ethane_actual_vs_raw_and_mlr.png, assets/projects/thesis/spectrum_propane_actual_vs_raw_and_mlr.png, assets/projects/thesis/spectrum_ethane_mlr_residual_trend.png, assets/projects/thesis/spectrum_propane_mlr_residual_trend.png, assets/projects/thesis/per_peak_ethane_actual_vs_raw_and_mlr.png, assets/projects/thesis/per_peak_propane_actual_vs_raw_and_mlr.png, assets/projects/thesis/per_peak_ethane_mlr_residual_trend.png, assets/projects/thesis/per_peak_propane_mlr_residual_trend.png, assets/projects/thesis/per_peak_ethane_error_by_overlap.png, assets/projects/thesis/per_peak_propane_error_by_overlap.png, assets/projects/thesis/match_center_distance_vs_overlap.png, assets/projects/thesis/match_center_distance_histograms.png, assets/projects/thesis/physics_fitter_before_after.png, assets/projects/thesis/physics_fitter_before_after_synthetic.png">
-            <img src="assets/projects/thesis/spectrum_ethane_actual_vs_raw_and_mlr.png" alt="Spectrum-level ethane actual versus raw and MLR calibration figure">
-          </div>
-          <div class="thesis__caption">
-            <span>Spectrum MLR</span>
-            <span>Residual trends</span>
-            <span>Overlap diagnostics</span>
-          </div>
-        </div>
-      </div>
-      <div class="thesis__cards">
-        <div class="thesis-card reveal">
-          <span class="meta-label">Trend</span>
-          <strong>Spectrum-level calibration is the strongest quantitative result.</strong>
-          <p>The output metrics show large MAE reductions after extended MLR compared with raw extracted isolated peak area.</p>
-        </div>
-        <div class="thesis-card reveal">
-          <span class="meta-label">Graph</span>
-          <strong>Residual trends still show nonlinear behavior.</strong>
-          <p>The residual plots support a future quadratic or saturating calibration experiment rather than treating linear calibration as final.</p>
-        </div>
-        <div class="thesis-card reveal">
-          <span class="meta-label">Detail</span>
-          <strong>Center-primary matching keeps proximity explicit.</strong>
-          <p>The match coverage figures show overlap behavior while preserving peak-center distance as an interpretable metric.</p>
-        </div>
       </div>
     </section>
 
-    <section class="section work" id="work">
+    <section class="section experience" id="experience">
+      <div class="section__header">
+        <p class="eyebrow">Experience</p>
+        <h2>Hands-on engineering work in industrial systems.</h2>
+      </div>
+      <div class="experience__grid">
+        <article class="experience__item reveal">
+          <div>
+            <img class="experience__logo" src="assets/Icon/endresshauser-memberlogo.png" alt="Endress+Hauser logo">
+            <h3>Research &amp; Development Engineer</h3>
+            <p>Endress+Hauser</p>
+            <div class="stat-chips">
+              <span>30+ analyzers</span>
+              <span>4 hrs saved / release</span>
+              <span>Raman validation</span>
+            </div>
+          </div>
+          <ul>
+            <li>Developed a real-time spectroscopy monitoring platform integrating OPC UA telemetry, spectral visualization, and analyzer diagnostics across 30+ industrial analyzers for internal and customer-facing use.</li>
+            <li>Automated software deployment and validation workflows using Bamboo, VMware, and Robot Framework, reducing manual testing effort by approximately 4 hours per release cycle.</li>
+            <li>Partnered with lead spectroscopy scientists to develop software supporting Raman analyzer validation, diagnostics, analytical method development, and customer support investigations.</li>
+          </ul>
+        </article>
+        <article class="experience__item reveal">
+          <div>
+            <img class="experience__logo" src="assets/Icon/Bosch-Logo.png" alt="Bosch logo">
+            <h3>Automation Software &amp; Calibration Engineer</h3>
+            <p>Bosch</p>
+            <div class="stat-chips">
+              <span>15+ engineers</span>
+              <span>CAN telemetry</span>
+              <span>ECU behavior</span>
+            </div>
+          </div>
+          <ul>
+            <li>Developed automation software using proprietary engineering APIs to streamline analysis of ASCET-generated control software, enabling 15+ calibration engineers to trace parameter dependencies and investigate system behavior more efficiently.</li>
+            <li>Analyzed CAN bus telemetry using CANoe, CANalyzer, and ETAS tooling to support calibration, validation, and performance investigations of prototype and production braking systems.</li>
+            <li>Investigated ECU intervention behavior through vehicle testing and data analysis, identifying interactions between calibration parameters, control logic, and vehicle dynamics.</li>
+            <li>Supported prototype vehicle integration through CAN diagnostics, wiring harness fabrication, connector termination, instrumentation, and electrical troubleshooting.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="infrastructure-overview reveal" aria-label="Engineering metrics and homelab infrastructure snapshot">
+      <div id="engineering-metrics-terminal"></div>
+    </section>
+
+    <section class="section featured" id="featured">
+      <div class="section__header">
+        <p class="eyebrow">Featured Work</p>
+        <h2>Industrial software, research tooling, and infrastructure automation.</h2>
+      </div>
+      <div class="featured__grid">
+        <article class="featured-card reveal">
+          <div class="card-kicker">
+            <img src="assets/Icon/KetteringSeal.png" alt="Kettering University seal">
+            <p class="project__tag">Research</p>
+          </div>
+          <h3>ML Raman Spectral Decomposition</h3>
+          <div class="stat-chips" aria-label="Raman research highlights">
+            <span>2.9M params</span>
+            <span>602 spectra</span>
+            <span>19,753 matches</span>
+            <span>0.9999 mean R2</span>
+          </div>
+          <ul>
+            <li>2.9M-parameter PyTorch 1D U-Net</li>
+            <li>602 Raman spectra evaluated</li>
+            <li>19,753 validated peak matches</li>
+            <li>0.9999 mean R2 reconstruction accuracy</li>
+          </ul>
+          <a href="#research">View research</a>
+        </article>
+        <article class="featured-card reveal">
+          <div class="card-kicker">
+            <img src="assets/Icon/Bosch-Logo.png" alt="Bosch logo">
+            <p class="project__tag">Automation</p>
+          </div>
+          <h3>VMware Automation Platform</h3>
+          <div class="stat-chips" aria-label="VMware automation highlights">
+            <span>C#/.NET</span>
+            <span>REST API</span>
+            <span>Robot Framework</span>
+          </div>
+          <ul>
+            <li>C#/.NET</li>
+            <li>VMware REST API</li>
+            <li>Robot Framework</li>
+            <li>JSON-driven VM orchestration</li>
+          </ul>
+          <a href="#vmware-automation">View project</a>
+        </article>
+        <article class="featured-card reveal">
+          <div class="card-kicker">
+            <img src="assets/Icon/endresshauser-memberlogo.png" alt="Endress+Hauser logo">
+            <p class="project__tag">Telemetry</p>
+          </div>
+          <h3>Industrial OPC UA Telemetry Dashboard</h3>
+          <div class="stat-chips" aria-label="OPC UA telemetry highlights">
+            <span>30+ analyzers</span>
+            <span>Live spectra</span>
+            <span>Customer use</span>
+          </div>
+          <ul>
+            <li>Python + OPC UA</li>
+            <li>30+ spectroscopy analyzers</li>
+            <li>Real-time spectral visualization</li>
+            <li>Internal + external users</li>
+          </ul>
+          <a href="#opc-dashboard">View project</a>
+        </article>
+      </div>
+    </section>
+
+    <section class="section architecture-gallery-section reveal" aria-labelledby="architecture-gallery-title">
+      <div class="section__header">
+        <p class="eyebrow">Systems</p>
+        <h2 id="architecture-gallery-title">Interactive Architecture Gallery</h2>
+        <p>A visual breakdown of the systems I’ve built across spectroscopy, infrastructure automation, and industrial telemetry.</p>
+      </div>
+      <div id="architecture-gallery"></div>
+    </section>
+
+    <section class="infrastructure-overview reveal" aria-label="Homelab infrastructure snapshot">
+      <div id="infrastructure-status-strip"></div>
+    </section>
+
+    <section class="section work" id="projects">
+      <div class="section__header">
+        <p class="eyebrow">Projects</p>
+        <h2>Selected systems with engineering users, real workflows, and measurable constraints.</h2>
+      </div>
       <div class="projects">
-        <article class="project reveal">
+        <article class="project reveal" id="opc-dashboard">
           <div class="project__body">
-            <p class="project__tag">Automation</p>
+            <p class="project__tag">Telemetry</p>
             <span class="project__year">2025</span>
-            <h3>Automated Raman Analyzer Virtualized Test&nbsp;UI</h3>
+            <h3>OPC UA Spectroscopy Dashboard</h3>
             <div class="project__meta">
-              <span>Role: Engineering, tooling, CI orchestration</span>
+              <span>Python + OPC UA</span>
+              <span>Real-time analyzer data</span>
+              <span>30+ analyzers</span>
             </div>
           </div>
           <div class="project__visual">
-            <div class="project__image project__image--crop project__image--raman" data-images="assets/projects/raman-pipeline/1000014612.jpg, assets/projects/raman-pipeline/1000014613.jpg, assets/projects/raman-pipeline/1000014614.jpg, assets/projects/raman-pipeline/1000014615.jpg">
-              <img src="assets/projects/raman-pipeline/1000014612.jpg" alt="Real-Time Instrument Data Dashboard with Predictive Modelingwith OPC UA Integration and Predictive Analytics">
+            <div class="project__image project__image--crop project__image--raman" data-images="assets/projects/raman-pipeline/1000014612.jpg, assets/projects/raman-pipeline/1000014613.jpg, assets/projects/raman-pipeline/1000014614.jpg">
+              <img src="assets/projects/raman-pipeline/1000014612.jpg" alt="Real-time OPC UA spectroscopy dashboard screenshot placeholder">
             </div>
             <div class="project__details">
               <p class="project__desc">
-                Designed and implemented a Python-based desktop application for real-time visualization and analysis of Raman spectroscopy data from a Kaiser Raman analyzer via OPC UA. The system features a structured startup workflow that generates client certificates, configures network connections, and allows operation in either live acquisition mode or offline model-testing mode. The primary interface provides dynamic, multi-channel spectral plotting using Matplotlib, with keyboard-driven navigation, flexible channel layouts, and continuous updates as new data is acquired. Integrated a modular prediction layer that loads user-supplied analytical models to perform per-channel inference on incoming spectra and present predictive results alongside live measurements.
+                Real-time industrial telemetry dashboard using Python and OPC UA to aggregate live spectroscopy data, analyzer diagnostics, and health metrics.
               </p>
               <ul class="project__tools">
-                <li class="tools-title"><strong>Tools</strong></li>
-                <li>.NET 8 (C#)</li>
-                <li>Custom CLI tooling</li>
-                <li>VMware Workstation</li>
-                <li>Bamboo CI/CD</li>
-                <li>PowerShell scripting</li>
-                <li>JSON configuration systems</li>
-                <li>Windows automation</li>
+                <li class="tools-title"><strong>Scope</strong></li>
+                <li>Supported 30+ industrial analyzers</li>
+                <li>Real-time OPC UA data streams</li>
+                <li>Spectral visualization</li>
+                <li>Analyzer diagnostics</li>
+                <li>Internal engineering + external customer use</li>
+                <li>Validation, diagnostics, and customer support workflows</li>
               </ul>
             </div>
           </div>
         </article>
 
-        <article class="project reveal">
+        <article class="project reveal" id="vmware-automation">
           <div class="project__body">
-            <p class="project__tag">Automation</p>
+            <p class="project__tag">Infrastructure</p>
             <span class="project__year">2025</span>
-            <h3>VMware Environment Automation for&nbsp;Test Infrastructure</h3>
+            <h3>VMware Automation Platform</h3>
             <div class="project__meta">
-              <span>Role: Automation engineering</span>
+              <span>C#/.NET</span>
+              <span>VMware REST API</span>
+              <span>Robot Framework</span>
             </div>
           </div>
           <div class="project__visual">
-            <div class="project__image project__image--crop project__image--vmware" data-images="assets/projects/vmware-automation/1000014608.jpg, assets/projects/vmware-automation/1000014609.jpg, assets/projects/vmware-automation/Screenshot 2025-12-12 125132.png">
-              <img src="assets/projects/vmware-automation/1000014608.jpg" alt="VMware Environment Automation for Test Infrastructure">
+            <div class="project__image project__image--crop project__image--vmware" data-images="assets/projects/vmware-automation/Screenshot 2025-12-12 125132.png">
+              <img src="assets/projects/vmware-automation/Screenshot 2025-12-12 125132.png" alt="VMware automation platform screenshot for engineering test infrastructure">
             </div>
             <div class="project__details">
               <p class="project__desc">
-                Created internal automation to manage large sets of VMware test environments supporting spectroscopy firmware development. Implemented scripts to copy, prepare, and configure virtual machines for different testing branches, ensuring reproducible setups and minimal engineer intervention. Improved reliability of long-running tests executed remotely through Bamboo agents.
+                C#/.NET automation platform integrating VMware REST APIs to provision, configure, validate, and manage virtualized engineering test environments.
               </p>
               <ul class="project__tools">
-                <li class="tools-title"><strong>Tools</strong></li>
-                <li>VMware Workstation</li>
-                <li>PowerShell</li>
-                <li>.NET/C# automation</li>
-                <li>JSON environment configs</li>
-                <li>Windows task execution & build environments</li>
+                <li class="tools-title"><strong>Scope</strong></li>
+                <li>Automated VM lifecycle orchestration</li>
+                <li>JSON-driven configuration management</li>
+                <li>Automated software installation</li>
+                <li>Robot Framework execution</li>
+                <li>Validation workflow support</li>
+                <li>Used for engineering test systems</li>
               </ul>
             </div>
           </div>
         </article>
+
+        <div class="archive project-archive">
+          <div class="section__header">
+            <p class="eyebrow">Archive</p>
+            <h2>Additional software work.</h2>
+          </div>
+          <div class="archive__grid">
+            <div class="archive__list">
+              <button class="archive__item" data-archive-id="cloudsiem">
+                <span class="archive__title">CloudSIEM Security Monitoring Platform</span>
+                <span class="archive__meta">AWS / Lambda / DynamoDB / detection engineering</span>
+              </button>
+              <button class="archive__item" data-archive-id="wecompare">
+                <span class="archive__title">Evidence-Led Comparison Web Tool</span>
+                <span class="archive__meta">FastAPI / async httpx / scraping / static UI</span>
+              </button>
+              <button class="archive__item" data-archive-id="journaljog">
+                <span class="archive__title">Flask-Backed AI Journaling Platform</span>
+                <span class="archive__meta">Flask / Ollama / faster-whisper / SQLAlchemy</span>
+              </button>
+            </div>
+            <div class="archive__thumb-grid">
+              <a class="archive__thumb archive__thumb--crop archive__thumb--cloudsiem" href="https://github.com/coltmelton/CloudSIEM" target="_blank" rel="noreferrer" data-archive-id="cloudsiem" data-images="assets/projects/CloudSIEM/cloudsiem-dashboard.png">
+                <img src="assets/projects/CloudSIEM/cloudsiem-dashboard.png" alt="CloudSIEM Security Monitoring Platform dashboard screenshot">
+              </a>
+              <a class="archive__thumb archive__thumb--crop archive__thumb--wecompare" href="https://github.com/coltmelton/WeCompare" target="_blank" rel="noreferrer" data-archive-id="wecompare" data-images="assets/projects/WeComp/Screenshot 2025-12-12 120628.png,assets/projects/WeComp/Screenshot 2025-12-12 120700.png,assets/projects/WeComp/Screenshot 2025-12-12 121450.png,assets/projects/WeComp/Screenshot 2025-12-12 121509.png">
+                <img src="assets/projects/WeComp/Screenshot 2025-12-12 120628.png" alt="Evidence-led comparison web tool screenshot">
+              </a>
+              <a class="archive__thumb archive__thumb--crop archive__thumb--journaljog" href="https://github.com/coltmelton/JournalJogAI" target="_blank" rel="noreferrer" data-archive-id="journaljog" data-images="assets/projects/JJ_AI/jjai_Journal.png,assets/projects/JJ_AI/jjai_Graphs.png,assets/projects/JJ_AI/Screenshot 2025-12-12 115423.png,assets/projects/JJ_AI/Screenshot 2025-12-12 115524.png,assets/projects/JJ_AI/Screenshot 2025-12-12 115910.png">
+                <img src="assets/projects/JJ_AI/jjai_Journal.png" alt="Flask-backed AI journaling platform screenshot">
+              </a>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
-    <section class="section archive" id="archive">
+    <section class="section capabilities" id="skills">
       <div class="section__header">
-        <p class="eyebrow">Archive</p>
-        <h2>Archive</h2>
-      </div>
-      <div class="archive__grid">
-        <div class="archive__list">
-          <button class="archive__item" data-archive-id="cloudsiem">
-            <span class="archive__title">CloudSIEM Security Monitoring Platform</span>
-            <span class="archive__meta">AWS · Lambda · DynamoDB · detection engineering</span>
-          </button>
-          <button class="archive__item" data-archive-id="wecompare">
-            <span class="archive__title">Evidence-Led Comparison Web Tool</span>
-            <span class="archive__meta">FastAPI · async httpx · scraping · static UI</span>
-          </button>
-          <button class="archive__item" data-archive-id="journaljog">
-            <span class="archive__title">Flask-Backed AI Journaling Platform</span>
-            <span class="archive__meta">Flask · Ollama · faster-whisper · SQLAlchemy</span>
-          </button>
-        </div>
-        <div class="archive__thumb-grid">
-          <a class="archive__thumb archive__thumb--crop archive__thumb--cloudsiem" href="https://github.com/coltmelton/CloudSIEM" target="_blank" rel="noreferrer" data-archive-id="cloudsiem" data-images="assets/projects/CloudSIEM/Screenshot 2026-03-12 at 9.59.51 AM.png">
-            <img src="assets/projects/CloudSIEM/Screenshot 2026-03-12 at 9.59.51 AM.png" alt="CloudSIEM Security Monitoring Platform">
-          </a>
-          <a class="archive__thumb archive__thumb--crop archive__thumb--wecompare" href="https://github.com/coltmelton/WeCompare" target="_blank" rel="noreferrer" data-archive-id="wecompare" data-images="assets/projects/WeComp/Screenshot 2025-12-12 120628.png,assets/projects/WeComp/Screenshot 2025-12-12 120700.png,assets/projects/WeComp/Screenshot 2025-12-12 121450.png,assets/projects/WeComp/Screenshot 2025-12-12 121509.png">
-            <img src="assets/projects/WeComp/Screenshot 2025-12-12 120628.png" alt="Evidence-Led Comparison Web Tool">
-          </a>
-          <a class="archive__thumb archive__thumb--crop archive__thumb--journaljog" href="https://github.com/coltmelton/JournalJogAI" target="_blank" rel="noreferrer" data-archive-id="journaljog" data-images="assets/projects/JJ_AI/jjai_Journal.png,assets/projects/JJ_AI/jjai_Graphs.png,assets/projects/JJ_AI/Screenshot 2025-12-12 115423.png,assets/projects/JJ_AI/Screenshot 2025-12-12 115524.png,assets/projects/JJ_AI/Screenshot 2025-12-12 115910.png">
-            <img src="assets/projects/JJ_AI/jjai_Journal.png" alt="Flask-Backed AI Journaling Platform">
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <section class="section capabilities" id="capabilities">
-      <div class="section__header">
-        <p class="eyebrow">Capabilities</p>
-        <h2>Passions</h2>
+        <p class="eyebrow">Skills</p>
+        <h2>Built around systems that have to work outside the demo.</h2>
       </div>
       <div class="capability__cards">
         <div class="card reveal">
-          <h3>Cybersecurity</h3>
-          <p>I'm mostly passionate about building and studying secure systems, especially detection workflows, cloud monitoring, threat analysis, and/or practical defensive engineering.</p>
+          <h3>Software &amp; Automation</h3>
+          <p>C#/.NET, Python, REST APIs, PowerShell, JSON-driven configuration, Robot Framework, test orchestration, and engineering workflow tooling.</p>
           <ul>
-            <li>Threat detection/alerting</li>
-            <li>Monitoring workflows</li>
-            <li>Defensive engineering and hardening</li>
+            <li>VM lifecycle automation</li>
+            <li>Validation workflow support</li>
+            <li>Internal engineering tools</li>
           </ul>
         </div>
         <div class="card reveal">
-          <h3>Defense</h3>
-          <p>I am interested in software and secure infrastructure support national security and high-stakes operations.</p>
+          <h3>Industrial Data Systems</h3>
+          <p>OPC UA telemetry, analyzer diagnostics, spectroscopy data handling, real-time visualization, calibration analysis, and customer-support workflows.</p>
           <ul>
-            <li>Secure, reliable software systems</li>
-            <li>Operational resilience under pressure</li>
-            <li>Technology with real-world impact</li>
+            <li>Live analyzer data streams</li>
+            <li>Spectral plotting and diagnostics</li>
+            <li>R&amp;D measurement systems</li>
           </ul>
         </div>
         <div class="card reveal">
-          <h3>Cloud Computing</h3>
-          <p>I like designing cloud systems that are scalable andobservable, with a preference for AWS services and infrastructure workflows.</p>
+          <h3>Security &amp; Infrastructure</h3>
+          <p>Detection engineering, SIEM concepts, event correlation, SQLite storage, MITRE ATT&amp;CK mapping, cloud monitoring, and resilient infrastructure thinking.</p>
           <ul>
-            <li>AWS architecture and services</li>
-            <li>Serverless application design</li>
-            <li>Automation and deployment workflows</li>
+            <li>Rule-based detection</li>
+            <li>Operational observability</li>
+            <li>Secure systems mindset</li>
           </ul>
         </div>
       </div>
@@ -270,16 +430,16 @@
 
     <section class="section contact" id="contact">
       <div class="contact__inner reveal">
+        <a class="contact__resume" href="assets/Colt Melton Resume.pdf" target="_blank" rel="noreferrer" download>Download Resume</a>
         <a href="mailto:coltmeltonwork@gmail.com">coltmeltonwork@gmail.com</a>
         <a href="https://www.linkedin.com/in/colt-melton-3812872ab" target="_blank" rel="noreferrer">LinkedIn</a>
         <a href="https://github.com/coltmelton" target="_blank" rel="noreferrer">GitHub</a>
-        <a href="assets/Colt Melton Resume.pdf" target="_blank" rel="noreferrer">Resume</a>
       </div>
     </section>
   </main>
 
   <footer class="footer"></footer>
 
-    <script src="script.js"></script>
-  </body>
+  <script src="script.js"></script>
+</body>
 </html>

@@ -1,0 +1,292 @@
+Upgrade the Interactive Architecture Gallery so each architecture diagram has clickable nodes with a dynamic detail panel.
+
+Goal:
+Replace the current flat step-by-step flow with an interactive architecture explorer. Users should be able to select a project card, then click individual architecture nodes to learn what each component does.
+
+Core UX:
+1. User selects an architecture card:
+   - Raman ML Pipeline
+   - VMware Automation Platform
+   - OPC UA Spectroscopy Telemetry
+   - SCIF SIEM
+
+2. The selected architecture displays:
+   - Title
+   - Short description
+   - Tech tags
+   - Metric chips
+   - Clickable node diagram
+   - Dynamic component detail panel
+
+3. Clicking a node updates the detail panel.
+
+Default behavior:
+- When an architecture is selected, auto-select its first node.
+- Active node should be visibly highlighted.
+- Hovering a node should show it is clickable.
+- Keyboard users should be able to tab through nodes and press Enter/Space.
+
+Data structure:
+Update each architecture object so flowSteps becomes nodes.
+
+Each node should include:
+- id
+- label
+- subtitle
+- detailTitle
+- detailDescription
+- technologies
+- responsibilities
+
+Example:
+
+const architectures = [
+  {
+    id: "vmware-automation",
+    title: "VMware Automation Platform",
+    shortTitle: "VMware",
+    tags: ["C#/.NET", "VMware REST API", "Robot Framework", "Bamboo", "JSON Config"],
+    metrics: ["VM orchestration", "Automated provisioning", "~4 hrs saved/cycle"],
+    description:
+      "Virtualized test automation platform for provisioning, configuring, validating, and managing engineering test environments.",
+    nodes: [
+      {
+        id: "json-config",
+        label: "JSON Config",
+        subtitle: "Environment definition",
+        detailTitle: "JSON Configuration Layer",
+        detailDescription:
+          "Defines VM targets, installer paths, validation parameters, and workflow inputs in a repeatable configuration format.",
+        technologies: ["JSON", "Configuration Management"],
+        responsibilities: [
+          "Stores VM workflow settings",
+          "Standardizes test environment setup",
+          "Reduces manual setup variation"
+        ]
+      },
+      {
+        id: "dotnet-cli",
+        label: ".NET CLI",
+        subtitle: "Automation control layer",
+        detailTitle: "C#/.NET Automation CLI",
+        detailDescription:
+          "Command-line orchestration layer that reads configuration files and coordinates VMware, installer, and validation workflows.",
+        technologies: ["C#", ".NET", "RESTSharp"],
+        responsibilities: [
+          "Runs automation commands",
+          "Coordinates lifecycle workflows",
+          "Handles validation orchestration"
+        ]
+      },
+      {
+        id: "vmware-api",
+        label: "VMware REST API",
+        subtitle: "Virtualization interface",
+        detailTitle: "VMware REST API Integration",
+        detailDescription:
+          "Interfaces with VMware to manage virtual machine lifecycle operations for engineering test environments.",
+        technologies: ["VMware", "REST API", "Virtualization"],
+        responsibilities: [
+          "Start and stop VMs",
+          "Manage VM lifecycle operations",
+          "Support repeatable test environments"
+        ]
+      },
+      {
+        id: "robot-framework",
+        label: "Robot Framework",
+        subtitle: "Automated validation",
+        detailTitle: "Robot Framework Execution",
+        detailDescription:
+          "Executes automated validation suites after environment setup and software installation.",
+        technologies: ["Robot Framework", "Bamboo", "Test Automation"],
+        responsibilities: [
+          "Run validation tests",
+          "Support automated pass/fail checks",
+          "Reduce manual test execution effort"
+        ]
+      },
+      {
+        id: "validation-results",
+        label: "Validation Results",
+        subtitle: "Engineering feedback",
+        detailTitle: "Validation Output",
+        detailDescription:
+          "Produces test results and workflow feedback used by engineers to verify software deployment and analyzer behavior.",
+        technologies: ["Bamboo", "Logs", "Validation"],
+        responsibilities: [
+          "Surface workflow status",
+          "Support release verification",
+          "Improve debugging visibility"
+        ]
+      }
+    ]
+  }
+];
+
+Add node data for the other architectures too.
+
+Raman ML Pipeline nodes:
+1. Synthetic Raman Windows
+   - Generates 512-point synthetic spectra with overlapping peak cases.
+   - Technologies: Python, NumPy, synthetic data generation.
+   - Responsibilities: training data generation, overlap simulation, peak family variation.
+
+2. 1D U-Net Model
+   - 2.9M-parameter PyTorch model for spectral decomposition.
+   - Technologies: PyTorch, 1D CNN, U-Net.
+   - Responsibilities: learn baseline/peak separation, predict 4 output channels.
+
+3. Baseline + Peak Prediction
+   - Predicts baseline and up to 3 overlapping peak components.
+   - Technologies: PyTorch, signal processing.
+   - Responsibilities: isolate components, reduce spectral overlap complexity.
+
+4. Nonlinear Peak Fitting
+   - Fits predicted components to physical peak families.
+   - Technologies: SciPy, lmfit.
+   - Responsibilities: optimize Gaussian/Lorentzian/Voigt/pseudo-Voigt components.
+
+5. Pure-Peak Matching
+   - Validates and matches isolated components against pure references.
+   - Technologies: pandas, NumPy, spectral matching.
+   - Responsibilities: compare fitted peaks, produce validated peak matches.
+
+6. Concentration Calibration
+   - Builds ethane/propane calibration models from extracted spectral features.
+   - Technologies: statsmodels, MLR, regression.
+   - Responsibilities: concentration prediction, model evaluation, calibration analysis.
+
+OPC UA Spectroscopy Telemetry nodes:
+1. Industrial Analyzer
+   - Produces spectroscopy data and analyzer health metrics.
+   - Technologies: Raman spectroscopy, industrial instrumentation.
+   - Responsibilities: measurement source, analyzer behavior, system telemetry.
+
+2. OPC UA Server
+   - Exposes live analyzer measurements through structured industrial communication.
+   - Technologies: OPC UA, industrial telemetry.
+   - Responsibilities: publish live values, expose analyzer tags, enable client connection.
+
+3. Python Client
+   - Connects to OPC UA server and reads live data streams.
+   - Technologies: Python, OPC UA client libraries.
+   - Responsibilities: subscribe/read telemetry, normalize data, handle updates.
+
+4. Live Spectral Stream
+   - Displays real-time spectral data for analyzer monitoring.
+   - Technologies: Python, plotting/visualization.
+   - Responsibilities: render spectra, support real-time inspection, improve visibility.
+
+5. Analyzer Health Metrics
+   - Tracks operational and diagnostic indicators.
+   - Technologies: telemetry, diagnostics, data visualization.
+   - Responsibilities: show system behavior, support troubleshooting, monitor performance.
+
+6. Customer Dashboard
+   - Provides internal and external users with a unified monitoring interface.
+   - Technologies: GUI development, Python.
+   - Responsibilities: display data clearly, support customer-facing analysis, simplify monitoring.
+
+7. Diagnostics / Validation
+   - Supports Raman analyzer validation, diagnostics, and customer support workflows.
+   - Technologies: spectroscopy, validation workflows.
+   - Responsibilities: investigate issues, support scientists, assist customer support.
+
+SCIF SIEM nodes:
+1. Event Logs
+   - Raw security events entering the system.
+   - Technologies: logs, event data.
+   - Responsibilities: event ingestion, source tracking.
+
+2. Parser
+   - Normalizes raw events into structured records.
+   - Technologies: Python, parsing.
+   - Responsibilities: field extraction, event normalization, timestamp handling.
+
+3. Detection Rules
+   - Applies custom detection logic to normalized events.
+   - Technologies: YAML/custom rules, Python.
+   - Responsibilities: identify suspicious activity, encode detection logic.
+
+4. Correlation Engine
+   - Links related events across a time window.
+   - Technologies: Python, SQLite, correlation windows.
+   - Responsibilities: group related events, reduce noise, identify patterns.
+
+5. MITRE ATT&CK Mapping
+   - Tags detections with relevant adversary tactics and techniques.
+   - Technologies: MITRE ATT&CK.
+   - Responsibilities: classify behavior, improve investigation context.
+
+6. Alert Output
+   - Produces alerts from rule matches and correlated activity.
+   - Technologies: CLI/dashboard output.
+   - Responsibilities: surface findings, summarize detection context.
+
+7. Investigation View
+   - Allows review of alerts, correlated events, and supporting details.
+   - Technologies: Python, SQLite.
+   - Responsibilities: support triage, show evidence, improve incident review.
+
+Visual layout:
+Desktop:
+- Architecture cards on the left.
+- Diagram in the center/top-right.
+- Detail panel below or beside the diagram.
+- Use a clean node-link layout, not just a plain list.
+- Nodes can still be mostly linear, but should feel like an interactive system map.
+- Use arrows or connecting lines between nodes.
+- Highlight active node.
+
+Mobile:
+- Architecture cards become a horizontal scroll or stacked selector.
+- Nodes stack vertically.
+- Detail panel appears directly under selected node/diagram.
+
+Interaction details:
+- Node buttons should be actual <button> elements.
+- Active node should have aria-pressed or aria-selected.
+- Include focus states.
+- Clicking a node updates selectedNodeId.
+- Changing architecture resets selectedNodeId to first node.
+- Detail panel should animate lightly if animation system exists.
+- Respect prefers-reduced-motion.
+
+Design direction:
+- Make it polished, subtle, and technical.
+- Use the existing portfolio style.
+- Avoid neon cyberpunk nonsense.
+- Use accent colors sparingly.
+- Use stat chips and tech tags.
+- The detail panel should feel like:
+  Component Details
+  Role
+  Technologies
+  Responsibilities
+
+Example detail panel layout:
+
+Component Details
+
+VMware REST API Integration
+Interfaces with VMware to manage virtual machine lifecycle operations for engineering test environments.
+
+Technologies
+VMware · REST API · Virtualization
+
+Responsibilities
+- Start and stop VMs
+- Manage lifecycle operations
+- Support repeatable test environments
+
+Acceptance criteria:
+- Architecture cards are clickable.
+- Architecture nodes are clickable.
+- Detail panel changes when nodes are clicked.
+- Active architecture and active node are visually obvious.
+- Works with keyboard navigation.
+- Works on mobile.
+- Content remains data-driven.
+- No fake metrics are added.
+- The final section feels like an engineering systems explorer, not a sad PowerPoint flowchart trapped in a website.

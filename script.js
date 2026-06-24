@@ -45,13 +45,318 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const architectures = [
     {
+      id: "cloud-siem",
+      title: "Cloud SIEM",
+      shortTitle: "Cloud SIEM",
+      accent: "Cloud Security",
+      description: "Cloud security monitoring and event investigation platform using Python, SQL/relational storage, detection rules, event correlation, and MITRE ATT&CK mapping.",
+      tags: ["Python", "SQL", "Azure/AWS", "Cloud", "Cybersecurity", "MITRE ATT&CK", "Monitoring"],
+      metrics: ["Detection rules", "Event correlation", "Investigation workflow"],
+      nodes: [
+        {
+          id: "cloud-logs",
+          label: "Cloud Logs",
+          subtitle: "Security event sources",
+          detailTitle: "Cloud Log Sources",
+          detailDescription: "Collects cloud security, application, and infrastructure events for monitoring and investigation.",
+          technologies: ["Cloud", "Security Logs"],
+          responsibilities: ["Provide raw events", "Capture identity and service activity", "Feed investigation data"]
+        },
+        {
+          id: "event-ingestion",
+          label: "Event Ingestion",
+          subtitle: "Input boundary",
+          detailTitle: "Event Ingestion",
+          detailDescription: "Accepts raw log events and prepares them for parsing, validation, and storage.",
+          technologies: ["Python", "Cloud APIs"],
+          responsibilities: ["Receive events", "Validate required fields", "Handle ingestion failures"]
+        },
+        {
+          id: "parser-normalizer",
+          label: "Parser / Normalizer",
+          subtitle: "Schema alignment",
+          detailTitle: "Parser and Normalizer",
+          detailDescription: "Converts varied log formats into normalized event records that detection rules can query consistently.",
+          technologies: ["Python", "Structured Events"],
+          responsibilities: ["Normalize event fields", "Preserve source context", "Prepare rule inputs"]
+        },
+        {
+          id: "sql-event-store",
+          label: "SQL Event Store",
+          subtitle: "Relational event history",
+          detailTitle: "SQL Event Store",
+          detailDescription: "Persists normalized events in relational storage for investigation, filtering, and historical analysis.",
+          technologies: ["SQL", "Relational Storage", "Indexes"],
+          responsibilities: ["Store normalized events", "Support analyst queries", "Retain investigation context"]
+        },
+        {
+          id: "detection-rules",
+          label: "Detection Rules",
+          subtitle: "Rule evaluation",
+          detailTitle: "Detection Rules",
+          detailDescription: "Evaluates suspicious activity patterns against stored and incoming security events.",
+          technologies: ["Detection Engineering", "Python"],
+          responsibilities: ["Encode detection logic", "Generate candidate alerts", "Reduce noisy matches"]
+        },
+        {
+          id: "correlation-engine",
+          label: "Correlation Engine",
+          subtitle: "Multi-event reasoning",
+          detailTitle: "Correlation Engine",
+          detailDescription: "Links related events across users, hosts, services, and time windows to produce higher-confidence alerts.",
+          technologies: ["Event Correlation", "SQL", "Time Windows"],
+          responsibilities: ["Group related events", "Track suspicious sequences", "Support alert context"]
+        },
+        {
+          id: "mitre-mapping",
+          label: "MITRE ATT&CK Mapping",
+          subtitle: "Tactic and technique context",
+          detailTitle: "MITRE ATT&CK Mapping",
+          detailDescription: "Maps detections to ATT&CK tactics and techniques so alerts explain likely attacker behavior.",
+          technologies: ["MITRE ATT&CK", "Cybersecurity"],
+          responsibilities: ["Add threat context", "Improve triage language", "Connect rules to techniques"]
+        },
+        {
+          id: "alert-investigation",
+          label: "Alert / Investigation View",
+          subtitle: "Analyst workflow",
+          detailTitle: "Alert and Investigation View",
+          detailDescription: "Surfaces correlated alerts, supporting events, and ATT&CK context for investigation.",
+          technologies: ["Monitoring", "UI", "Debugging"],
+          responsibilities: ["Display alert details", "Show evidence chains", "Support investigation workflow"]
+        }
+      ]
+    },
+    {
+      id: "distributed-telemetry",
+      title: "Distributed Telemetry Pipeline",
+      shortTitle: "Telemetry",
+      accent: "Distributed Systems",
+      description: "Event-driven telemetry pipeline using Kafka, Redis, and SQL to process simulated system health and sensor events.",
+      tags: ["Kafka", "Redis", "SQL", "Event-Driven Architecture", "Monitoring", "Debugging", "Storage Systems"],
+      metrics: ["Streaming ingestion", "Live-state cache", "Historical store"],
+      nodes: [
+        {
+          id: "simulated-events",
+          label: "Simulated System Events",
+          subtitle: "Health and sensor data",
+          detailTitle: "Simulated System Events",
+          detailDescription: "Produces representative health, state, and sensor events for pipeline testing.",
+          technologies: ["Event Simulation", "Telemetry"],
+          responsibilities: ["Generate event payloads", "Model system state changes", "Exercise failure cases"]
+        },
+        {
+          id: "kafka-producer",
+          label: "Kafka Producer",
+          subtitle: "Publish boundary",
+          detailTitle: "Kafka Producer",
+          detailDescription: "Publishes simulated telemetry messages into Kafka for asynchronous processing.",
+          technologies: ["Kafka", "Producer API"],
+          responsibilities: ["Serialize messages", "Publish events", "Preserve message keys"]
+        },
+        {
+          id: "kafka-topic",
+          label: "Kafka Topic",
+          subtitle: "Durable event stream",
+          detailTitle: "Kafka Topic",
+          detailDescription: "Buffers telemetry events as an ordered stream that consumers can process independently.",
+          technologies: ["Kafka", "Message Broker"],
+          responsibilities: ["Store event stream", "Decouple producers and consumers", "Support replay"]
+        },
+        {
+          id: "consumer-service",
+          label: "Consumer Service",
+          subtitle: "Async processing",
+          detailTitle: "Consumer Service",
+          detailDescription: "Consumes telemetry messages, validates payloads, updates live state, and persists historical records.",
+          technologies: ["Python", "Kafka Consumer"],
+          responsibilities: ["Process messages", "Handle malformed events", "Coordinate cache and database writes"]
+        },
+        {
+          id: "redis-cache",
+          label: "Redis Live-State Cache",
+          subtitle: "Current state lookup",
+          detailTitle: "Redis Live-State Cache",
+          detailDescription: "Caches latest system state for fast dashboard reads and alert checks.",
+          technologies: ["Redis", "Caching", "Key-Value Storage"],
+          responsibilities: ["Store current state", "Serve low-latency reads", "Support alert thresholds"]
+        },
+        {
+          id: "sql-history",
+          label: "SQL Historical Store",
+          subtitle: "Durable telemetry history",
+          detailTitle: "SQL Historical Store",
+          detailDescription: "Persists historical telemetry for trend analysis, debugging, and audit-style review.",
+          technologies: ["SQL", "Relational Storage"],
+          responsibilities: ["Store event history", "Support time-window queries", "Back monitoring analysis"]
+        },
+        {
+          id: "monitoring-dashboard",
+          label: "Monitoring Dashboard",
+          subtitle: "Operational visibility",
+          detailTitle: "Monitoring Dashboard",
+          detailDescription: "Displays live state and historical telemetry so pipeline behavior is observable.",
+          technologies: ["Dashboard", "Monitoring"],
+          responsibilities: ["Visualize current state", "Expose historical trends", "Show service health"]
+        },
+        {
+          id: "alert-debug",
+          label: "Alert / Debug View",
+          subtitle: "Investigation surface",
+          detailTitle: "Alert and Debug View",
+          detailDescription: "Provides alert context, raw payloads, and processing state to support debugging.",
+          technologies: ["Debugging", "Observability"],
+          responsibilities: ["Surface anomalies", "Inspect raw events", "Trace processing behavior"]
+        }
+      ]
+    },
+    {
+      id: "opcua-telemetry",
+      title: "OPC UA Spectroscopy Dashboard",
+      shortTitle: "OPC UA",
+      accent: "Industrial Telemetry",
+      description: "Real-time spectroscopy monitoring dashboard integrating OPC UA telemetry, live spectral visualization, analyzer health, and diagnostics across industrial analyzers.",
+      tags: ["Python", "OPC UA", "Telemetry", "Diagnostics", "Monitoring", "Sensing Systems"],
+      metrics: ["30+ analyzers", "Live spectra", "Health monitoring"],
+      nodes: [
+        {
+          id: "industrial-analyzer",
+          label: "Industrial Analyzer",
+          subtitle: "Measurement source",
+          detailTitle: "Industrial Analyzer",
+          detailDescription: "Produces spectroscopy data and analyzer health metrics for monitoring and diagnostics.",
+          technologies: ["Raman Spectroscopy", "Industrial Instrumentation"],
+          responsibilities: ["Generate measurements", "Expose health signals", "Support diagnostic review"]
+        },
+        {
+          id: "opcua-server",
+          label: "OPC UA Server",
+          subtitle: "Structured data interface",
+          detailTitle: "OPC UA Server",
+          detailDescription: "Publishes live analyzer values through a structured industrial communication interface.",
+          technologies: ["OPC UA", "Industrial Telemetry"],
+          responsibilities: ["Publish live values", "Expose analyzer tags", "Support client subscriptions"]
+        },
+        {
+          id: "python-client",
+          label: "Python Client",
+          subtitle: "Telemetry ingestion",
+          detailTitle: "Python OPC UA Client",
+          detailDescription: "Connects to OPC UA endpoints, reads live streams, and normalizes telemetry for display.",
+          technologies: ["Python", "OPC UA Client Libraries"],
+          responsibilities: ["Read telemetry", "Normalize data", "Handle connection updates"]
+        },
+        {
+          id: "spectral-view",
+          label: "Live Spectral View",
+          subtitle: "Signal visualization",
+          detailTitle: "Live Spectral Visualization",
+          detailDescription: "Displays real-time spectral data so engineers can inspect measurement behavior directly.",
+          technologies: ["Python", "Visualization", "Signal Monitoring"],
+          responsibilities: ["Render spectra", "Show signal changes", "Support measurement review"]
+        },
+        {
+          id: "health-diagnostics",
+          label: "Health Diagnostics",
+          subtitle: "System state",
+          detailTitle: "Analyzer Health Diagnostics",
+          detailDescription: "Tracks analyzer state and diagnostic indicators to support troubleshooting.",
+          technologies: ["Diagnostics", "Monitoring"],
+          responsibilities: ["Surface health metrics", "Support issue triage", "Improve operator visibility"]
+        },
+        {
+          id: "support-workflow",
+          label: "Support Workflow",
+          subtitle: "Engineering users",
+          detailTitle: "Engineering and Support Workflow",
+          detailDescription: "Gives engineering and support users one view for live spectra, health state, and diagnostic context.",
+          technologies: ["Dashboard", "Telemetry UI"],
+          responsibilities: ["Unify system context", "Support customer investigations", "Reduce manual data gathering"]
+        }
+      ]
+    },
+    {
+      id: "mission-pathfinding",
+      title: "Mission Pathfinding Visualizer",
+      shortTitle: "Pathfinding",
+      accent: "Algorithms",
+      description: "Algorithm and data-structure visualizer implementing BFS, DFS, Dijkstra, and A* over grid-based environments with obstacles and weighted terrain.",
+      tags: ["BFS", "DFS", "Graphs", "Queues", "Stacks", "Priority Queues", "Hash Maps", "Visited Sets"],
+      metrics: ["Graph search", "Path reconstruction", "Algorithm analysis"],
+      nodes: [
+        {
+          id: "grid-graph",
+          label: "Grid / Graph Environment",
+          subtitle: "Search space",
+          detailTitle: "Grid and Graph Environment",
+          detailDescription: "Represents the mission-planning environment as traversable graph nodes.",
+          technologies: ["Graphs", "Grid Modeling"],
+          responsibilities: ["Represent nodes and edges", "Define start and goal", "Support neighbor lookup"]
+        },
+        {
+          id: "obstacle-weight-map",
+          label: "Obstacle + Weight Map",
+          subtitle: "Terrain constraints",
+          detailTitle: "Obstacle and Weight Map",
+          detailDescription: "Applies blocked cells and weighted terrain costs to the graph.",
+          technologies: ["Hash Maps", "Weighted Graphs"],
+          responsibilities: ["Track obstacles", "Store movement costs", "Shape algorithm behavior"]
+        },
+        {
+          id: "algorithm-selector",
+          label: "Algorithm Selector",
+          subtitle: "Search strategy",
+          detailTitle: "Algorithm Selector",
+          detailDescription: "Chooses between BFS, DFS, Dijkstra, and A* for the same environment.",
+          technologies: ["BFS", "DFS", "Dijkstra", "A*"],
+          responsibilities: ["Switch search strategy", "Reset state", "Compare behavior"]
+        },
+        {
+          id: "search-algorithms",
+          label: "BFS / DFS / Dijkstra / A*",
+          subtitle: "Traversal core",
+          detailTitle: "Graph Search Algorithms",
+          detailDescription: "Runs unweighted, depth-first, weighted, and heuristic graph search with the right frontier data structure.",
+          technologies: ["Queues", "Stacks", "Priority Queues"],
+          responsibilities: ["Expand frontier", "Track costs", "Choose next node"]
+        },
+        {
+          id: "visited-tracker",
+          label: "Visited-State Tracker",
+          subtitle: "Duplicate control",
+          detailTitle: "Visited-State Tracker",
+          detailDescription: "Uses visited sets and lookup maps to avoid repeated work and preserve traversal state.",
+          technologies: ["Visited Sets", "Hash Maps"],
+          responsibilities: ["Mark explored nodes", "Prevent cycles", "Track parent relationships"]
+        },
+        {
+          id: "path-reconstruction",
+          label: "Path Reconstruction",
+          subtitle: "Result assembly",
+          detailTitle: "Path Reconstruction",
+          detailDescription: "Walks parent pointers from goal to start to reconstruct the final path.",
+          technologies: ["Parent Maps", "Path Reconstruction"],
+          responsibilities: ["Recover final route", "Calculate path cost", "Explain chosen path"]
+        },
+        {
+          id: "visualization",
+          label: "Visualization",
+          subtitle: "Interactive output",
+          detailTitle: "Search Visualization",
+          detailDescription: "Animates visited nodes, frontier expansion, and reconstructed paths.",
+          technologies: ["JavaScript", "UI Rendering"],
+          responsibilities: ["Show algorithm progress", "Compare tradeoffs", "Support algorithm analysis"]
+        }
+      ]
+    },
+    {
       id: "raman-ml",
-      title: "Raman ML Pipeline",
+      title: "Machine Learning Raman Spectral Decomposition",
       shortTitle: "Raman ML",
       accent: "Research",
       description: "Machine-learning-guided Raman spectral decomposition pipeline for separating baseline and overlapping peak components, fitting spectral features, and supporting ethane/propane calibration.",
-      tags: ["PyTorch", "1D U-Net", "Scientific ML", "Spectral Decomposition"],
-      metrics: ["2.9M parameters", "602 spectra", "19,753 peak matches", "0.9999 R2"],
+      tags: ["PyTorch", "Python", "ML Pipelines", "Signal Processing", "Scientific Computing", "Regression"],
+      metrics: ["2.9M parameters", "602 spectra", "R2 > 0.95"],
       nodes: [
         {
           id: "synthetic-windows",
@@ -171,80 +476,6 @@ document.addEventListener("DOMContentLoaded", () => {
           detailDescription: "Produces test results and workflow feedback used by engineers to verify software deployment and analyzer behavior.",
           technologies: ["Bamboo", "Logs", "Validation"],
           responsibilities: ["Surface workflow status", "Support release verification", "Improve debugging visibility"]
-        }
-      ]
-    },
-    {
-      id: "opcua-telemetry",
-      title: "OPC UA Spectroscopy Telemetry",
-      shortTitle: "OPC UA",
-      accent: "Telemetry",
-      description: "Real-time industrial telemetry dashboard aggregating live spectroscopy measurements, analyzer health metrics, and diagnostics for internal engineers and external customers.",
-      tags: ["Python", "OPC UA", "Spectroscopy", "Telemetry", "Diagnostics"],
-      metrics: ["30+ analyzers", "Real-time telemetry", "Internal + external users"],
-      nodes: [
-        {
-          id: "industrial-analyzer",
-          label: "Industrial Analyzer",
-          subtitle: "Measurement source",
-          detailTitle: "Industrial Analyzer",
-          detailDescription: "Produces spectroscopy data and analyzer health metrics.",
-          technologies: ["Raman Spectroscopy", "Industrial Instrumentation"],
-          responsibilities: ["Measurement source", "Analyzer behavior", "System telemetry"]
-        },
-        {
-          id: "opcua-server",
-          label: "OPC UA Server",
-          subtitle: "Industrial data interface",
-          detailTitle: "OPC UA Server",
-          detailDescription: "Exposes live analyzer measurements through structured industrial communication.",
-          technologies: ["OPC UA", "Industrial Telemetry"],
-          responsibilities: ["Publish live values", "Expose analyzer tags", "Enable client connection"]
-        },
-        {
-          id: "python-client",
-          label: "Python Client",
-          subtitle: "Telemetry ingestion",
-          detailTitle: "Python OPC UA Client",
-          detailDescription: "Connects to OPC UA server and reads live data streams.",
-          technologies: ["Python", "OPC UA Client Libraries"],
-          responsibilities: ["Subscribe/read telemetry", "Normalize data", "Handle updates"]
-        },
-        {
-          id: "spectral-stream",
-          label: "Live Spectral Stream",
-          subtitle: "Real-time visualization",
-          detailTitle: "Live Spectral Stream",
-          detailDescription: "Displays real-time spectral data for analyzer monitoring.",
-          technologies: ["Python", "Plotting", "Visualization"],
-          responsibilities: ["Render spectra", "Support real-time inspection", "Improve visibility"]
-        },
-        {
-          id: "health-metrics",
-          label: "Analyzer Health Metrics",
-          subtitle: "Diagnostics and behavior",
-          detailTitle: "Analyzer Health Metrics",
-          detailDescription: "Tracks operational and diagnostic indicators.",
-          technologies: ["Telemetry", "Diagnostics", "Data Visualization"],
-          responsibilities: ["Show system behavior", "Support troubleshooting", "Monitor performance"]
-        },
-        {
-          id: "customer-dashboard",
-          label: "Customer Dashboard",
-          subtitle: "Unified interface",
-          detailTitle: "Customer Dashboard",
-          detailDescription: "Provides internal and external users with a unified monitoring interface.",
-          technologies: ["GUI Development", "Python"],
-          responsibilities: ["Display data clearly", "Support customer-facing analysis", "Simplify monitoring"]
-        },
-        {
-          id: "diagnostics-validation",
-          label: "Diagnostics / Validation",
-          subtitle: "Support workflows",
-          detailTitle: "Diagnostics and Validation Workflows",
-          detailDescription: "Supports Raman analyzer validation, diagnostics, and customer support workflows.",
-          technologies: ["Spectroscopy", "Validation Workflows"],
-          responsibilities: ["Investigate issues", "Support scientists", "Assist customer support"]
         }
       ]
     }

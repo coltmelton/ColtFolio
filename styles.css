@@ -1189,6 +1189,32 @@ a {
   min-height: 0;
 }
 
+.project__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: auto;
+}
+
+.project__links a {
+  display: inline-flex;
+  min-height: 42px;
+  align-items: center;
+  padding: 8px 12px;
+  border: 1px solid rgba(246, 237, 220, 0.28);
+  border-radius: 4px;
+  color: var(--text);
+  font-family: "MontrealMono", monospace;
+  font-size: 10px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.project__links a:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
 .project__details--single {
   grid-template-columns: 1fr;
   width: 100%;
@@ -2215,4 +2241,387 @@ a {
   letter-spacing: 0.1em;
   color: var(--text-secondary);
   margin-bottom: 6px;
+}
+
+/* Recruiter-facing technology summary */
+.technical-snapshot {
+  margin-top: 28px;
+  padding: clamp(18px, 2vw, 24px);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-left: 3px solid var(--accent);
+  background: rgba(0, 0, 0, 0.58);
+}
+
+.technical-snapshot h2 {
+  margin: 0 0 16px;
+  color: var(--text);
+  font-family: "MontrealMono", monospace;
+  font-size: 12px;
+  font-style: normal;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.technical-snapshot__groups {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.technical-snapshot__groups > div {
+  min-width: 0;
+}
+
+.technical-snapshot strong,
+.experience__technology strong {
+  display: block;
+  margin-bottom: 5px;
+  color: var(--text);
+  font-family: "MontrealMono", monospace;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.technical-snapshot p,
+.experience__technology p {
+  margin: 0;
+  color: var(--text);
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.technical-snapshot > a {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  gap: 8px;
+  margin-top: 12px;
+  color: var(--muted);
+  font-family: "MontrealMono", monospace;
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.project__meta::before {
+  content: "Tech stack";
+  flex: 0 0 100%;
+  color: var(--text-secondary);
+  font-family: "MontrealMono", monospace;
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.experience__technology {
+  margin: 4px 0 20px;
+  padding: 12px 14px;
+  border-left: 2px solid var(--accent);
+  background: rgba(0, 128, 255, 0.08);
+}
+
+.experience__dates {
+  margin-top: 4px;
+  color: var(--text-secondary);
+  font-family: "MontrealMono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.research__sections details {
+  min-width: 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.22);
+}
+
+.research__sections summary {
+  display: flex;
+  min-height: 48px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  color: var(--text);
+  cursor: pointer;
+  font-family: "MontrealMono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  list-style: none;
+  text-transform: uppercase;
+}
+
+.research__sections summary::-webkit-details-marker {
+  display: none;
+}
+
+.research__sections summary::after {
+  content: "+";
+  flex: 0 0 auto;
+  color: var(--text-secondary);
+  font-size: 18px;
+}
+
+.research__sections details[open] summary::after {
+  content: "−";
+}
+
+.research__sections details p {
+  padding: 0 0 16px;
+}
+
+@media (max-width: 900px) {
+  body {
+    background-attachment: scroll;
+  }
+
+  .nav {
+    padding: 14px 0;
+    background: rgba(0, 0, 0, 0.88);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+  }
+
+  .technical-snapshot__groups {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .technical-snapshot__groups > div + div {
+    padding-top: 12px;
+    border-top: 1px solid rgba(255, 255, 255, 0.14);
+  }
+
+  .project__image[data-images]::after {
+    content: "Tap left / right to browse";
+    position: absolute;
+    right: 8px;
+    bottom: 8px;
+    padding: 5px 8px;
+    border-radius: 999px;
+    background: rgba(0, 0, 0, 0.78);
+    color: #fff;
+    font-family: "MontrealMono", monospace;
+    font-size: 8px;
+    letter-spacing: 0.06em;
+    pointer-events: none;
+    text-transform: uppercase;
+  }
+}
+
+@media (max-width: 600px) {
+  html {
+    scroll-padding-top: 118px;
+  }
+
+  body {
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  .nav {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 8px 12px;
+  }
+
+  .nav__brand {
+    min-width: 0;
+  }
+
+  .brand-name {
+    font-size: 18px;
+  }
+
+  .nav__cta--resume {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    font-size: 11px;
+    white-space: nowrap;
+  }
+
+  .nav__links {
+    display: flex;
+    grid-column: 1 / -1;
+    gap: 8px;
+    justify-content: flex-start;
+    width: 100%;
+    padding-bottom: 2px;
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    scrollbar-width: none;
+  }
+
+  .nav__links::-webkit-scrollbar {
+    display: none;
+  }
+
+  .nav__links a {
+    display: inline-flex;
+    min-height: 36px;
+    flex: 0 0 auto;
+    align-items: center;
+    padding: 0 10px;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    font-size: 11px;
+  }
+
+  .hero {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 28px;
+    min-height: auto;
+    padding: 34px 0 64px;
+  }
+
+  .hero__content h1 {
+    font-size: clamp(52px, 20vw, 78px);
+  }
+
+  .hero__positioning {
+    font-size: 17px;
+    line-height: 1.55;
+  }
+
+  .hero__roles span {
+    align-items: flex-start;
+    line-height: 1.4;
+  }
+
+  .hero__actions {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .hero__actions .btn {
+    min-height: 46px;
+    width: 100%;
+    padding: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+  }
+
+  .hero__actions .btn.primary {
+    grid-column: 1 / -1;
+  }
+
+  .hero__visual {
+    max-width: 360px;
+    margin-inline: auto;
+  }
+
+  .section {
+    padding: 74px 0;
+  }
+
+  .section__header {
+    margin-bottom: 36px;
+  }
+
+  .section__header h2,
+  .thesis .section__header h2 {
+    font-size: clamp(36px, 12vw, 50px);
+    overflow-wrap: anywhere;
+  }
+
+  .thesis {
+    padding-top: 84px;
+  }
+
+  .project {
+    gap: 18px;
+    padding: 18px 14px;
+  }
+
+  .project__body h3 {
+    font-size: clamp(32px, 10vw, 44px);
+  }
+
+  .project__meta {
+    gap: 7px;
+  }
+
+  .stat-chips span,
+  .project__meta span {
+    padding: 7px 9px;
+    font-size: 9px;
+  }
+
+  .project__image {
+    width: 100%;
+    height: auto;
+    min-height: 180px;
+    max-height: none;
+    aspect-ratio: 16 / 10;
+  }
+
+  .project__desc,
+  .project__tools,
+  .experience__item li,
+  .research__sections p,
+  .card p,
+  .card li {
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  .project__expand summary,
+  .archive__item,
+  .contact__inner a {
+    min-height: 44px;
+  }
+
+  .project__expand summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 11px;
+  }
+
+  .project__expand summary::after {
+    float: none;
+    font-size: 18px;
+  }
+
+  .experience__item {
+    gap: 18px;
+  }
+
+  .experience__logo {
+    width: 72px;
+    height: 72px;
+    margin-bottom: 16px;
+  }
+
+  .experience__item h3 {
+    font-size: clamp(32px, 10vw, 44px);
+  }
+
+  .experience__item ul {
+    gap: 14px;
+  }
+
+  .capability__cards {
+    gap: 18px;
+  }
+
+  .contact__inner {
+    gap: 8px;
+  }
+
+  .contact__inner a {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    overflow-wrap: anywhere;
+  }
+}
+
+@media (max-width: 360px) {
+  .hero__actions {
+    grid-template-columns: 1fr;
+  }
+
+  .hero__actions .btn.primary {
+    grid-column: auto;
+  }
 }

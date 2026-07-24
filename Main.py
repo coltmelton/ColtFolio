@@ -45,8 +45,8 @@ def check_service(name: str, url: str | None, description: str) -> dict[str, obj
     if not url:
         return {
             "name": name,
-            "status": "online",
-            "description": description,
+            "status": "unknown",
+            "description": f"{description}; live health not configured",
         }
 
     start = time.perf_counter()
@@ -92,8 +92,8 @@ def homelab_status_payload() -> dict[str, object]:
         ),
         {
             "name": "Storage",
-            "status": "online",
-            "description": "RAID1 storage volume",
+            "status": "unknown",
+            "description": "RAID1 storage volume; live health not configured",
         },
     ]
 

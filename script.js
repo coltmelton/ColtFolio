@@ -26,9 +26,9 @@ document.addEventListener("DOMContentLoaded", () => {
     subtitle: "Self-hosted infrastructure running personal cloud storage, backups, and system administration experiments.",
     updatedAt: null,
     services: [
-      { name: "Nextcloud", status: "online", description: "Personal cloud storage" },
-      { name: "Storage", status: "online", description: "RAID1 storage volume" },
-      { name: "Cloudflare", status: "online", description: "DNS / tunnel / edge routing" }
+      { name: "Nextcloud", status: "unknown", description: "Personal cloud storage; live health not configured" },
+      { name: "Storage", status: "unknown", description: "RAID1 storage volume; live health not configured" },
+      { name: "Cloudflare", status: "unknown", description: "DNS / tunnel / edge routing; live health not configured" }
     ],
     infrastructure: {
       host: "Dell XPS 8300",
@@ -45,85 +45,67 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const architectures = [
     {
-      id: "cloud-siem",
-      title: "Cloud SIEM",
-      shortTitle: "Cloud SIEM",
-      accent: "Cloud Security",
-      description: "Cloud security monitoring and event investigation platform using Python, SQL/relational storage, detection rules, event correlation, and MITRE ATT&CK mapping.",
-      tags: ["Python", "SQL", "Azure/AWS", "Cloud", "Cybersecurity", "MITRE ATT&CK", "Monitoring"],
-      metrics: ["Detection rules", "Event correlation", "Investigation workflow"],
+      id: "uav-tracking",
+      title: "UAV Object Detection & Tracking",
+      shortTitle: "UAV Tracking",
+      accent: "Aerial Perception",
+      description: "Experimental aerial-video pipeline that streams frames to a Python service, detects objects, maintains track identities, and emits approximate local coordinates.",
+      tags: ["Python", "YOLOv8", "Multi-Object Tracking", "WebSockets", "Video Streaming", "Coordinate Mapping"],
+      metrics: ["Live video input", "Tracked identities", "Approximate coordinates"],
       nodes: [
         {
-          id: "cloud-logs",
-          label: "Cloud Logs",
-          subtitle: "Security event sources",
-          detailTitle: "Cloud Log Sources",
-          detailDescription: "Collects cloud security, application, and infrastructure events for monitoring and investigation.",
-          technologies: ["Cloud", "Security Logs"],
-          responsibilities: ["Provide raw events", "Capture identity and service activity", "Feed investigation data"]
+          id: "video-source",
+          label: "Video Source",
+          subtitle: "DJI, IP stream, or webcam",
+          detailTitle: "Aerial Video Source",
+          detailDescription: "Accepts live or test video input for repeatable perception-pipeline experiments.",
+          technologies: ["Video Streaming", "OpenCV"],
+          responsibilities: ["Acquire frames", "Control input rate", "Support test sources"]
         },
         {
-          id: "event-ingestion",
-          label: "Event Ingestion",
-          subtitle: "Input boundary",
-          detailTitle: "Event Ingestion",
-          detailDescription: "Accepts raw log events and prepares them for parsing, validation, and storage.",
-          technologies: ["Python", "Cloud APIs"],
-          responsibilities: ["Receive events", "Validate required fields", "Handle ingestion failures"]
+          id: "websocket-transport",
+          label: "WebSocket Transport",
+          subtitle: "Frame delivery",
+          detailTitle: "WebSocket Transport",
+          detailDescription: "Moves encoded frames to the inference service while allowing input resolution, quality, and frame rate to be tuned.",
+          technologies: ["WebSockets", "JPEG"],
+          responsibilities: ["Transmit frames", "Control payload size", "Support live viewing"]
         },
         {
-          id: "parser-normalizer",
-          label: "Parser / Normalizer",
-          subtitle: "Schema alignment",
-          detailTitle: "Parser and Normalizer",
-          detailDescription: "Converts varied log formats into normalized event records that detection rules can query consistently.",
-          technologies: ["Python", "Structured Events"],
-          responsibilities: ["Normalize event fields", "Preserve source context", "Prepare rule inputs"]
+          id: "object-detector",
+          label: "YOLOv8 Detector",
+          subtitle: "Per-frame detections",
+          detailTitle: "Object Detection",
+          detailDescription: "Runs a YOLOv8 model to produce object classes and bounding boxes for each processed frame.",
+          technologies: ["YOLOv8", "Python"],
+          responsibilities: ["Run inference", "Filter detections", "Emit bounding boxes"]
         },
         {
-          id: "sql-event-store",
-          label: "SQL Event Store",
-          subtitle: "Relational event history",
-          detailTitle: "SQL Event Store",
-          detailDescription: "Persists normalized events in relational storage for investigation, filtering, and historical analysis.",
-          technologies: ["SQL", "Relational Storage", "Indexes"],
-          responsibilities: ["Store normalized events", "Support analyst queries", "Retain investigation context"]
+          id: "multi-object-tracker",
+          label: "Object Tracker",
+          subtitle: "Identity across frames",
+          detailTitle: "Multi-Object Tracking",
+          detailDescription: "Associates detections across frames to maintain track identities over time.",
+          technologies: ["Tracking", "Association"],
+          responsibilities: ["Associate detections", "Maintain track IDs", "Handle track loss"]
         },
         {
-          id: "detection-rules",
-          label: "Detection Rules",
-          subtitle: "Rule evaluation",
-          detailTitle: "Detection Rules",
-          detailDescription: "Evaluates suspicious activity patterns against stored and incoming security events.",
-          technologies: ["Detection Engineering", "Python"],
-          responsibilities: ["Encode detection logic", "Generate candidate alerts", "Reduce noisy matches"]
+          id: "coordinate-mapper",
+          label: "Coordinate Mapper",
+          subtitle: "Experimental projection",
+          detailTitle: "Approximate Coordinate Mapping",
+          detailDescription: "Transforms image-space detections into approximate local coordinates using simplifying assumptions that still require formal evaluation.",
+          technologies: ["Coordinate Transforms", "Geometry"],
+          responsibilities: ["Map image coordinates", "Expose assumptions", "Return local positions"]
         },
         {
-          id: "correlation-engine",
-          label: "Correlation Engine",
-          subtitle: "Multi-event reasoning",
-          detailTitle: "Correlation Engine",
-          detailDescription: "Links related events across users, hosts, services, and time windows to produce higher-confidence alerts.",
-          technologies: ["Event Correlation", "SQL", "Time Windows"],
-          responsibilities: ["Group related events", "Track suspicious sequences", "Support alert context"]
-        },
-        {
-          id: "mitre-mapping",
-          label: "MITRE ATT&CK Mapping",
-          subtitle: "Tactic and technique context",
-          detailTitle: "MITRE ATT&CK Mapping",
-          detailDescription: "Maps detections to ATT&CK tactics and techniques so alerts explain likely attacker behavior.",
-          technologies: ["MITRE ATT&CK", "Cybersecurity"],
-          responsibilities: ["Add threat context", "Improve triage language", "Connect rules to techniques"]
-        },
-        {
-          id: "alert-investigation",
-          label: "Alert / Investigation View",
-          subtitle: "Analyst workflow",
-          detailTitle: "Alert and Investigation View",
-          detailDescription: "Surfaces correlated alerts, supporting events, and ATT&CK context for investigation.",
-          technologies: ["Monitoring", "UI", "Debugging"],
-          responsibilities: ["Display alert details", "Show evidence chains", "Support investigation workflow"]
+          id: "tracking-output",
+          label: "Tracking Output",
+          subtitle: "Viewer and data output",
+          detailTitle: "Tracking Output",
+          detailDescription: "Returns annotated tracking results and coordinate estimates for inspection.",
+          technologies: ["OpenCV", "Structured Output"],
+          responsibilities: ["Render tracks", "Emit results", "Support debugging"]
         }
       ]
     },
@@ -132,9 +114,9 @@ document.addEventListener("DOMContentLoaded", () => {
       title: "Distributed Telemetry Pipeline",
       shortTitle: "Telemetry",
       accent: "Distributed Systems",
-      description: "Event-driven telemetry pipeline using Kafka, Redis, and SQL to process simulated system health and sensor events.",
-      tags: ["Kafka", "Redis", "SQL", "Event-Driven Architecture", "Monitoring", "Debugging", "Storage Systems"],
-      metrics: ["Streaming ingestion", "Live-state cache", "Historical store"],
+      description: "Production-style telemetry MVP using FastAPI, Kafka, PostgreSQL, Prometheus, and Grafana to process simulated device events and expose operational state.",
+      tags: ["FastAPI", "Kafka", "PostgreSQL", "Prometheus", "Grafana", "Docker Compose"],
+      metrics: ["Fault injection", "Dead-letter routing", "Operational metrics"],
       nodes: [
         {
           id: "simulated-events",
@@ -170,24 +152,15 @@ document.addEventListener("DOMContentLoaded", () => {
           detailTitle: "Consumer Service",
           detailDescription: "Consumes telemetry messages, validates payloads, updates live state, and persists historical records.",
           technologies: ["Python", "Kafka Consumer"],
-          responsibilities: ["Process messages", "Handle malformed events", "Coordinate cache and database writes"]
-        },
-        {
-          id: "redis-cache",
-          label: "Redis Live-State Cache",
-          subtitle: "Current state lookup",
-          detailTitle: "Redis Live-State Cache",
-          detailDescription: "Caches latest system state for fast dashboard reads and alert checks.",
-          technologies: ["Redis", "Caching", "Key-Value Storage"],
-          responsibilities: ["Store current state", "Serve low-latency reads", "Support alert thresholds"]
+          responsibilities: ["Process messages", "Handle malformed events", "Coordinate validation and database writes"]
         },
         {
           id: "sql-history",
-          label: "SQL Historical Store",
+          label: "PostgreSQL Store",
           subtitle: "Durable telemetry history",
-          detailTitle: "SQL Historical Store",
-          detailDescription: "Persists historical telemetry for trend analysis, debugging, and audit-style review.",
-          technologies: ["SQL", "Relational Storage"],
+          detailTitle: "PostgreSQL Historical Store",
+          detailDescription: "Persists validated telemetry for trend analysis, debugging, and operational review.",
+          technologies: ["PostgreSQL", "SQL"],
           responsibilities: ["Store event history", "Support time-window queries", "Back monitoring analysis"]
         },
         {
@@ -272,80 +245,6 @@ document.addEventListener("DOMContentLoaded", () => {
           detailDescription: "Gives engineering and support users one view for live spectra, health state, and diagnostic context.",
           technologies: ["Dashboard", "Telemetry UI"],
           responsibilities: ["Unify system context", "Support customer investigations", "Reduce manual data gathering"]
-        }
-      ]
-    },
-    {
-      id: "mission-pathfinding",
-      title: "Mission Pathfinding Visualizer",
-      shortTitle: "Pathfinding",
-      accent: "Algorithms",
-      description: "Algorithm and data-structure visualizer implementing BFS, DFS, Dijkstra, and A* over grid-based environments with obstacles and weighted terrain.",
-      tags: ["BFS", "DFS", "Graphs", "Queues", "Stacks", "Priority Queues", "Hash Maps", "Visited Sets"],
-      metrics: ["Graph search", "Path reconstruction", "Algorithm analysis"],
-      nodes: [
-        {
-          id: "grid-graph",
-          label: "Grid / Graph Environment",
-          subtitle: "Search space",
-          detailTitle: "Grid and Graph Environment",
-          detailDescription: "Represents the mission-planning environment as traversable graph nodes.",
-          technologies: ["Graphs", "Grid Modeling"],
-          responsibilities: ["Represent nodes and edges", "Define start and goal", "Support neighbor lookup"]
-        },
-        {
-          id: "obstacle-weight-map",
-          label: "Obstacle + Weight Map",
-          subtitle: "Terrain constraints",
-          detailTitle: "Obstacle and Weight Map",
-          detailDescription: "Applies blocked cells and weighted terrain costs to the graph.",
-          technologies: ["Hash Maps", "Weighted Graphs"],
-          responsibilities: ["Track obstacles", "Store movement costs", "Shape algorithm behavior"]
-        },
-        {
-          id: "algorithm-selector",
-          label: "Algorithm Selector",
-          subtitle: "Search strategy",
-          detailTitle: "Algorithm Selector",
-          detailDescription: "Chooses between BFS, DFS, Dijkstra, and A* for the same environment.",
-          technologies: ["BFS", "DFS", "Dijkstra", "A*"],
-          responsibilities: ["Switch search strategy", "Reset state", "Compare behavior"]
-        },
-        {
-          id: "search-algorithms",
-          label: "BFS / DFS / Dijkstra / A*",
-          subtitle: "Traversal core",
-          detailTitle: "Graph Search Algorithms",
-          detailDescription: "Runs unweighted, depth-first, weighted, and heuristic graph search with the right frontier data structure.",
-          technologies: ["Queues", "Stacks", "Priority Queues"],
-          responsibilities: ["Expand frontier", "Track costs", "Choose next node"]
-        },
-        {
-          id: "visited-tracker",
-          label: "Visited-State Tracker",
-          subtitle: "Duplicate control",
-          detailTitle: "Visited-State Tracker",
-          detailDescription: "Uses visited sets and lookup maps to avoid repeated work and preserve traversal state.",
-          technologies: ["Visited Sets", "Hash Maps"],
-          responsibilities: ["Mark explored nodes", "Prevent cycles", "Track parent relationships"]
-        },
-        {
-          id: "path-reconstruction",
-          label: "Path Reconstruction",
-          subtitle: "Result assembly",
-          detailTitle: "Path Reconstruction",
-          detailDescription: "Walks parent pointers from goal to start to reconstruct the final path.",
-          technologies: ["Parent Maps", "Path Reconstruction"],
-          responsibilities: ["Recover final route", "Calculate path cost", "Explain chosen path"]
-        },
-        {
-          id: "visualization",
-          label: "Visualization",
-          subtitle: "Interactive output",
-          detailTitle: "Search Visualization",
-          detailDescription: "Animates visited nodes, frontier expansion, and reconstructed paths.",
-          technologies: ["JavaScript", "UI Rendering"],
-          responsibilities: ["Show algorithm progress", "Compare tradeoffs", "Support algorithm analysis"]
         }
       ]
     },
@@ -1106,58 +1005,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // Archive: left titles, right 3x3 thumbs
-  const archiveItems = document.querySelectorAll(".archive__item");
-  const archiveThumbs = document.querySelectorAll(".archive__thumb");
-
-  const highlightById = id => {
-    archiveItems.forEach(btn => {
-      btn.classList.toggle("is-active", btn.dataset.archiveId === id);
-    });
-  };
-
-  archiveThumbs.forEach(thumb => {
-    const img = thumb.querySelector("img");
-    const thumbId = thumb.dataset.archiveId;
-    let idx = 1;
-    let timer = null;
-
-    const getImages = () =>
-      (thumb.dataset.images || "")
-        .split(",")
-        .map(s => s.trim())
-        .filter(Boolean);
-
-    const stop = () => {
-      if (timer) {
-        clearInterval(timer);
-        timer = null;
-      }
-      const images = getImages();
-      if (images.length && img) {
-        img.src = images[0];
-        idx = 1;
-      }
-      if (thumbId) highlightById(null);
-    };
-
-    const start = () => {
-      const images = getImages();
-      if (!img || !images.length) return;
-      stop();
-      if (thumbId) highlightById(thumbId);
-      timer = setInterval(() => {
-        img.src = images[idx % images.length];
-        idx += 1;
-      }, 180);
-    };
-
-    thumb.addEventListener("mouseenter", start);
-    thumb.addEventListener("mouseleave", stop);
-    thumb.addEventListener("focus", start);
-    thumb.addEventListener("blur", stop);
-  });
-
   const introSection = document.querySelector(".intro");
   const introInner = document.querySelector(".intro__inner");
 
@@ -1182,42 +1029,4 @@ document.addEventListener("DOMContentLoaded", () => {
   window.addEventListener("scroll", onScroll, { passive: true });
   updateIntroFade();
 
-  // Mobile archive: cycle images as user scrolls (no rotation).
-  const applyMobileArchiveScrollCycle = () => {
-    const isMobile = window.matchMedia("(max-width: 700px)").matches;
-    if (!isMobile) return;
-    const thumbs = document.querySelectorAll(".archive__thumb");
-    if (!thumbs.length) return;
-
-    const step = 80; // pixels per frame change
-
-    const handleScroll = () => {
-      const scroll = Math.max(window.scrollY, 0);
-      thumbs.forEach((thumb, idx) => {
-        const img = thumb.querySelector("img");
-        if (!img) return;
-        const images = (thumb.dataset.images || "")
-          .split(",")
-          .map(s => s.trim())
-          .filter(Boolean);
-        if (images.length <= 1) {
-          img.style.transform = "";
-          return;
-        }
-        const offset = idx * 30;
-        const frame = Math.floor((scroll + offset) / step) % images.length;
-        const current = img.dataset.activeIndex;
-        if (current !== String(frame)) {
-          img.dataset.activeIndex = String(frame);
-          img.src = images[frame];
-          img.style.transform = "";
-        }
-      });
-    };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    handleScroll();
-  };
-
-  applyMobileArchiveScrollCycle();
 });

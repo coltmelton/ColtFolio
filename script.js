@@ -715,14 +715,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const normalizeHomelabStatus = data => {
     const allowedStatuses = new Set(["online", "degraded", "offline", "unknown"]);
-    const infrastructure = data?.infrastructure;
+    const infrastructure = data?.hardware;
     const services = Array.isArray(data?.services) ? data.services : null;
 
     if (!infrastructure || !services || !services.length) {
       return null;
     }
 
-    const updatedAt = typeof data?.updatedAt === "string" ? data.updatedAt : "";
+    const updatedAt = typeof data?.timestamp === "string" ? data.timestamp : "";
     if (!updatedAt || Number.isNaN(new Date(updatedAt).getTime())) {
       return null;
     }
@@ -746,13 +746,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const textField = key => typeof infrastructure?.[key] === "string" ? infrastructure[key].trim() : "";
     const normalizedInfrastructure = {
-      host: textField("host"),
+      host: typeof data.host === "string" ? data.host.trim() : "",
       cpu: textField("cpu"),
       memory: textField("memory"),
       storage: textField("storage"),
       os: textField("os"),
-      runtime: textField("runtime"),
-      role: "Personal cloud, backups, storage administration"
+      gpu: textField("gpu")
     };
 
     if (!normalizedInfrastructure.host || !normalizedInfrastructure.os) {
@@ -763,17 +762,22 @@ document.addEventListener("DOMContentLoaded", () => {
       ...fallbackHomelabStatus,
       label: "Last checked",
       updatedAt,
+      status: allowedStatuses.has(data.status) ? data.status : "unknown",
+      metrics: data.metrics || {},
       services: normalizedServices,
-      infrastructure: normalizedInfrastructure
+      infrastructure: normalizedInfrastructure,
+      stack: normalizedServices.map(service => service.name),
+      description: "Live host metrics and monitored service health from Wintermute."
     };
   };
 
-  const fetchHomelabStatus = async (timeoutMs = 1800) => {
+  const fetchHomelabStatus = async (timeoutMs = 8000) => {
     const controller = new AbortController();
     const timeout = window.setTimeout(() => controller.abort(), timeoutMs);
 
     try {
-      const response = await fetch("/api/homelab-status", {
+      const apiUrl = document.querySelector('meta[name="homelab-api-url"]')?.content || "/api/homelab-status";
+      const response = await fetch(apiUrl, {
         signal: controller.signal,
         headers: { Accept: "application/json" },
         cache: "no-store"
@@ -790,7 +794,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const InfrastructureStatusStrip = (mount, data) => {
     if (!mount) return;
 
-    const overallStatus = getOverallStatus(data.services);
+    const overallStatus = data.status || getOverallStatus(data.services);
     const lastChecked = formatLastChecked(data.updatedAt);
     const summaryText = overallStatus === "online"
       ? "Systems Online"
@@ -799,15 +803,30 @@ document.addEventListener("DOMContentLoaded", () => {
         : overallStatus === "offline"
           ? "Systems Attention"
           : "Systems Snapshot";
+    const percent = value => Number.isFinite(value) && value >= 0 && value <= 100 ? `${value.toFixed(1)}%` : "Unavailable";
+    const uptime = data.metrics?.uptime_seconds;
+    const uptimeText = Number.isFinite(uptime) && uptime >= 0
+      ? `${Math.floor(uptime / 86400)}d ${Math.floor((uptime % 86400) / 3600)}h ${Math.floor((uptime % 3600) / 60)}m`
+      : "Unavailable";
     const infrastructureDetails = [
       { label: "Host", value: data.infrastructure.host },
       { label: "CPU", value: data.infrastructure.cpu },
+      { label: "GPU", value: data.infrastructure.gpu },
       { label: "Memory", value: data.infrastructure.memory },
       { label: "Storage", value: data.infrastructure.storage },
       { label: "OS", value: data.infrastructure.os },
       { label: "Runtime", value: data.infrastructure.runtime },
       { label: "Role", value: data.infrastructure.role }
     ].filter(item => item.value);
+    if (data.metrics) {
+      infrastructureDetails.push(
+        { label: "CPU utilization", value: percent(data.metrics.cpu_percent) },
+        { label: "RAM utilization", value: percent(data.metrics.memory_percent) },
+        { label: "Root disk utilization", value: percent(data.metrics.disk_percent) },
+        { label: "System uptime", value: uptimeText },
+        { label: "Last sample", value: new Date(data.updatedAt).toLocaleString() }
+      );
+    }
 
     const strip = document.createElement("article");
     strip.className = "infrastructure-strip";
@@ -830,11 +849,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const title = document.createElement("span");
     title.id = "infrastructure-status-title";
     title.className = "infrastructure-strip__title";
-    title.textContent = "Self-hosted Nextcloud, RAID1 storage, and Linux infrastructure";
+    title.textContent = data.metrics ? `${data.infrastructure.host} / Homelab monitoring` : "Self-hosted Nextcloud, RAID1 storage, and Linux infrastructure";
 
     const servicesInline = document.createElement("span");
     servicesInline.className = "infrastructure-strip__inline";
-    servicesInline.textContent = "Nextcloud / Storage / Cloudflare / Linux";
+    servicesInline.textContent = data.metrics ? data.services.map(service => service.name).join(" / ") : "Nextcloud / Storage / Cloudflare / Linux";
 
     titleGroup.append(title, servicesInline);
 

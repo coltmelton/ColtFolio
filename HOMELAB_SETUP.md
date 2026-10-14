@@ -1,11 +1,16 @@
 # Homelab status API setup
 
-The existing portfolio monitor requests `/api/homelab-status` from the same
-origin as the website. `Main.py` serves the unchanged site files from the
-project root and provides that API. The server checks configured service
-health URLs and queries Prometheus for CPU, memory, root-filesystem, and Node
-Exporter status. Prometheus and its credentials stay on the Ubuntu server;
-the browser only receives the status response.
+The portfolio is hosted exclusively at `https://coltmelton.dev` by the
+Cloudflare Worker `coltfolio`. Its `homelab-api-url` meta tag points to
+`https://status.coltmelton.dev/api/homelab-status`. The browser reads host,
+status, timestamp, hardware, metrics, and services from that endpoint.
+The current monitored services are Node Exporter and cAdvisor; GPU
+utilization is not implemented.
+
+The Ubuntu API already supplies these metrics, so frontend deployment does
+not require changing it. The configuration below documents the local
+`Main.py` server; it is a separate implementation with an older response
+format and is not the production endpoint used by the portfolio.
 
 ## 1. Configure the Ubuntu server
 
@@ -93,30 +98,28 @@ curl http://127.0.0.1:8000/api/homelab-status
 
 ## 2. Make the status API reachable from the public website
 
-The site monitor calls the API at the website's own origin. To keep the
-frontend unchanged, route the website and API together through Cloudflare
-Tunnel to `http://localhost:8000`; do not point visitors at `127.0.0.1` and do
-not expose Prometheus's port `9090` to the internet. If the website remains
-hosted separately on Netlify, its same-origin API request will not reach this
-Ubuntu server without an external reverse-proxy route.
+The portfolio Worker at `https://coltmelton.dev` calls the existing Ubuntu
+API at `https://status.coltmelton.dev/api/homelab-status`. Keep that public
+status route connected to the existing API through Cloudflare. Do not point
+visitors at `127.0.0.1` or expose Prometheus's port `9090` to the internet.
 
-If a reverse proxy calls the API from a different origin, allow that exact
-website origin in the Ubuntu environment file:
+The API must allow the exact portfolio origin. For the local `Main.py`
+implementation, the corresponding environment setting is:
 
 ```dotenv
-CORS_ORIGIN=https://coltmelton.netlify.app
+CORS_ORIGIN=https://coltmelton.dev
 ```
 
-If you use a custom domain for the portfolio, use that exact origin instead.
-Restart the service after changing environment values:
+Only restart this local service if its environment values were changed:
 
 ```bash
 sudo systemctl restart coltfolio
 ```
 
-The monitor polls the endpoint and displays service state plus Prometheus
-CPU, memory, and disk usage. The returned host details and metrics are public,
-so only include information you are comfortable publishing.
+The frontend fetches the endpoint on page load and displays CPU, memory,
+root-disk utilization, uptime, host status, hardware, service state, and the
+last sample time. Redeploy `coltfolio` on Cloudflare to publish frontend
+changes at `https://coltmelton.dev`.
 
 ## Optional Prometheus query overrides
 

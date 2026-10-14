@@ -2,9 +2,12 @@
 
 These inputs are required to strengthen the application without inventing facts.
 
+## Confirmed employment details
+
+- Central Garden & Pet start date and Endress+Hauser end date: October 6, 2026. Use Central Garden & Pet as the current internship.
+
 ## Blocking résumé inputs
 
-- Confirmation that October 2026 on the current résumé is a planned end date; the website currently uses “Present.”
 - Dates for the Kagle Leadership Initiative and rock-climbing club presidency.
 
 ## Research evidence

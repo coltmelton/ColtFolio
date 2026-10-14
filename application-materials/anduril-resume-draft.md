@@ -1,7 +1,7 @@
 # Colt Melton
 
 Kimball, MI | (810) 479-6235 | coltmeltonwork@gmail.com  
-[LinkedIn](https://linkedin.com/in/coltmelton) | [GitHub](https://github.com/coltmelton) | [Portfolio](https://coltmelton.netlify.app/)
+[LinkedIn](https://linkedin.com/in/coltmelton) | [GitHub](https://github.com/coltmelton) | [Portfolio](https://coltmelton.dev/)
 
 ## Education
 
@@ -18,12 +18,21 @@ Exchange Program, Software Engineering | February 2025 – July 2025
 **ML and data:** PyTorch, SciPy, lmfit, statsmodels, signal processing, object detection, multi-object tracking  
 **Infrastructure and testing:** Linux, Docker Compose, VMware, Bamboo, Robot Framework, Prometheus, Grafana, Git
 
+**Enterprise software:** SAP, ERP audit support, scripting, SQL queries, data aggregation
+
 Only restore C, C++, Java, AWS, Azure, Redis, or other technologies when a bullet or project can show how they were used.
 
 ## Experience
 
+**CSI Intern**\
+Central Garden & Pet | October 6, 2026 – Present
+
+- Support audit-related corporate software work in SAP and enterprise resource planning systems.
+- Write scripts and automate Linux workflows to support corporate software operations and audit tasks.
+- Develop SQL queries and data aggregation software to organize and summarize information for audit-related work.
+
 **Research & Development Engineer / Scientist Intern**  
-Endress+Hauser, Ann Arbor, MI | October 2025 – Present
+Endress+Hauser, Ann Arbor, MI | October 2025 – October 6, 2026
 
 - Developed a spectroscopy monitoring platform combining OPC UA telemetry, live spectral visualization, and analyzer diagnostics across 30+ industrial analyzers.
 - Automated deployment and validation workflows with Bamboo, VMware, and Robot Framework, eliminating approximately four hours of manual work per release cycle across multiple analyzer configurations.

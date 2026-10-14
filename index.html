@@ -186,150 +186,37 @@
     <section class="section work" id="projects">
       <div class="section__header">
         <p class="eyebrow">Systems Projects</p>
-        <h2>Selected systems built and tested</h2>
+        <h2>Selected systems, in detail.</h2>
+        <p>From live telemetry to aerial perception, explore the work behind each system.</p>
       </div>
-      <div class="projects">
-        <article class="project reveal" id="uav-tracking-project">
-          <div class="project__body">
-            <p class="project__tag">Aerial Perception</p>
-            <span class="project__year">2026</span>
-            <h3>UAV Object Detection &amp; Tracking</h3>
-            <div class="project__meta">
-              <span>Python</span>
-              <span>YOLOv8</span>
-              <span>Multi-object tracking</span>
-              <span>WebSockets</span>
-              <span>Video streaming</span>
-              <span>Coordinate mapping</span>
-            </div>
-          </div>
-          <div class="project__visual">
-            <div class="project__image project__image--diagram" aria-label="UAV perception pipeline preview">
-              <span>DJI video</span>
-              <span>Detection + tracking</span>
-              <span>Local coordinates</span>
-            </div>
-            <div class="project__details">
-              <p class="project__desc">
-                Streams aerial video into a Python inference service, detects objects, maintains identities across frames, and emits approximate local coordinates for tracked motion.
-              </p>
-              <details class="project__expand">
-                <summary>Project details</summary>
-                <ul class="project__tools">
-                  <li>YOLOv8 object detection with multi-object tracking</li>
-                  <li>WebSocket video pipeline with webcam, IP-stream, and DJI-oriented inputs</li>
-                  <li>Experimental coordinate mapping; evaluation and georeferencing remain open work</li>
-                </ul>
-              </details>
-              <div class="project__links">
-                <a href="https://github.com/coltmelton/UAV-Object-Detection-Tracking" target="_blank" rel="noreferrer">Source &amp; limitations</a>
-              </div>
-            </div>
-          </div>
+      <div class="projects projects--covers">
+        <article class="work-card" id="uav-tracking-project">
+          <a class="work-card__link" href="works/uav-tracking/" aria-label="Explore UAV Object Detection and Tracking">
+            <span class="work-card__cover"><img src="assets/projects/uav-tracking/cover.svg" alt="UAV video detection and object tracking system illustration"><span class="work-card__view">Explore project <span aria-hidden="true">↗</span></span></span>
+            <span class="work-card__info"><span><span class="work-card__category">Aerial Perception</span><span class="work-card__title">UAV Object Detection &amp; Tracking</span></span><span class="work-card__index">01</span></span>
+          </a>
         </article>
 
-        <article class="project reveal" id="distributed-telemetry">
-          <div class="project__body">
-            <p class="project__tag">Distributed Systems</p>
-            <span class="project__year">Pipeline</span>
-            <h3>Distributed Telemetry Pipeline</h3>
-            <div class="project__meta">
-              <span>Kafka</span>
-              <span>FastAPI</span>
-              <span>PostgreSQL</span>
-              <span>Prometheus</span>
-              <span>Grafana</span>
-              <span>Docker Compose</span>
-            </div>
-          </div>
-          <div class="project__visual">
-            <div class="project__image project__image--crop project__image--raman" data-images="assets/projects/telemtry-pipeline/resume-assets/metringest-dashboard.png, assets/projects/telemtry-pipeline/resume-assets/metringest-analytics.png, assets/projects/telemtry-pipeline/resume-assets/metringest-health.png, assets/projects/telemtry-pipeline/resume-assets/metringest-control-panel.png, assets/projects/telemtry-pipeline/resume-assets/metringest-api.png, assets/projects/telemtry-pipeline/resume-assets/metringest-dashboard-full.png">
-              <img src="assets/projects/telemtry-pipeline/resume-assets/metringest-dashboard.png" alt="Metringest telemetry pipeline dashboard overview">
-            </div>
-            <div class="project__details project__details--single">
-              <p class="project__desc">
-                Production-style telemetry MVP that ingests simulated device events through FastAPI, buffers them with Kafka, validates them asynchronously, persists history in PostgreSQL, and exposes operational metrics.
-              </p>
-              <details class="project__expand">
-                <summary>Project details</summary>
-                <ul class="project__tools">
-                  <li>Duplicate, late, malformed, and failed-event injection</li>
-                  <li>Validated and dead-letter topics with asynchronous processing</li>
-                  <li>Prometheus/Grafana observability and a React operations dashboard</li>
-                </ul>
-              </details>
-              <div class="project__links">
-                <a href="https://github.com/coltmelton/Metringest" target="_blank" rel="noreferrer">Source &amp; run instructions</a>
-              </div>
-            </div>
-          </div>
+        <article class="work-card" id="distributed-telemetry">
+          <a class="work-card__link" href="works/distributed-telemetry/" aria-label="Explore the Distributed Telemetry Pipeline">
+            <span class="work-card__cover"><img src="assets/projects/telemtry-pipeline/resume-assets/metringest-dashboard.png" alt="Distributed telemetry operations dashboard"><span class="work-card__view">Explore project <span aria-hidden="true">↗</span></span></span>
+            <span class="work-card__info"><span><span class="work-card__category">Distributed Systems</span><span class="work-card__title">Distributed Telemetry Pipeline</span></span><span class="work-card__index">02</span></span>
+          </a>
         </article>
 
-        <article class="project reveal" id="opc-dashboard">
-          <div class="project__body">
-            <p class="project__tag">Industrial Telemetry</p>
-            <span class="project__year">2025</span>
-            <h3>OPC UA Spectroscopy Dashboard</h3>
-            <div class="project__meta">
-              <span>Python</span>
-              <span>OPC UA</span>
-              <span>Telemetry</span>
-              <span>Diagnostics</span>
-              <span>Real-time monitoring</span>
-              <span>30+ analyzers</span>
-            </div>
-          </div>
-          <div class="project__visual">
-            <div class="project__image project__image--crop project__image--raman" data-images="assets/projects/raman-pipeline/1000014612.jpg, assets/projects/raman-pipeline/1000014613.jpg, assets/projects/raman-pipeline/1000014614.jpg">
-              <img src="assets/projects/raman-pipeline/1000014612.jpg" alt="Real-time OPC UA spectroscopy dashboard screenshot">
-            </div>
-            <div class="project__details">
-              <p class="project__desc">
-                Spectroscopy monitoring dashboard integrating OPC UA and live spectra for engineering and customer-support workflows.
-              </p>
-              <details class="project__expand">
-                <summary>Project details</summary>
-                <ul class="project__tools">
-                  <li>Live telemetry streams from 30+ industrial analyzers</li>
-                  <li>Spectral visualization plus analyzer health views</li>
-                  <li>Combined measurement, health, and diagnostic context for engineering users</li>
-                </ul>
-              </details>
-            </div>
-          </div>
+        <article class="work-card" id="opc-dashboard">
+          <a class="work-card__link" href="works/opc-dashboard/" aria-label="Explore the OPC UA Spectroscopy Dashboard">
+            <span class="work-card__cover"><img src="assets/projects/raman-pipeline/1000014612.jpg" alt="OPC UA spectroscopy monitoring dashboard"><span class="work-card__view">Explore project <span aria-hidden="true">↗</span></span></span>
+            <span class="work-card__info"><span><span class="work-card__category">Industrial Telemetry</span><span class="work-card__title">OPC UA Spectroscopy Dashboard</span></span><span class="work-card__index">03</span></span>
+          </a>
         </article>
 
-        <article class="project reveal" id="vmware-automation">
-          <div class="project__body">
-            <p class="project__tag">Infrastructure</p>
-            <span class="project__year">2025</span>
-            <h3>VMware Automation Platform</h3>
-            <div class="project__meta">
-              <span>C#/.NET</span>
-              <span>VMware REST API</span>
-              <span>Robot Framework</span>
-            </div>
-          </div>
-          <div class="project__visual">
-            <div class="project__image project__image--crop project__image--vmware" data-images="assets/projects/vmware-automation/Screenshot 2025-12-12 125132.png">
-              <img src="assets/projects/vmware-automation/Screenshot 2025-12-12 125132.png" alt="VMware automation platform screenshot for engineering test infrastructure">
-            </div>
-            <div class="project__details">
-              <p class="project__desc">
-                Infrastructure automation for virtualized engineering test environments. A C#/.NET automation platform integrating VMware REST APIs, JSON configuration, Robot Framework, and CI/CD validation workflows to manage repeatable test environments.
-              </p>
-              <details class="project__expand">
-                <summary>Project details</summary>
-                <ul class="project__tools">
-                  <li>JSON-driven provisioning through VMware REST APIs</li>
-                  <li>Robot Framework validation in CI/CD workflows</li>
-                  <li>Repeatable infrastructure and test-system validation</li>
-                </ul>
-              </details>
-            </div>
-          </div>
+        <article class="work-card" id="vmware-automation">
+          <a class="work-card__link" href="works/vmware-automation/" aria-label="Explore the VMware Automation Platform">
+            <span class="work-card__cover"><img src="assets/projects/vmware-automation/Screenshot 2025-12-12 125132.png" alt="VMware virtualized engineering test environment"><span class="work-card__view">Explore project <span aria-hidden="true">↗</span></span></span>
+            <span class="work-card__info"><span><span class="work-card__category">Infrastructure</span><span class="work-card__title">VMware Automation Platform</span></span><span class="work-card__index">04</span></span>
+          </a>
         </article>
-
       </div>
     </section>
 

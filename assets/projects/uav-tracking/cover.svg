@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="142" y1="65" x2="1470" y2="1020" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#182321"/>
+      <stop offset="1" stop-color="#080C0C"/>
+    </linearGradient>
+    <linearGradient id="scan" x1="200" y1="820" x2="1325" y2="213" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0080FF" stop-opacity=".08"/>
+      <stop offset="1" stop-color="#A6D8FF" stop-opacity=".75"/>
+    </linearGradient>
+    <pattern id="grid" width="56" height="56" patternUnits="userSpaceOnUse">
+      <path d="M56 0H0V56" stroke="#D9EBE3" stroke-opacity=".08"/>
+    </pattern>
+  </defs>
+  <path fill="url(#bg)" d="M0 0h1600v1000H0z"/>
+  <path fill="url(#grid)" d="M0 0h1600v1000H0z"/>
+  <path d="m185 790 465-156 304 92 457-290" stroke="url(#scan)" stroke-width="3"/>
+  <path d="m285 877 462-156 303 92 366-231" stroke="#B8D7C9" stroke-opacity=".13" stroke-width="2"/>
+  <path d="M210 820v-64m90 34v-64m90 34v-64m90 34v-64m90 34v-64m90 34v-64m90 34v-64m90 34v-64m90 34v-64m90 34v-64m90 34v-64m90 34v-64m90 34v-64m90 34v-64" stroke="#B8D7C9" stroke-opacity=".12"/>
+  <g stroke="#E4EEE8" stroke-opacity=".82" stroke-width="3">
+    <path d="m820 363 106-61m-106 61-106-61m106 61v-123m0 123 74 43m-74-43-74 43"/>
+    <circle cx="820" cy="363" r="31" fill="#12211E"/>
+    <circle cx="714" cy="302" r="12" fill="#12211E"/>
+    <circle cx="926" cy="302" r="12" fill="#12211E"/>
+    <circle cx="820" cy="240" r="12" fill="#12211E"/>
+    <circle cx="894" cy="406" r="12" fill="#12211E"/>
+    <circle cx="746" cy="406" r="12" fill="#12211E"/>
+    <path d="M674 290h80m132 0h80m-170-82v64m-53 148-43 24m149-24 43 24"/>
+  </g>
+  <path d="M545 275h174v111H545z" stroke="#D7F0E5" stroke-opacity=".7" stroke-width="2"/>
+  <path d="M555 289h154m-154 14h124m-124 14h145m-145 14h100" stroke="#D7F0E5" stroke-opacity=".3"/>
+  <path d="M903 499h178v111H903z" stroke="#D7F0E5" stroke-opacity=".7" stroke-width="2"/>
+  <path d="M915 513h154m-154 14h124m-124 14h145m-145 14h100" stroke="#D7F0E5" stroke-opacity=".3"/>
+  <path d="M719 331 629 331m-84 0h-42v-24m519 98 77 0v40m-54 55 0 53" stroke="#A6D8FF" stroke-opacity=".55" stroke-width="2" stroke-dasharray="7 8"/>
+  <circle cx="504" cy="307" r="5" fill="#A6D8FF"/>
+  <circle cx="1100" cy="469" r="5" fill="#A6D8FF"/>
+  <circle cx="992" cy="554" r="5" fill="#A6D8FF"/>
+  <text x="92" y="112" fill="#D7E4DD" fill-opacity=".68" font-family="monospace" font-size="16" letter-spacing="4">AERIAL PERCEPTION / 01</text>
+  <text x="92" y="924" fill="#F0F4F1" font-family="Georgia,serif" font-size="44" font-style="italic">Detection → tracking → coordinates</text>
+  <text x="94" y="958" fill="#B7C5BE" font-family="monospace" font-size="13" letter-spacing="2">VIDEO STREAM · OBJECT TRACKS · EXPERIMENTAL MAPPING</text>
+</svg>

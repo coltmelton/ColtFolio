@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A production-style telemetry MVP built around FastAPI, Kafka, PostgreSQL, Prometheus, Grafana, and a React operations dashboard.">
+  <title>Distributed Telemetry Pipeline | Colt Melton</title>
+  <link rel="icon" type="image/png" href="../../assets/logo.png">
+  <link rel="stylesheet" href="../../styles.css">
+  <link rel="stylesheet" href="../project.css">
+</head>
+<body class="case-page">
+  <header class="case-nav">
+    <a class="case-nav__back" href="../../index.html#projects">← All projects</a>
+    <span class="case-nav__title">Distributed Telemetry Pipeline</span>
+    <nav class="case-nav__controls" aria-label="Browse projects">
+      <a class="case-nav__arrow" href="../uav-tracking/" aria-label="Previous project: UAV Object Detection and Tracking">←</a>
+      <span class="case-nav__count">02 / 04</span>
+      <a class="case-nav__arrow" href="../opc-dashboard/" aria-label="Next project: OPC UA Spectroscopy Dashboard">→</a>
+    </nav>
+  </header>
+  <main>
+    <section class="case-hero">
+      <div>
+        <p class="eyebrow">02 / Distributed Systems</p>
+        <h1 class="case-hero__title">Distributed Telemetry Pipeline</h1>
+      </div>
+      <p class="case-hero__lede">A production-style telemetry MVP that ingests device events, validates them asynchronously, stores history, and makes system health visible to operators.</p>
+    </section>
+    <figure class="case-cover case-cover--screen">
+      <img src="../../assets/projects/telemtry-pipeline/resume-assets/metringest-dashboard.png" alt="Metringest telemetry operations dashboard with live system and device status">
+    </figure>
+    <dl class="case-facts">
+      <div class="case-fact"><dt>Focus</dt><dd>Reliable event ingestion and observability</dd></div>
+      <div class="case-fact"><dt>Stack</dt><dd>FastAPI · Kafka · PostgreSQL · Prometheus · Grafana · React</dd></div>
+      <div class="case-fact"><dt>Source</dt><dd><a href="https://github.com/coltmelton/Metringest" target="_blank" rel="noreferrer">Metringest on GitHub ↗</a></dd></div>
+    </dl>
+    <section class="case-section">
+      <div><p class="case-section__eyebrow">System overview</p><h2 class="case-section__title">Events you can trust.</h2></div>
+      <div class="case-section__copy">
+        <p>FastAPI accepts simulated device events and publishes them to Kafka for asynchronous validation. Valid records are persisted to PostgreSQL; malformed or failed records follow a dead-letter path. Prometheus metrics and a React dashboard expose both the data flow and the state of the system.</p>
+        <ul class="case-points">
+          <li><strong>Resilient ingestion</strong>Kafka separates incoming requests from downstream validation and storage.</li>
+          <li><strong>Failure visibility</strong>Duplicate, late, malformed, and failed events can be injected and inspected.</li>
+          <li><strong>Useful history</strong>PostgreSQL stores validated telemetry while live operations remain observable.</li>
+          <li><strong>Operational feedback</strong>Prometheus, Grafana, and the dashboard surface pipeline health and trends.</li>
+        </ul>
+      </div>
+    </section>
+    <section class="case-gallery" aria-label="Telemetry pipeline project screens">
+      <figure class="case-gallery__item case-gallery__item--wide"><img src="../../assets/projects/telemtry-pipeline/resume-assets/metringest-dashboard-full.png" alt="Full-width overview of the Metringest dashboard"><figcaption class="case-gallery__caption">Operations overview</figcaption></figure>
+      <figure class="case-gallery__item"><img src="../../assets/projects/telemtry-pipeline/resume-assets/metringest-analytics.png" alt="Telemetry analytics screen"><figcaption class="case-gallery__caption">Telemetry analytics</figcaption></figure>
+      <figure class="case-gallery__item"><img src="../../assets/projects/telemtry-pipeline/resume-assets/metringest-health.png" alt="Pipeline health and service status screen"><figcaption class="case-gallery__caption">Service health</figcaption></figure>
+      <figure class="case-gallery__item"><img src="../../assets/projects/telemtry-pipeline/resume-assets/metringest-control-panel.png" alt="Telemetry control panel"><figcaption class="case-gallery__caption">Control panel</figcaption></figure>
+      <figure class="case-gallery__item"><img src="../../assets/projects/telemtry-pipeline/resume-assets/metringest-api.png" alt="Telemetry API view"><figcaption class="case-gallery__caption">API surface</figcaption></figure>
+    </section>
+    <nav class="case-end" aria-label="Next and previous projects">
+      <a class="case-end__link" href="../uav-tracking/"><span class="case-end__direction">← Previous project</span><span class="case-end__name">UAV Object Detection &amp; Tracking</span></a>
+      <a class="case-end__link" href="../opc-dashboard/"><span class="case-end__direction">Next project →</span><span class="case-end__name">OPC UA Spectroscopy Dashboard</span></a>
+    </nav>
+  </main>
+  <footer class="case-footer"><a href="../../index.html">Colt Melton</a><span>Selected systems work</span><a href="../../index.html#contact">Get in touch ↑</a></footer>
+</body>
+</html>

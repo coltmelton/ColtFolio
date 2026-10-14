@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="An experimental aerial video pipeline for object detection, multi-object tracking, and approximate local coordinate mapping.">
+  <title>UAV Object Detection &amp; Tracking | Colt Melton</title>
+  <link rel="icon" type="image/png" href="../../assets/logo.png">
+  <link rel="stylesheet" href="../../styles.css">
+  <link rel="stylesheet" href="../project.css">
+</head>
+<body class="case-page">
+  <header class="case-nav">
+    <a class="case-nav__back" href="../../index.html#projects">← All projects</a>
+    <span class="case-nav__title">UAV Object Detection &amp; Tracking</span>
+    <nav class="case-nav__controls" aria-label="Browse projects">
+      <a class="case-nav__arrow" href="../vmware-automation/" aria-label="Previous project: VMware Automation Platform">←</a>
+      <span class="case-nav__count">01 / 04</span>
+      <a class="case-nav__arrow" href="../distributed-telemetry/" aria-label="Next project: Distributed Telemetry Pipeline">→</a>
+    </nav>
+  </header>
+  <main>
+    <section class="case-hero">
+      <div>
+        <p class="eyebrow">01 / Aerial Perception</p>
+        <h1 class="case-hero__title">UAV Object Detection &amp; Tracking</h1>
+      </div>
+      <p class="case-hero__lede">An experimental video pipeline that detects objects in aerial footage, keeps identities consistent across frames, and estimates local positions for tracked motion.</p>
+    </section>
+    <figure class="case-cover">
+      <img src="../../assets/projects/uav-tracking/cover.svg" alt="Illustration of an aerial perception pipeline from drone video through object tracking to approximate coordinates">
+    </figure>
+    <dl class="case-facts">
+      <div class="case-fact"><dt>Focus</dt><dd>Real-time video perception</dd></div>
+      <div class="case-fact"><dt>Core tools</dt><dd>Python · YOLOv8 · OpenCV · WebSockets</dd></div>
+      <div class="case-fact"><dt>Status</dt><dd>Experimental; coordinate mapping requires further evaluation</dd></div>
+    </dl>
+    <section class="case-section">
+      <div><p class="case-section__eyebrow">System overview</p><h2 class="case-section__title">From frames to tracks.</h2></div>
+      <div class="case-section__copy">
+        <p>Video from a webcam, IP stream, or DJI-oriented source is sent to a Python inference service over WebSockets. The service detects objects, associates detections over time, and returns annotated tracking results with approximate local coordinates.</p>
+        <ul class="case-points">
+          <li><strong>Video transport</strong>Streamed frames with resolution, quality, and rate available for tuning.</li>
+          <li><strong>Per-frame inference</strong>YOLOv8 detections provide object classes and image-space boxes.</li>
+          <li><strong>Identity over time</strong>Multi-object tracking associates detections between frames.</li>
+          <li><strong>Honest limitations</strong>Coordinate mapping is experimental and is not presented as validated georeferencing.</li>
+        </ul>
+        <p class="case-section__eyebrow case-pipeline-label">Pipeline</p>
+        <p>Video source → WebSocket transport → object detector → multi-object tracker → approximate coordinate mapper → annotated output.</p>
+        <a class="btn ghost" href="https://github.com/coltmelton/UAV-Object-Detection-Tracking" target="_blank" rel="noreferrer">Source &amp; limitations ↗</a>
+      </div>
+    </section>
+    <nav class="case-end" aria-label="Next and previous projects">
+      <a class="case-end__link" href="../vmware-automation/"><span class="case-end__direction">← Previous project</span><span class="case-end__name">VMware Automation Platform</span></a>
+      <a class="case-end__link" href="../distributed-telemetry/"><span class="case-end__direction">Next project →</span><span class="case-end__name">Distributed Telemetry Pipeline</span></a>
+    </nav>
+  </main>
+  <footer class="case-footer"><a href="../../index.html">Colt Melton</a><span>Selected systems work</span><a href="../../index.html#contact">Get in touch ↑</a></footer>
+</body>
+</html>

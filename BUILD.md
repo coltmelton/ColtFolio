@@ -38,6 +38,20 @@ on the backdrop. Without JavaScript, gallery links open the original images.
 With no images, the card retains its text placeholder and the gallery has no
 image items. Removed files disappear from the next build.
 
+## Outside the Lab photos
+
+Put personal photos directly in `assets/outside-the-lab/`. The build discovers
+the same common image formats as the project gallery, with no manifest or
+code changes. Filenames are unrestricted; optional descriptive names provide
+the image alt text. Hidden files, symlinks, and subfolders are ignored.
+
+The personal section sits after Skills and before Contact. Photos retain their
+original proportions in a responsive column gallery and can be opened at
+full size. Images load lazily and use the existing reveal animation, with
+reduced-motion support. With no local photos, the section shows its heading
+and description only. Chat previews must first be saved as actual image files
+in this folder to be included in the website build.
+
 ## Interactive architecture
 
 All viewer-related source files live directly in `assets/projects/wintermute/`:

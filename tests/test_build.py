@@ -67,6 +67,25 @@ class WintermuteBuildTests(unittest.TestCase):
             build.build(self.source)
         self.assertTrue((output / "keep.txt").exists())
 
+    def test_personal_gallery_discovers_photos_and_stays_between_skills_and_contact(self):
+        folder = self.source / "assets/outside-the-lab"
+        folder.mkdir(parents=True)
+        for name in ("Hiking & travel.JPG", "Boxing.PNG", "Music.webp"):
+            (folder / name).touch()
+        (folder / "notes.txt").touch()
+        (folder / ".hidden.jpg").touch()
+        output = build.build(self.source)
+        page = (output / "index.html").read_text(encoding="utf-8")
+        self.assertEqual(page.count('class="outside-lab__photo reveal"'), 3)
+        self.assertIn("Hiking%20%26%20travel.JPG", page)
+        self.assertIn('alt="Hiking &amp; travel"', page)
+        self.assertLess(page.index('id="skills"'), page.index('id="outside-the-lab"'))
+        self.assertLess(page.index('id="outside-the-lab"'), page.index('id="contact"'))
+        for photo in build.discover_images(folder):
+            photo.unlink()
+        build.build(self.source)
+        self.assertNotIn('class="outside-lab__photo reveal"', (output / "index.html").read_text(encoding="utf-8"))
+
 
 if __name__ == "__main__":
     unittest.main()

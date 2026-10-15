@@ -1,4 +1,4 @@
-"""Build the static portfolio; discover Wintermute media without a manifest."""
+"""Build the static portfolio and discover project and personal media."""
 from __future__ import annotations
 
 import html
@@ -57,6 +57,18 @@ def replace_region(document: str, region: str, content: str) -> str:
     return before + start + "\n" + content + "\n" + end + after
 
 
+def personal_image_markup(image: Path, index: int) -> str:
+    url = html.escape("assets/outside-the-lab/" + quote(image.name, safe=""), quote=True)
+    description = html.escape(caption_for(image), quote=True)
+    return (
+        '<figure class="outside-lab__photo reveal">'
+        f'<a href="{url}" target="_blank" rel="noopener" aria-label="Open personal photo {index} at full size">'
+        f'<img src="{url}" alt="{description}" loading="lazy" decoding="async">'
+        '<span class="outside-lab__enlarge" aria-hidden="true">View photo ↗</span>'
+        '</a></figure>'
+    )
+
+
 def build(source: Path = ROOT) -> Path:
     source = source.resolve()
     output = source / "dist"
@@ -65,6 +77,10 @@ def build(source: Path = ROOT) -> Path:
         raise ValueError("Build output must be the project's own dist directory")
     images = discover_images(source / "assets/projects/wintermute")
     homepage = (source / "index.html").read_text(encoding="utf-8")
+    personal_images = discover_images(source / "assets/outside-the-lab")
+    homepage = replace_region(homepage, "outside-lab-gallery", "\n".join(
+        personal_image_markup(image, index) for index, image in enumerate(personal_images, 1)
+    ))
     project = (source / "works/wintermute/index.html").read_text(encoding="utf-8")
     if images:
         homepage = replace_region(homepage, "wintermute-cover", image_markup(images[0], "assets/projects/wintermute/", cover=True))
@@ -93,7 +109,7 @@ def build(source: Path = ROOT) -> Path:
             shutil.copytree(path, output / name, ignore=shutil.ignore_patterns(".DS_Store", ".gitkeep", "__pycache__"))
     (output / "index.html").write_text(homepage, encoding="utf-8")
     (output / "works/wintermute/index.html").write_text(project, encoding="utf-8")
-    print(f"Built {output}: {len(images)} Wintermute image(s)")
+    print(f"Built {output}: {len(images)} Wintermute image(s), {len(personal_images)} personal photo(s)")
     return output
 
 

@@ -86,6 +86,21 @@ class WintermuteBuildTests(unittest.TestCase):
         build.build(self.source)
         self.assertNotIn('class="outside-lab__photo reveal"', (output / "index.html").read_text(encoding="utf-8"))
 
+    def test_oversized_asset_reports_its_name(self):
+        photo = self.media / "oversized-photo.jpg"
+        with photo.open("wb") as handle:
+            handle.truncate(build.MAX_ASSET_BYTES + 1)
+        with self.assertRaisesRegex(ValueError, "oversized-photo.jpg"):
+            build.validate_asset_sizes(self.source)
+
+    def test_build_excludes_git_metadata_and_copies_upload_exclusions(self):
+        (self.source / ".git/objects/pack").mkdir(parents=True)
+        (self.source / ".git/objects/pack/history.pack").write_bytes(b"Git metadata")
+        (self.source / ".assetsignore").write_text(".git/\n.git/**\n")
+        output = build.build(self.source)
+        self.assertFalse((output / ".git").exists())
+        self.assertIn(".git/**", (output / ".assetsignore").read_text())
+
 
 if __name__ == "__main__":
     unittest.main()

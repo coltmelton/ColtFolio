@@ -1,0 +1,16 @@
+# Cloudflare Workers asset uploads must not include repository metadata.
+.git/
+.git/**
+.github/
+.wrangler/
+dist/
+tests/
+application-materials/
+__pycache__/
+**/__pycache__/**
+*.py
+**/*.py
+*.md
+*.txt
+.DS_Store
+**/.DS_Store

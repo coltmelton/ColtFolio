@@ -15,6 +15,14 @@ _spec = importlib.util.spec_from_file_location("wintermute_architecture", ROOT /
 _architecture = importlib.util.module_from_spec(_spec)
 _spec.loader.exec_module(_architecture)
 IMAGE_SUFFIXES = {".jpg", ".jpeg", ".png", ".webp", ".svg", ".gif", ".avif", ".apng", ".bmp", ".ico", ".jfif"}
+MAX_ASSET_BYTES = 25 * 1024 * 1024
+
+
+def validate_asset_sizes(directory: Path) -> None:
+    oversized = [p for p in directory.rglob("*") if p.is_file() and p.stat().st_size > MAX_ASSET_BYTES]
+    if oversized:
+        details = ", ".join(f"{p.relative_to(directory)} ({p.stat().st_size / 1024 / 1024:.2f} MiB)" for p in oversized)
+        raise ValueError("Cloudflare's 25 MiB asset limit exceeded: " + details)
 
 
 def discover_images(folder: Path) -> list[Path]:
@@ -99,7 +107,7 @@ def build(source: Path = ROOT) -> Path:
             function(path)
         shutil.rmtree(output, onerror=remove_readonly)
     output.mkdir()
-    for name in ("index.html", "info.html", "contact.html", "styles.css", "script.js", "favicon.ico"):
+    for name in ("index.html", "info.html", "contact.html", "styles.css", "script.js", "favicon.ico", ".assetsignore"):
         path = source / name
         if path.is_file():
             shutil.copy2(path, output / name)
@@ -109,6 +117,7 @@ def build(source: Path = ROOT) -> Path:
             shutil.copytree(path, output / name, ignore=shutil.ignore_patterns(".DS_Store", ".gitkeep", "__pycache__"))
     (output / "index.html").write_text(homepage, encoding="utf-8")
     (output / "works/wintermute/index.html").write_text(project, encoding="utf-8")
+    validate_asset_sizes(output)
     print(f"Built {output}: {len(images)} Wintermute image(s), {len(personal_images)} personal photo(s)")
     return output
 

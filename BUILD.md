@@ -15,6 +15,14 @@ configuration. No Worker configuration files are added or replaced here.
 Deploying the unbuilt source still shows the clean placeholder, but does not
 discover new media; the build must run for automatic discovery.
 
+Cloudflare's asset directory must be `dist/`, not the repository root. For a
+Wrangler upload, use `npx wrangler deploy --name coltfolio --assets dist`
+after the build. The root `.assetsignore` also excludes `.git/` and other
+development files if a root-directory Workers upload is attempted. The build
+copies this exclusion file into `dist/` and fails with the filename if any
+generated asset exceeds 25 MiB. Git pack files belong to repository history
+and must never be uploaded as website assets; do not delete them to deploy.
+
 ## Wintermute media
 
 Put actual images directly in `assets/projects/wintermute/`. Use any filename;

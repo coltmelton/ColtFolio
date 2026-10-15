@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Wintermute: an Ubuntu homelab for containerized workloads, private networking, automation, and live infrastructure monitoring.">
+  <meta name="homelab-api-url" content="https://status.coltmelton.dev/api/homelab-status">
+  <title>Wintermute — Self-Hosted Infrastructure &amp; Monitoring | Colt Melton</title>
+  <link rel="canonical" href="https://coltmelton.dev/works/wintermute/">
+  <link rel="icon" type="image/png" href="../../assets/logo.png">
+  <link rel="stylesheet" href="../../styles.css">
+  <link rel="stylesheet" href="../project.css">
+  <link rel="stylesheet" href="../../assets/projects/wintermute/architecture-viewer.css">
+  <script src="../../script.js" defer></script>
+  <script src="gallery.js" defer></script>
+  <script src="../../assets/projects/wintermute/architecture-viewer.js" defer></script>
+</head>
+<body class="case-page">
+  <header class="case-nav">
+    <a class="case-nav__back" href="../../index.html#projects">← All projects</a>
+    <span class="case-nav__title">Wintermute</span>
+    <nav class="case-nav__controls" aria-label="Browse projects">
+      <a class="case-nav__arrow" href="../vmware-automation/" aria-label="Previous project: VMware Automation Platform">←</a>
+      <span class="case-nav__count">05 / 05</span>
+      <a class="case-nav__arrow" href="../uav-tracking/" aria-label="Next project: UAV Object Detection and Tracking">→</a>
+    </nav>
+  </header>
+  <main>
+    <section class="case-hero">
+      <div>
+        <p class="eyebrow">05 / Infrastructure &amp; Systems Engineering</p>
+        <h1 class="case-hero__title">Wintermute</h1>
+      </div>
+      <p class="case-hero__lede">Self-Hosted Infrastructure, Automation &amp; Live Monitoring</p>
+    </section>
+    <dl class="case-facts">
+      <div class="case-fact"><dt>Environment</dt><dd>Ubuntu Server 26.04 LTS · 20+ containerized workloads</dd></div>
+      <div class="case-fact"><dt>Hardware</dt><dd>AMD Ryzen 7 7800X3D · 32 GB RAM · NVIDIA RTX 4070 SUPER</dd></div>
+      <div class="case-fact"><dt>Focus</dt><dd>Private networking, service orchestration, automation, and observability</dd></div>
+    </dl>
+    <section class="case-section">
+      <div><p class="case-section__eyebrow">Overview</p><h2 class="case-section__title">A system to operate, maintain, and learn from.</h2></div>
+      <div class="case-section__copy"><p>I designed and maintain an Ubuntu-based homelab supporting containerized applications, private networking, AI workloads, storage services, and infrastructure monitoring. I built the environment to gain hands-on experience with Linux administration, networking, deployment, service orchestration, and operational troubleshooting.</p></div>
+    </section>
+    <section class="case-section">
+      <div><p class="case-section__eyebrow">Problem</p><h2 class="case-section__title">Shared hardware, connected services.</h2></div>
+      <div class="case-section__copy"><p>Running multiple applications on shared hardware requires reliable networking, persistent storage, service isolation, monitoring, and controlled access. As the environment expanded, maintaining those components consistently became an engineering challenge.</p></div>
+    </section>
+    <section class="case-section">
+      <div><p class="case-section__eyebrow">Approach</p><h2 class="case-section__title">Make configuration and behavior visible.</h2></div>
+      <div class="case-section__copy"><p>I organized services using Docker Compose and systemd, configured private access through Tailscale and Technitium DNS, and implemented Caddy reverse proxy routing. I added Prometheus and Grafana for observability and developed Python APIs for system telemetry and operational tooling.</p></div>
+    </section>
+    <section class="case-section">
+      <div><p class="case-section__eyebrow">Architecture</p><h2 class="case-section__title">Private services, selective public access.</h2></div>
+      <div class="case-section__copy">
+        <p>Ubuntu Server 26.04 LTS runs on an AMD Ryzen 7 7800X3D with 32 GB RAM and an NVIDIA RTX 4070 SUPER. Docker networks isolate application traffic, while persistent volumes retain service data.</p>
+        <ul class="case-points">
+          <li><strong>Routing &amp; access</strong>Caddy, UFW, Tailscale, Technitium DNS, and Cloudflare Tunnel provide reverse proxy routing, firewall boundaries, private connectivity, name resolution, and selected public routes.</li>
+          <li><strong>Service operation</strong>Docker Compose and systemd define application dependencies and long-running services.</li>
+          <li><strong>Observability</strong>Node Exporter and cAdvisor supply infrastructure metrics to Prometheus; Grafana provides monitoring views.</li>
+          <li><strong>Compute &amp; storage</strong>Containerized applications, AI inference with NVIDIA CUDA, and storage services share the host.</li>
+        </ul>
+      </div>
+    </section>
+    <section class="case-media" aria-labelledby="architecture-heading">
+      <div class="case-media__heading"><p class="case-section__eyebrow">Explore the architecture</p><h2 class="case-section__title" id="architecture-heading">Follow the connections.</h2></div>
+      <p>Choose a view, then select a component to explore its role and connections. Dashed connections retain the diagram’s qualifications; this is an architecture reference, not a live service-health map.</p>
+      <!-- wintermute-architecture:start -->
+      <!-- wintermute-architecture:end -->
+      <div id="wintermute-architecture"><p>Explore the original diagrams in the <a href="#wintermute-media-title">project media gallery</a>.</p></div>
+    </section>
+    <section class="case-section">
+      <div><p class="case-section__eyebrow">Technical implementation</p><h2 class="case-section__title">Telemetry without administrative access.</h2></div>
+      <div class="case-section__copy">
+        <p>I developed a dedicated Python monitoring service that queries Prometheus for CPU, memory, filesystem utilization, and uptime. I deployed it as a restricted systemd service and exposed a sanitized, read-only JSON endpoint through Cloudflare Tunnel, keeping administrative APIs and internal infrastructure private.</p>
+        <p>I configured container networking, persistent volumes, reverse proxies, and service dependencies, and diagnosed issues involving Docker network attachments, changing container addresses, firewall policies, and upstream connectivity.</p>
+      </div>
+    </section>
+    <section class="case-section" aria-labelledby="wintermute-monitoring-title">
+      <div><p class="case-section__eyebrow">Live monitoring</p><h2 class="case-section__title" id="wintermute-monitoring-title">Wintermute, right now.</h2></div>
+      <div class="case-section__copy">
+        <p>Live host telemetry from the existing read-only monitoring endpoint. Expand the status panel to inspect utilization, uptime, hardware, and the two monitored services: Node Exporter and cAdvisor.</p>
+        <div id="infrastructure-status-strip"></div>
+      </div>
+    </section>
+    <section class="case-section">
+      <div><p class="case-section__eyebrow">Results</p><h2 class="case-section__title">An operational self-hosted environment.</h2></div>
+      <div class="case-section__copy"><p>The environment supports more than 20 containerized workloads, AI inference, private application hosting, and infrastructure monitoring. I integrated real server telemetry into the public portfolio without exposing Prometheus or privileged management endpoints.</p></div>
+    </section>
+    <section class="case-section">
+      <div><p class="case-section__eyebrow">What I learned</p><h2 class="case-section__title">Deployment is the beginning.</h2></div>
+      <div class="case-section__copy"><p>Operating a system over time requires more than deploying applications. Network boundaries, permissions, monitoring, recovery procedures, and predictable service configuration are essential for maintaining reliable infrastructure. Troubleshooting production-like failures has been particularly valuable in developing practical systems engineering skills.</p></div>
+    </section>
+    <section class="case-section">
+      <div><p class="case-section__eyebrow">Tech stack</p><h2 class="case-section__title">Tools in context.</h2></div>
+      <div class="case-section__copy"><p>Ubuntu Server · Linux · Docker Compose · Python · systemd · Caddy · Tailscale · Technitium DNS · UFW · Prometheus · Grafana · Node Exporter · cAdvisor · Cloudflare Tunnel · NVIDIA CUDA</p></div>
+    </section>
+    <section class="case-media" aria-labelledby="wintermute-media-title">
+      <div class="case-media__heading"><p class="case-section__eyebrow">Project media</p><h2 class="case-section__title" id="wintermute-media-title">Inside Wintermute.</h2></div>
+      <!-- wintermute-empty:start -->
+      <p class="case-media__empty">Screenshots and photographs will be added here.</p>
+      <!-- wintermute-empty:end -->
+      <div class="case-gallery" data-wintermute-gallery>
+        <!-- wintermute-gallery:start -->
+        <!-- wintermute-gallery:end -->
+      </div>
+    </section>
+    <dialog class="case-lightbox" aria-labelledby="wintermute-lightbox-caption">
+      <button class="case-lightbox__close" type="button" aria-label="Close enlarged image">Close ×</button>
+      <figure><img class="case-lightbox__image" alt=""><figcaption id="wintermute-lightbox-caption" class="case-gallery__caption"></figcaption></figure>
+    </dialog>
+    <nav class="case-end" aria-label="Next and previous projects">
+      <a class="case-end__link" href="../vmware-automation/"><span class="case-end__direction">← Previous project</span><span class="case-end__name">VMware Automation Platform</span></a>
+      <a class="case-end__link" href="../uav-tracking/"><span class="case-end__direction">Next project →</span><span class="case-end__name">UAV Object Detection &amp; Tracking</span></a>
+    </nav>
+  </main>
+  <footer class="case-footer"><a href="../../index.html">Colt Melton</a><span>Selected systems work</span><a href="../../index.html#contact">Get in touch ↑</a></footer>
+</body>
+</html>

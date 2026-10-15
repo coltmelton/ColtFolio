@@ -2721,6 +2721,34 @@ a {
   transition: transform 600ms cubic-bezier(0.2, 0.7, 0.2, 1);
 }
 
+.work-card__placeholder {
+  display: grid;
+  height: 100%;
+  align-content: center;
+  gap: 20px;
+  padding: clamp(24px, 5vw, 64px);
+  border: 1px solid var(--border);
+}
+
+.work-card__placeholder-name {
+  color: var(--text);
+  font-family: "MigraDisplay", serif;
+  font-size: clamp(38px, 5vw, 76px);
+  line-height: 1;
+}
+
+.work-card__placeholder-detail,
+.work-card__subtitle {
+  color: var(--text-secondary);
+  font-family: "MontrealMono", monospace;
+  font-size: 10px;
+  line-height: 1.6;
+}
+
+.work-card__subtitle {
+  margin-top: 5px;
+}
+
 .work-card__view {
   position: absolute;
   z-index: 1;

@@ -15,7 +15,7 @@
   <script src="gallery.js" defer></script>
   <script src="../../assets/projects/wintermute/architecture-viewer.js" defer></script>
 </head>
-<body class="case-page">
+<body class="case-page wintermute-page">
   <header class="case-nav">
     <a class="case-nav__back" href="../../index.html#projects">← All projects</a>
     <span class="case-nav__title">Wintermute</span>
@@ -26,31 +26,50 @@
     </nav>
   </header>
   <main>
-    <section class="case-hero">
+<section class="case-hero">
       <div>
         <p class="eyebrow">05 / Infrastructure &amp; Systems Engineering</p>
         <h1 class="case-hero__title">Wintermute</h1>
       </div>
       <p class="case-hero__lede">Self-Hosted Infrastructure, Automation &amp; Live Monitoring</p>
     </section>
-    <dl class="case-facts">
+<dl class="case-facts">
       <div class="case-fact"><dt>Environment</dt><dd>Ubuntu Server 26.04 LTS · 20+ containerized workloads</dd></div>
       <div class="case-fact"><dt>Hardware</dt><dd>AMD Ryzen 7 7800X3D · 32 GB RAM · NVIDIA RTX 4070 SUPER</dd></div>
       <div class="case-fact"><dt>Focus</dt><dd>Private networking, service orchestration, automation, and observability</dd></div>
     </dl>
-    <section class="case-section">
+<section class="wm-project-summary" aria-label="Project at a glance">
+<p class="wm-project-summary__lede">An Ubuntu homelab for private applications, AI workloads, storage, and live infrastructure monitoring. I built and maintain it to learn how real services behave over time.</p>
+<div class="wm-summary-grid">
+<article><h2>The challenge</h2><p>Keep shared hardware, private networking, storage, and more than 20 containerized workloads manageable.</p></article>
+<article><h2>What I built</h2><p>Compose-managed services, private DNS and routing, observability, and a restricted Python telemetry API.</p></article>
+<article><h2>The result</h2><p>Private application hosting and public server metrics without exposing management APIs or Prometheus.</p></article>
+</div></section>
+<section class="case-media" aria-labelledby="architecture-heading">
+      <div class="case-media__heading"><p class="case-section__eyebrow">Explore the architecture</p><h2 class="case-section__title" id="architecture-heading">Explore one layer at a time.</h2></div>
+      <p>Illustrative simplified overview, not a complete network topology. Select a category to reveal its components and documented connections.</p>
+      <!-- wintermute-architecture:start -->
+<script type="application/json" id="wintermute-architecture-data">{"source": "Wintermute Private Cloud Architecture-2026-10-15-175219.svg", "nodes": [{"id": "VISITOR", "label": "Portfolio visitors", "notes": "Web browser", "groups": ["PUBLIC"]}, {"id": "DOMAIN", "label": "coltmelton.dev", "notes": "Cloudflare custom domain", "groups": ["PUBLIC"]}, {"id": "WORKER", "label": "Cloudflare Worker · coltfolio", "notes": "Portfolio HTML / CSS / JS", "groups": ["PUBLIC"]}, {"id": "STATUS", "label": "status.coltmelton.dev", "notes": "Public read-only HTTPS endpoint", "groups": ["PUBLIC"]}, {"id": "CFEDGE", "label": "Cloudflare edge", "notes": "TLS / routing", "groups": ["PUBLIC"]}, {"id": "DEVICES", "label": "Authorized devices", "notes": "Tailscale tailnet", "groups": ["WINTERMUTE", "PRIVATE"]}, {"id": "TS", "label": "tailscaled", "notes": "Private overlay networking", "groups": ["WINTERMUTE", "PRIVATE"]}, {"id": "DNS", "label": "Technitium DNS · Docker", "notes": "Private .wintermute zone", "groups": ["WINTERMUTE", "PRIVATE"]}, {"id": "CADDY", "label": "Caddy · Docker", "notes": "Internal TLS reverse proxy", "groups": ["WINTERMUTE", "PRIVATE"]}, {"id": "TUNNEL", "label": "cloudflared · systemd", "notes": "Outbound-only tunnel connector", "groups": ["WINTERMUTE", "PUBLIC_API"]}, {"id": "PORTAPI", "label": "coltfolio.service · Python stdlib", "notes": "127.0.0.1:8000 · GET /api/homelab-status only", "groups": ["WINTERMUTE", "PUBLIC_API"]}, {"id": "WEBUI", "label": "Open WebUI", "notes": "", "groups": ["WINTERMUTE", "DOCKER", "PROXY_NET"]}, {"id": "IMMICH", "label": "Immich server", "notes": "", "groups": ["WINTERMUTE", "DOCKER", "PROXY_NET"]}, {"id": "NEXTCLOUD", "label": "Nextcloud", "notes": "", "groups": ["WINTERMUTE", "DOCKER", "PROXY_NET"]}, {"id": "VAULT", "label": "Vaultwarden", "notes": "", "groups": ["WINTERMUTE", "DOCKER", "PROXY_NET"]}, {"id": "HOME", "label": "Homepage", "notes": "", "groups": ["WINTERMUTE", "DOCKER", "PROXY_NET"]}, {"id": "GRAFANA", "label": "Grafana", "notes": "", "groups": ["WINTERMUTE", "DOCKER", "PROXY_NET"]}, {"id": "JELLYFIN", "label": "Jellyfin · NVIDIA GPU", "notes": "", "groups": ["WINTERMUTE", "DOCKER", "MEDIA_NET"]}, {"id": "SEERR", "label": "Seerr", "notes": "", "groups": ["WINTERMUTE", "DOCKER", "MEDIA_NET"]}, {"id": "RADARR", "label": "Radarr", "notes": "", "groups": ["WINTERMUTE", "DOCKER", "MEDIA_NET"]}, {"id": "SONARR", "label": "Sonarr", "notes": "", "groups": ["WINTERMUTE", "DOCKER", "MEDIA_NET"]}, {"id": "PROWLARR", "label": "Prowlarr", "notes": "", "groups": ["WINTERMUTE", "DOCKER", "MEDIA_NET"]}, {"id": "BAZARR", "label": "Bazarr", "notes": "", "groups": ["WINTERMUTE", "DOCKER", "MEDIA_NET"]}, {"id": "PROM", "label": "Prometheus", "notes": "Time-series metrics and PromQL", "groups": ["WINTERMUTE", "DOCKER", "MONITOR_NET"]}, {"id": "NODE", "label": "Node Exporter", "notes": "Host metrics", "groups": ["WINTERMUTE", "DOCKER", "MONITOR_NET"]}, {"id": "CAD", "label": "cAdvisor", "notes": "Container metrics", "groups": ["WINTERMUTE", "DOCKER", "MONITOR_NET"]}, {"id": "OLLAMA", "label": "Ollama", "notes": "Local LLM inference", "groups": ["WINTERMUTE", "DOCKER"]}, {"id": "TORR", "label": "TorrServer", "notes": "", "groups": ["WINTERMUTE", "DOCKER"]}, {"id": "MOISA", "label": "Moisa add-on", "notes": "", "groups": ["WINTERMUTE", "DOCKER"]}, {"id": "COMFY", "label": "ComfyUI", "notes": "AI image/video workflows", "groups": ["WINTERMUTE", "HOST"]}, {"id": "SUN", "label": "Sunshine", "notes": "Remote streaming", "groups": ["WINTERMUTE", "HOST"]}, {"id": "TOOLS", "label": "wintermute-tools.service", "notes": "Authenticated management API · Docker / VM controls · PRIVATE", "groups": ["WINTERMUTE", "HOST"]}, {"id": "NVME", "label": "NVMe · OS, applications, models", "notes": "Linux root on LVM", "groups": ["WINTERMUTE", "DATA"]}, {"id": "MEDIA", "label": "SATA · media filesystem", "notes": "/srv/storage/media", "groups": ["WINTERMUTE", "DATA"]}, {"id": "CLOUD", "label": "SATA · cloud/data filesystem", "notes": "/srv/storage/data", "groups": ["WINTERMUTE", "DATA"]}, {"id": "GPU", "label": "NVIDIA RTX 4070 SUPER", "notes": "12 GB VRAM", "groups": ["WINTERMUTE", "DATA"]}], "edges": [{"id": "L_VISITOR_DOMAIN_0", "source": "VISITOR", "target": "DOMAIN", "label": "HTTPS · portfolio", "dotted": false, "unverified": false}, {"id": "L_DOMAIN_WORKER_0", "source": "DOMAIN", "target": "WORKER", "label": "", "dotted": false, "unverified": false}, {"id": "L_VISITOR_STATUS_0", "source": "VISITOR", "target": "STATUS", "label": "HTTPS GET · telemetry", "dotted": false, "unverified": false}, {"id": "L_STATUS_CFEDGE_0", "source": "STATUS", "target": "CFEDGE", "label": "", "dotted": false, "unverified": false}, {"id": "L_DEVICES_TS_0", "source": "DEVICES", "target": "TS", "label": "Private network", "dotted": false, "unverified": false}, {"id": "L_TS_DNS_0", "source": "TS", "target": "DNS", "label": "Split DNS for .wintermute", "dotted": true, "unverified": false}, {"id": "L_TS_CADDY_0", "source": "TS", "target": "CADDY", "label": "HTTPS to private services", "dotted": false, "unverified": false}, {"id": "L_TUNNEL_PORTAPI_0", "source": "TUNNEL", "target": "PORTAPI", "label": "HTTP · loopback", "dotted": false, "unverified": false}, {"id": "L_CADDY_WEBUI_0", "source": "CADDY", "target": "WEBUI", "label": "Container DNS / proxy network", "dotted": false, "unverified": false}, {"id": "L_CADDY_IMMICH_0", "source": "CADDY", "target": "IMMICH", "label": "", "dotted": false, "unverified": false}, {"id": "L_CADDY_NEXTCLOUD_0", "source": "CADDY", "target": "NEXTCLOUD", "label": "", "dotted": false, "unverified": false}, {"id": "L_CADDY_VAULT_0", "source": "CADDY", "target": "VAULT", "label": "", "dotted": false, "unverified": false}, {"id": "L_CADDY_HOME_0", "source": "CADDY", "target": "HOME", "label": "", "dotted": false, "unverified": false}, {"id": "L_CADDY_GRAFANA_0", "source": "CADDY", "target": "GRAFANA", "label": "", "dotted": false, "unverified": false}, {"id": "L_CADDY_SEERR_0", "source": "CADDY", "target": "SEERR", "label": "Configured media-network route; activation not reverified", "dotted": true, "unverified": true}, {"id": "L_CADDY_JELLYFIN_0", "source": "CADDY", "target": "JELLYFIN", "label": "Current Jellyfin upstream uses host-published port", "dotted": true, "unverified": false}, {"id": "L_CADDY_COMFY_0", "source": "CADDY", "target": "COMFY", "label": "Firewall-scoped host connectivity", "dotted": false, "unverified": false}, {"id": "L_CADDY_SUN_0", "source": "CADDY", "target": "SUN", "label": "Firewall-scoped host connectivity", "dotted": false, "unverified": false}, {"id": "L_CADDY_TOOLS_0", "source": "CADDY", "target": "TOOLS", "label": "Firewall-scoped host connectivity", "dotted": false, "unverified": false}, {"id": "L_CADDY_TORR_0", "source": "CADDY", "target": "TORR", "label": "", "dotted": false, "unverified": false}, {"id": "L_CADDY_MOISA_0", "source": "CADDY", "target": "MOISA", "label": "", "dotted": false, "unverified": false}, {"id": "L_PROM_NODE_0", "source": "PROM", "target": "NODE", "label": "Scrapes :9100", "dotted": false, "unverified": false}, {"id": "L_PROM_CAD_0", "source": "PROM", "target": "CAD", "label": "Scrapes :8080", "dotted": false, "unverified": false}, {"id": "L_GRAFANA_PROM_0", "source": "GRAFANA", "target": "PROM", "label": "Monitoring dashboard / datasource (verify)", "dotted": true, "unverified": true}, {"id": "L_PORTAPI_PROM_0", "source": "PORTAPI", "target": "PROM", "label": "Read-only PromQL over private Docker bridge", "dotted": false, "unverified": false}, {"id": "L_JELLYFIN_MEDIA_0", "source": "JELLYFIN", "target": "MEDIA", "label": "Read-only library mounts", "dotted": false, "unverified": false}, {"id": "L_IMMICH_CLOUD_0", "source": "IMMICH", "target": "CLOUD", "label": "Persistent application data", "dotted": true, "unverified": false}, {"id": "L_NEXTCLOUD_CLOUD_0", "source": "NEXTCLOUD", "target": "CLOUD", "label": "Persistent application data", "dotted": true, "unverified": false}, {"id": "L_COMFY_NVME_0", "source": "COMFY", "target": "NVME", "label": "Models / runtime", "dotted": false, "unverified": false}, {"id": "L_COMFY_GPU_0", "source": "COMFY", "target": "GPU", "label": "CUDA acceleration", "dotted": false, "unverified": false}, {"id": "L_JELLYFIN_GPU_0", "source": "JELLYFIN", "target": "GPU", "label": "GPU acceleration configured", "dotted": false, "unverified": false}, {"id": "L_OLLAMA_GPU_0", "source": "OLLAMA", "target": "GPU", "label": "GPU acceleration availability (verify)", "dotted": true, "unverified": true}, {"id": "L_CFEDGE_TUNNEL_0", "source": "CFEDGE", "target": "TUNNEL", "label": "Encrypted tunnel · published hostname", "dotted": false, "unverified": false}, {"id": "L_WORKER_STATUS_0", "source": "WORKER", "target": "STATUS", "label": "Browser fetches telemetry separately", "dotted": true, "unverified": false}], "groups": [{"id": "WINTERMUTE", "label": "WINTERMUTE · UBUNTU SERVER 26.04 LTS · RYZEN 7 7800X3D · 32 GB RAM"}, {"id": "PUBLIC", "label": "PUBLIC INTERNET · EXTERNAL DELIVERY"}, {"id": "DATA", "label": "PERSISTENCE / COMPUTE"}, {"id": "HOST", "label": "UBUNTU-HOSTED SYSTEMD APPLICATIONS"}, {"id": "DOCKER", "label": "CONTAINERIZED APPLICATIONS · DOCKER COMPOSE"}, {"id": "PUBLIC_API", "label": "PUBLIC TELEMETRY ORIGIN · MINIMUM PRIVILEGE"}, {"id": "PRIVATE", "label": "PRIVATE ACCESS PLANE · TAILSCALE / DNS / REVERSE PROXY"}, {"id": "MONITOR_NET", "label": "monitoring_default · monitoring bridge"}, {"id": "MEDIA_NET", "label": "wintermute-media · media bridge"}, {"id": "PROXY_NET", "label": "wintermute-proxy · shared reverse-proxy bridge"}]}</script>
+<!-- wintermute-architecture:end -->
+      <div id="wintermute-architecture"><p>Explore the original diagrams in the <a href="#wintermute-media-title">project media gallery</a>.</p></div>
+    </section>
+<section class="case-section" aria-labelledby="wintermute-monitoring-title">
+      <div><p class="case-section__eyebrow">Live monitoring</p><h2 class="case-section__title" id="wintermute-monitoring-title">Wintermute, right now.</h2></div>
+      <div class="case-section__copy">
+        <p>Live host telemetry from the existing read-only monitoring endpoint. Expand the status panel to inspect utilization, uptime, hardware, and the two monitored services: Node Exporter and cAdvisor.</p>
+        <div id="infrastructure-status-strip"></div>
+      </div>
+    </section>
+<details class="wm-project-story"><summary>Engineering details, implementation &amp; lessons learned</summary><div><section class="case-section">
       <div><p class="case-section__eyebrow">Overview</p><h2 class="case-section__title">A system to operate, maintain, and learn from.</h2></div>
       <div class="case-section__copy"><p>I designed and maintain an Ubuntu-based homelab supporting containerized applications, private networking, AI workloads, storage services, and infrastructure monitoring. I built the environment to gain hands-on experience with Linux administration, networking, deployment, service orchestration, and operational troubleshooting.</p></div>
-    </section>
-    <section class="case-section">
+    </section><section class="case-section">
       <div><p class="case-section__eyebrow">Problem</p><h2 class="case-section__title">Shared hardware, connected services.</h2></div>
       <div class="case-section__copy"><p>Running multiple applications on shared hardware requires reliable networking, persistent storage, service isolation, monitoring, and controlled access. As the environment expanded, maintaining those components consistently became an engineering challenge.</p></div>
-    </section>
-    <section class="case-section">
+    </section><section class="case-section">
       <div><p class="case-section__eyebrow">Approach</p><h2 class="case-section__title">Make configuration and behavior visible.</h2></div>
       <div class="case-section__copy"><p>I organized services using Docker Compose and systemd, configured private access through Tailscale and Technitium DNS, and implemented Caddy reverse proxy routing. I added Prometheus and Grafana for observability and developed Python APIs for system telemetry and operational tooling.</p></div>
-    </section>
-    <section class="case-section">
+    </section><section class="case-section">
       <div><p class="case-section__eyebrow">Architecture</p><h2 class="case-section__title">Private services, selective public access.</h2></div>
       <div class="case-section__copy">
         <p>Ubuntu Server 26.04 LTS runs on an AMD Ryzen 7 7800X3D with 32 GB RAM and an NVIDIA RTX 4070 SUPER. Docker networks isolate application traffic, while persistent volumes retain service data.</p>
@@ -61,59 +80,45 @@
           <li><strong>Compute &amp; storage</strong>Containerized applications, AI inference with NVIDIA CUDA, and storage services share the host.</li>
         </ul>
       </div>
-    </section>
-    <section class="case-media" aria-labelledby="architecture-heading">
-      <div class="case-media__heading"><p class="case-section__eyebrow">Explore the architecture</p><h2 class="case-section__title" id="architecture-heading">Follow the connections.</h2></div>
-      <p>Choose a view, then select a component to explore its role and connections. Dashed connections retain the diagram’s qualifications; this is an architecture reference, not a live service-health map.</p>
-      <!-- wintermute-architecture:start -->
-      <!-- wintermute-architecture:end -->
-      <div id="wintermute-architecture"><p>Explore the original diagrams in the <a href="#wintermute-media-title">project media gallery</a>.</p></div>
-    </section>
-    <section class="case-section">
+    </section><section class="case-section">
       <div><p class="case-section__eyebrow">Technical implementation</p><h2 class="case-section__title">Telemetry without administrative access.</h2></div>
       <div class="case-section__copy">
         <p>I developed a dedicated Python monitoring service that queries Prometheus for CPU, memory, filesystem utilization, and uptime. I deployed it as a restricted systemd service and exposed a sanitized, read-only JSON endpoint through Cloudflare Tunnel, keeping administrative APIs and internal infrastructure private.</p>
         <p>I configured container networking, persistent volumes, reverse proxies, and service dependencies, and diagnosed issues involving Docker network attachments, changing container addresses, firewall policies, and upstream connectivity.</p>
       </div>
-    </section>
-    <section class="case-section" aria-labelledby="wintermute-monitoring-title">
-      <div><p class="case-section__eyebrow">Live monitoring</p><h2 class="case-section__title" id="wintermute-monitoring-title">Wintermute, right now.</h2></div>
-      <div class="case-section__copy">
-        <p>Live host telemetry from the existing read-only monitoring endpoint. Expand the status panel to inspect utilization, uptime, hardware, and the two monitored services: Node Exporter and cAdvisor.</p>
-        <div id="infrastructure-status-strip"></div>
-      </div>
-    </section>
-    <section class="case-section">
+    </section><section class="case-section">
       <div><p class="case-section__eyebrow">Results</p><h2 class="case-section__title">An operational self-hosted environment.</h2></div>
       <div class="case-section__copy"><p>The environment supports more than 20 containerized workloads, AI inference, private application hosting, and infrastructure monitoring. I integrated real server telemetry into the public portfolio without exposing Prometheus or privileged management endpoints.</p></div>
-    </section>
-    <section class="case-section">
+    </section><section class="case-section">
       <div><p class="case-section__eyebrow">What I learned</p><h2 class="case-section__title">Deployment is the beginning.</h2></div>
       <div class="case-section__copy"><p>Operating a system over time requires more than deploying applications. Network boundaries, permissions, monitoring, recovery procedures, and predictable service configuration are essential for maintaining reliable infrastructure. Troubleshooting production-like failures has been particularly valuable in developing practical systems engineering skills.</p></div>
-    </section>
-    <section class="case-section">
+    </section><section class="case-section">
       <div><p class="case-section__eyebrow">Tech stack</p><h2 class="case-section__title">Tools in context.</h2></div>
       <div class="case-section__copy"><p>Ubuntu Server · Linux · Docker Compose · Python · systemd · Caddy · Tailscale · Technitium DNS · UFW · Prometheus · Grafana · Node Exporter · cAdvisor · Cloudflare Tunnel · NVIDIA CUDA</p></div>
-    </section>
-    <section class="case-media" aria-labelledby="wintermute-media-title">
+    </section></div></details>
+<section class="case-media" aria-labelledby="wintermute-media-title">
       <div class="case-media__heading"><p class="case-section__eyebrow">Project media</p><h2 class="case-section__title" id="wintermute-media-title">Inside Wintermute.</h2></div>
       <!-- wintermute-empty:start -->
-      <p class="case-media__empty">Screenshots and photographs will be added here.</p>
-      <!-- wintermute-empty:end -->
+
+<!-- wintermute-empty:end -->
       <div class="case-gallery" data-wintermute-gallery>
         <!-- wintermute-gallery:start -->
-        <!-- wintermute-gallery:end -->
+<figure class="case-gallery__item"><a href="../../assets/projects/wintermute/Screenshot%202026-10-15%20120437.png" data-gallery-image aria-label="Enlarge: Screenshot 2026 10 15 120437"><img src="../../assets/projects/wintermute/Screenshot%202026-10-15%20120437.png" alt="Screenshot 2026 10 15 120437" loading="lazy" decoding="async"></a><figcaption class="case-gallery__caption">Screenshot 2026 10 15 120437</figcaption></figure>
+<figure class="case-gallery__item"><a href="../../assets/projects/wintermute/Screenshot%202026-10-15%20131004.png" data-gallery-image aria-label="Enlarge: Screenshot 2026 10 15 131004"><img src="../../assets/projects/wintermute/Screenshot%202026-10-15%20131004.png" alt="Screenshot 2026 10 15 131004" loading="lazy" decoding="async"></a><figcaption class="case-gallery__caption">Screenshot 2026 10 15 131004</figcaption></figure>
+<figure class="case-gallery__item case-gallery__item--diagram"><a href="../../assets/projects/wintermute/Wintermute%20Private%20Cloud%20Architecture-2026-10-15-175219.svg" data-gallery-image data-image-background="light" aria-label="Enlarge: Wintermute Private Cloud Architecture 2026 10 15 175219"><img src="../../assets/projects/wintermute/Wintermute%20Private%20Cloud%20Architecture-2026-10-15-175219.svg" alt="Wintermute Private Cloud Architecture 2026 10 15 175219" loading="lazy" decoding="async"></a><figcaption class="case-gallery__caption">Wintermute Private Cloud Architecture 2026 10 15 175219</figcaption></figure>
+<figure class="case-gallery__item case-gallery__item--diagram"><a href="../../assets/projects/wintermute/Wintermute%20Private%20Cloud%20Architecture-2026-10-15-175255.svg" data-gallery-image data-image-background="light" aria-label="Enlarge: Wintermute Private Cloud Architecture 2026 10 15 175255"><img src="../../assets/projects/wintermute/Wintermute%20Private%20Cloud%20Architecture-2026-10-15-175255.svg" alt="Wintermute Private Cloud Architecture 2026 10 15 175255" loading="lazy" decoding="async"></a><figcaption class="case-gallery__caption">Wintermute Private Cloud Architecture 2026 10 15 175255</figcaption></figure>
+<!-- wintermute-gallery:end -->
       </div>
     </section>
-    <dialog class="case-lightbox" aria-labelledby="wintermute-lightbox-caption">
+<dialog class="case-lightbox" aria-labelledby="wintermute-lightbox-caption">
       <button class="case-lightbox__close" type="button" aria-label="Close enlarged image">Close ×</button>
       <figure><img class="case-lightbox__image" alt=""><figcaption id="wintermute-lightbox-caption" class="case-gallery__caption"></figcaption></figure>
     </dialog>
-    <nav class="case-end" aria-label="Next and previous projects">
+<nav class="case-end" aria-label="Next and previous projects">
       <a class="case-end__link" href="../vmware-automation/"><span class="case-end__direction">← Previous project</span><span class="case-end__name">VMware Automation Platform</span></a>
       <a class="case-end__link" href="../uav-tracking/"><span class="case-end__direction">Next project →</span><span class="case-end__name">UAV Object Detection &amp; Tracking</span></a>
     </nav>
-  </main>
+</main>
   <footer class="case-footer"><a href="../../index.html">Colt Melton</a><span>Selected systems work</span><a href="../../index.html#contact">Get in touch ↑</a></footer>
 </body>
 </html>

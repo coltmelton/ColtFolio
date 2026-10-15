@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import html
+import argparse
 import importlib.util
 import json
 from pathlib import Path
@@ -77,7 +78,7 @@ def personal_image_markup(image: Path, index: int) -> str:
     )
 
 
-def build(source: Path = ROOT) -> Path:
+def build(source: Path = ROOT, *, sync_source: bool = False) -> Path:
     source = source.resolve()
     output = source / "dist"
     # Only ever replace this project's resolved build directory, never source files.
@@ -90,16 +91,18 @@ def build(source: Path = ROOT) -> Path:
         personal_image_markup(image, index) for index, image in enumerate(personal_images, 1)
     ))
     project = (source / "works/wintermute/index.html").read_text(encoding="utf-8")
-    if images:
-        homepage = replace_region(homepage, "wintermute-cover", image_markup(images[0], "assets/projects/wintermute/", cover=True))
-        project = replace_region(project, "wintermute-empty", "")
+    placeholder = '<span class="work-card__placeholder"><span class="work-card__placeholder-name">Wintermute</span><span class="work-card__placeholder-detail">Self-hosted infrastructure<br>Automation &amp; live monitoring</span></span>'
+    homepage = replace_region(homepage, "wintermute-cover", image_markup(images[0], "assets/projects/wintermute/", cover=True) if images else placeholder)
+    project = replace_region(project, "wintermute-empty", '' if images else '<p class="case-media__empty">Screenshots and photographs will be added here.</p>')
     project = replace_region(project, "wintermute-gallery", "\n".join(
         image_markup(image, "../../assets/projects/wintermute/") for image in images
     ))
     architecture = _architecture.load_architecture(source / "assets/projects/wintermute")
+    architecture_markup = ''
     if architecture:
         data = json.dumps(architecture, ensure_ascii=False).replace("<", "\\u003c")
-        project = replace_region(project, "wintermute-architecture", '<script type="application/json" id="wintermute-architecture-data">' + data + '</script>')
+        architecture_markup = '<script type="application/json" id="wintermute-architecture-data">' + data + '</script>'
+    project = replace_region(project, "wintermute-architecture", architecture_markup)
     if output.exists():
         def remove_readonly(function, path, _error):
             # Windows/OneDrive may preserve read-only attributes on copied assets.
@@ -118,9 +121,14 @@ def build(source: Path = ROOT) -> Path:
     (output / "index.html").write_text(homepage, encoding="utf-8")
     (output / "works/wintermute/index.html").write_text(project, encoding="utf-8")
     validate_asset_sizes(output)
+    if sync_source:
+        (source / 'index.html').write_text(homepage, encoding='utf-8')
+        (source / 'works/wintermute/index.html').write_text(project, encoding='utf-8')
     print(f"Built {output}: {len(images)} Wintermute image(s), {len(personal_images)} personal photo(s)")
     return output
 
 
 if __name__ == "__main__":
-    build()
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--sync-source', action='store_true', help='Refresh generated HTML regions for deployments that publish the repository root')
+    build(sync_source=parser.parse_args().sync_source)

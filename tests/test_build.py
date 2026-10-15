@@ -16,6 +16,7 @@ class WintermuteBuildTests(unittest.TestCase):
         (self.source / "works/wintermute").mkdir(parents=True)
         for name in ("index.html", "works/wintermute/index.html"):
             shutil.copy2(build.ROOT / name, self.source / name)
+        self.original_homepage = (self.source / 'index.html').read_text(encoding='utf-8')
 
     def test_empty_build_keeps_placeholder_and_empty_gallery(self):
         (self.media / ".gitkeep").touch()
@@ -44,7 +45,7 @@ class WintermuteBuildTests(unittest.TestCase):
         self.assertIn("01%20server%20%26%20%27network%27.PNG", homepage)
         self.assertIn("%C3%A9cran%20status.webp", project)
         self.assertIn("01 server &amp; &#x27;network&#x27;", project)
-        self.assertIn("work-card__placeholder", (self.source / "index.html").read_text(encoding="utf-8"))
+        self.assertEqual(self.original_homepage, (self.source / "index.html").read_text(encoding="utf-8"))
 
     def test_supported_formats_and_removed_media_are_reflected_at_next_build(self):
         for suffix in build.IMAGE_SUFFIXES:
@@ -100,6 +101,22 @@ class WintermuteBuildTests(unittest.TestCase):
         output = build.build(self.source)
         self.assertFalse((output / ".git").exists())
         self.assertIn(".git/**", (output / ".assetsignore").read_text())
+
+    def test_source_sync_renders_media_for_root_deployment_and_removes_stale_images(self):
+        personal = self.source / 'assets/outside-the-lab'
+        personal.mkdir(parents=True)
+        (personal / 'Hiking.jpg').touch()
+        (self.media / 'Monitoring.png').touch()
+        build.build(self.source, sync_source=True)
+        page = (self.source / 'index.html').read_text(encoding='utf-8')
+        project = (self.source / 'works/wintermute/index.html').read_text(encoding='utf-8')
+        self.assertIn('class="outside-lab__photo reveal"', page)
+        self.assertIn('data-gallery-image', project)
+        (personal / 'Hiking.jpg').unlink()
+        (self.media / 'Monitoring.png').unlink()
+        build.build(self.source, sync_source=True)
+        self.assertNotIn('class="outside-lab__photo reveal"', (self.source / 'index.html').read_text(encoding='utf-8'))
+        self.assertNotIn('data-gallery-image', (self.source / 'works/wintermute/index.html').read_text(encoding='utf-8'))
 
 
 if __name__ == "__main__":

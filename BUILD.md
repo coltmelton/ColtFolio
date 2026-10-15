@@ -4,18 +4,27 @@ The source is plain HTML, CSS, JavaScript, and Python. No frontend bundler or
 local Cloudflare deployment configuration existed before this build step.
 
 Run `python build.py` (or `python3 build.py`) from the repository root.
-The generated static website is in `dist/`; source files are unchanged.
+The generated static website is in `dist/`; source files are unchanged by default.
 The build uses the Python standard library and replaces only `dist/`.
+
+For the existing deployment that serves the repository root, run
+`python build.py --sync-source` before committing. This also refreshes the
+generated regions in `index.html` and `works/wintermute/index.html` with
+discovered images and architecture data. These generated HTML snapshots are
+committed so root-directory deployments display the photos and viewer even
+when Cloudflare does not run a build. They are not manually maintained asset
+lists. Re-run this command after adding or removing media. Standard builds
+still produce the equivalent site in `dist/`.
 
 For the existing Cloudflare deployment, run this build before deploying
 static assets and point its existing asset upload at `dist/` instead of the
 repository root. In a build dashboard, use `python3 build.py` as the build
 command. Keep the existing Worker name, domain, routing, and monitoring API
 configuration. No Worker configuration files are added or replaced here.
-Deploying the unbuilt source still shows the clean placeholder, but does not
-discover new media; the build must run for automatic discovery.
+Root deployments display the most recently committed generated snapshots.
+The build must run to discover subsequent media changes.
 
-Cloudflare's asset directory must be `dist/`, not the repository root. For a
+Cloudflare's recommended asset directory is `dist/`. For a
 Wrangler upload, use `npx wrangler deploy --name coltfolio --assets dist`
 after the build. The root `.assetsignore` also excludes `.git/` and other
 development files if a root-directory Workers upload is attempted. The build
@@ -77,8 +86,10 @@ The original diagrams remain untouched in the gallery, where a white backdrop
 makes their dark labels readable. The two screenshots are discovered by the
 same media build step. SVGs remain vector graphics when enlarged.
 
-Overview, Networking, Applications, Monitoring, and Hardware select subsets
-of the source graph and lay them out afresh. Full architecture restores all
+Overview is a simplified, clickable category illustration, explicitly not
+a complete network topology. Its four cards open Networking, Applications,
+Monitoring, and Hardware, which select subsets of the source graph and lay
+them out afresh. Full architecture restores all
 source nodes and edges. A component's detail panel lists every source
 connection, including those outside the selected view; following one reveals
 the full graph and focuses the destination. Explicit verification notes are

@@ -137,6 +137,11 @@
     if (!selected) {
       const heading = document.createElement('h3'); heading.textContent = 'Explore a component';
       info.append(heading, paragraph('Select a node or use Find component. Only connections in the supplied Mermaid diagram are shown.'), paragraph('Select Full architecture to see every component. This diagram documents configuration; it does not verify live connectivity.'));
+      if (view === 'Networking') {
+        const boundaries = ['PUBLIC', 'PRIVATE', 'PUBLIC_API', 'PROXY_NET', 'MEDIA_NET', 'MONITOR_NET'];
+        const title = document.createElement('h4'); title.textContent = 'Network boundaries in the source'; info.append(title);
+        boundaries.filter(id => groups.has(id)).forEach(id => info.append(paragraph(groups.get(id))));
+      }
       return;
     }
     const node = byId.get(selected), heading = document.createElement('h3'); heading.textContent = node.label;
@@ -170,8 +175,41 @@
     });
     details();
   };
+  const renderOverview = () => {
+    visible = []; edges = []; selected = null; positions = new Map(); picker.value = '';
+    const narrow = stage.clientWidth < 620;
+    const tiles = [
+      ['Networking', 'Private access & routing', 'Tailscale · DNS · Caddy'],
+      ['Applications', 'Private services & AI', 'Containers · systemd apps'],
+      ['Monitoring', 'Metrics & public telemetry', 'Prometheus · exporters · API'],
+      ['Hardware', 'Compute & persistence', 'CPU · GPU · storage']
+    ];
+    extent = {width: narrow ? 280 : 584, height: narrow ? 510 : 286};
+    world.replaceChildren();
+    world.append(element('text', {x: 0, y: 24, class: 'wm-overview-heading'}, 'Wintermute / Ubuntu homelab'));
+    tiles.forEach(([name, role, tools], index) => {
+      const x = narrow ? 0 : (index % 2) * 304;
+      const y = 50 + (narrow ? index : Math.floor(index / 2)) * 116;
+      const tile = element('g', {transform: `translate(${x} ${y})`, class: 'wm-overview-tile', 'data-view-node': name, tabindex: 0, role: 'button', 'aria-label': 'Explore ' + name});
+      tile.append(element('rect', {width: 280, height: 96, rx: 2}));
+      tile.append(element('text', {x: 16, y: 28, class: 'wm-overview-name'}, name + ' ↗'));
+      tile.append(element('text', {x: 16, y: 53}, role));
+      tile.append(element('text', {x: 16, y: 77, class: 'wm-overview-tools'}, tools));
+      tile.addEventListener('click', () => { if (!moved) render(name); });
+      tile.addEventListener('keydown', event => {
+        if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); event.stopPropagation(); render(name); }
+      });
+      world.append(tile);
+    });
+    host.querySelectorAll('[data-view]').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.view === 'Overview')));
+    host.querySelector('.wm-count').textContent = 'Illustrative simplified overview, not a complete network topology.';
+    fit(false);
+  };
   const render = (next = view) => {
-    view = next; visible = graph.nodes.filter(views[view]);
+    view = next;
+    host.classList.toggle('wm-viewer--overview', view === 'Overview');
+    if (view === 'Overview') { renderOverview(); return; }
+    visible = graph.nodes.filter(views[view]);
     const ids = new Set(visible.map(node => node.id));
     edges = graph.edges.filter(edge => ids.has(edge.source) && ids.has(edge.target));
     const ranks = new Map(visible.map(node => [node.id, 0]));
